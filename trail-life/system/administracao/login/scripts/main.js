@@ -4,7 +4,7 @@ const action = form.getAttribute('action');
 const button = form.querySelector('button[type="submit"]');
 
 form.addEventListener('submit', async (e) => {
-	e.preventDefault();
+	//e.preventDefault();
 
 	handleButtonLoading(true, button);
 

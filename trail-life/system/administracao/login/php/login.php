@@ -2,8 +2,9 @@
 define('BASE_DIR', '/opt/lampp/htdocs/');
 
 require BASE_DIR .'vendor/autoload.php';
-require_once BASE_DIR . "trail-life/system/global-modules/mysql/mysql.php";
-require_once BASE_DIR . "trail-life/system/global-modules/request-handler/request-handler.php";
+require_once BASE_DIR . "global-modules/mysql/mysql.php";
+require_once BASE_DIR . "global-modules/request-handler/request-handler.php";
+require_once BASE_DIR . "global-modules/cypher/cypher.php";
 
 $dotenv = Dotenv\Dotenv::createImmutable(BASE_DIR);
 $dotenv->load();
@@ -38,11 +39,10 @@ try {
         $requestHandler::throwReqFormException($status, $label, $message);
       }
 
-      $h_usuario = hash('sha512', $usuario);
       $h_senha = hash('sha512', $senha);
 
-      $sql = 'SELECT id, usuario FROM usuarios_adm WHERE usuario = ? AND senha = ?;';
-      $params = array($h_usuario, $h_senha);
+      $sql = 'SELECT id, usuario FROM usuarios_adm WHERE senha = ?;';
+      $params = array($h_senha);
       $result = $mysql::query($sql, $params);
 
       if ($result->num_rows == 0) {
@@ -51,18 +51,37 @@ try {
         $message = 'Usuário ou senha errada!';
 
         $requestHandler::throwReqFormException($status, $label, $message);       
-      } else {
-        $id = $result->fetch_assoc()['id'];
-        $a_token = bin2hex(random_bytes(20));
+      } 
 
-        $sql = 'INSERT INTO usuarios_adm_session (id, token) VALUES (?, ?);';
-        $params = array($id, $a_token);
-        $result = $mysql::query($sql, $params);
+      $id;
 
-        setcookie('a_auth', $a_token, time() + 604800, "/");
+      foreach ($result as $row) {
+        $_id = $row['id'];
+        $_usuario = $row['usuario'];
 
-        $requestHandler::return200();
+        if (Cypher::decryptString($_usuario, $_ENV["USUARIOS_ADM_NAME_KEY"]) == $usuario) {
+          $id = $_id;
+          break;
+        }
       }
+
+      if (!isset($id)) {
+        $status = 400;
+        $label = 'usuario';
+        $message = 'Usuário ou senha errada!';
+
+        $requestHandler::throwReqFormException($status, $label, $message);       
+      }
+
+      $a_token = bin2hex(random_bytes(20));
+
+      $sql = 'INSERT INTO usuarios_adm_session (id, token) VALUES (?, ?);';
+      $params = array($id, $a_token);
+      $result = $mysql::query($sql, $params);
+
+      setcookie('a_auth', $a_token, time() + 604800, "/");
+
+      $requestHandler::return200();
 
   } else {
       $requestHandler::throwReqError(405, 'Method Not Allowed. Please use a POST request.', date('Y-m-d H:i:s'));
