@@ -1,8 +1,19 @@
 <?php
-require_once "../../../global-modules/mysql/mysql.php";
-require_once "../../../global-modules/request-handler/request-handler.php";
+define('BASE_DIR', '/opt/lampp/htdocs/');
 
-$mysql = new Mysql('127.0.0.1', 'administracao-login', '1294569302', 'trail_life');
+require BASE_DIR .'vendor/autoload.php';
+require_once BASE_DIR . "trail-life/system/global-modules/mysql/mysql.php";
+require_once BASE_DIR . "trail-life/system/global-modules/request-handler/request-handler.php";
+
+$dotenv = Dotenv\Dotenv::createImmutable(BASE_DIR);
+$dotenv->load();
+
+$host=$_ENV["SQL_DB_HOST_ADMINISTRACAO_LOGIN"];
+$user=$_ENV["SQL_DB_USER_ADMINISTRACAO_LOGIN"];
+$password=$_ENV["SQL_DB_PASSWORD_ADMINISTRACAO_LOGIN"];
+$database=$_ENV["SQL_DB_DATABASE_ADMINISTRACAO_LOGIN"];
+
+$mysql = new Mysql($host, $user, $password, $database);
 
 $requestHandler = new RequestHandler();
 
