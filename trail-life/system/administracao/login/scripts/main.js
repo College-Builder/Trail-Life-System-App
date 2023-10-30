@@ -21,8 +21,7 @@ form.addEventListener('submit', async (e) => {
 	handleButtonLoading(false, button);
 
 	if (req.status === 200) {
-		console.log(req.status);
-		spawnAlert('success', 'Success');
+		window.location.href = "http://localhost/trail-life/system/administracao/dashboard/"
 	} else if (req.status === 400) {
 		const { label, message } = await req.json();
 

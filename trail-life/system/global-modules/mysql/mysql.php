@@ -1,13 +1,14 @@
 <?php
 class Mysql {
-    private static $host = "127.0.0.1";
     private static $conn;
 
-    private static $username = "root";
-    private static $password = "";
-    private static $database = "trail_life";
+    private static $host;
+    private static $username;
+    private static $password;
+    private static $database;
 
-    public function __construct($username, $password, $database) {
+    public function __construct($host, $username, $password, $database) {
+        $this->host = $host;
         $this->username = $username;
         $this->password = $password;
         $this->database = $database;

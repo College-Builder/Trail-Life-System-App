@@ -2,7 +2,7 @@
 require_once "../../../global-modules/mysql/mysql.php";
 require_once "../../../global-modules/request-handler/request-handler.php";
 
-$mysql = new Mysql('root', '', 'trail_life');
+$mysql = new Mysql('127.0.0.1', 'administracao-login', '1294569302', 'trail_life');
 
 $requestHandler = new RequestHandler();
 
@@ -41,6 +41,15 @@ try {
 
         $requestHandler::throwReqFormException($status, $label, $message);       
       } else {
+        $id = $result->fetch_assoc()['id'];
+        $a_token = bin2hex(random_bytes(20));
+
+        $sql = 'INSERT INTO usuarios_adm_session (id, token) VALUES (?, ?);';
+        $params = array($id, $a_token);
+        $result = $mysql::query($sql, $params);
+
+        setcookie('a_auth', $a_token, time() + 604800, "/");
+
         $requestHandler::return200();
       }
 
