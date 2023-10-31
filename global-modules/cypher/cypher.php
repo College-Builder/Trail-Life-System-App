@@ -1,7 +1,7 @@
 <?php
 class Cypher {
     public static function encryptString($string, $key) {
-        $cipher = "aes-256-cbc"; // You can choose a different cipher if needed
+        $cipher = "aes-256-cbc"; 
         $iv_length = openssl_cipher_iv_length($cipher);
         $iv = openssl_random_pseudo_bytes($iv_length);
 
@@ -13,7 +13,7 @@ class Cypher {
     }
 
     public static function decryptString($string, $key) {
-        $cipher = "aes-256-cbc"; // You should use the same cipher as used for encryption
+        $cipher = "aes-256-cbc"; 
         $string = base64_decode($string);
         $iv_length = openssl_cipher_iv_length($cipher);
         $iv = substr($string, 0, $iv_length);

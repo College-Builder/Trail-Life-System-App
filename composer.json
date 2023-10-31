@@ -1,18 +1,5 @@
 {
-    "name": "trail-life/system-app",
-    "require-dev": {
+    "require": {
         "vlucas/phpdotenv": "^5.5"
-    },
-    "autoload": {
-        "psr-4": {
-            "TrailLife\\SystemApp\\": "src/"
-        }
-    },
-    "authors": [
-        {
-            "name": "Gabriel Flores",
-            "email": "jgdaflores184186@hotmail.com"
-        }
-    ],
-    "require": {}
+    }
 }
