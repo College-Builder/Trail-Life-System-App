@@ -14,11 +14,8 @@
 
       if(isset($_COOKIE['a_auth'])) {
             $mysql = new Mysql($host, $user, $password, $database);
-
-            $a_token = $_COOKIE['a_auth'];
-            
             $sql = 'SELECT id, token FROM usuarios_adm_session WHERE token = ?;';
-            $params = array($a_token);
+            $params = array($_COOKIE['a_auth']);
             $result = $mysql::query($sql, $params);
 
             if ($result->num_rows != 0) {

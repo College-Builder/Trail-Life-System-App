@@ -3,10 +3,11 @@ main > div:first-of-type {
   align-items: center;
   justify-content: center;
   height: 100vh;
-  min-height: 680px;
+  min-height: 720px;
 }
 main > div:first-of-type > div {
   max-width: 400px;
+  transform: translateY(-4%);
 }
 main > div:first-of-type > div > div:first-of-type {
   margin-bottom: 80px;
