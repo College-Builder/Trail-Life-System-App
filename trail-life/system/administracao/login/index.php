@@ -92,18 +92,21 @@
     <script defer src="./scripts/main.js?v=<?= time() ?>" charset="utf-8"></script>
   </head>
   <body>
-    <div default-alert class="default-hrz-padding default-alert">
-      <div>
-        <div>
-          <span>
-            <i alert-icon class="bi"></i>
-            <i alert-message></i>
-          </span>
-          <button onclick="closeAlert()">
-            <i class="bi bi-x-lg"></i>
-          </button>
+    <div default-alerts-container class="default-hrz-padding  default-alerts-container">
+      <template>
+        <div class="default-alerts-container__alert-container">
+          <div>
+            <div>
+              <p class="default-alerts-container__alert-container__icon">
+                <i default-alert-container__icon class="bi"></i>
+              </p>
+              <p>
+                <i default-alert-container__message></i>
+              </p>
+            </div>
+          </div>
         </div>
-      </div>
+      </template>
     </div>
     <main>
       <div class="default-hrz-padding">
