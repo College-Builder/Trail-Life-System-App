@@ -30,7 +30,7 @@ class RequestHandler {
         http_response_code(200);
     }
 
-    public static function throwReqError($status, $message) {
+    public static function throwReqException($status, $message) {
         $data = array(
             'status' => $status,
             'message' => $message,
@@ -51,7 +51,7 @@ class RequestHandler {
         throw new ReqFormException($data);
     }
 
-    public static function handleReqCustomException($e) {
+    public static function handleCustomException($e) {
         $data = $e->getCustomData();
 
         http_response_code($data['status']);

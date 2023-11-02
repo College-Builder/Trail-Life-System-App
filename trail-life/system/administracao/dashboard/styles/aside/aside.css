@@ -13,8 +13,18 @@ aside.aside-menu > div {
   height: 100%;
   gap: 40px;
 }
-aside.aside-menu > div > div:first-of-type img {
-  width: 100%;
+aside.aside-menu > div > div:first-of-type {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: center;
+}
+aside.aside-menu > div > div:first-of-type > p:first-of-type {
+  color: var(--red);
+  font-size: 40px;
+}
+aside.aside-menu > div > div:first-of-type > p:last-of-type {
+  font-size: 32px;
 }
 aside.aside-menu > div > div:nth-of-type(2) {
   background-color: white;

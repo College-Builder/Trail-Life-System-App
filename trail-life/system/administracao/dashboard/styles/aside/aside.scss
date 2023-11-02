@@ -14,8 +14,18 @@ aside.aside-menu {
 		gap: 40px;
 
 		& > div:first-of-type {
-			img {
-				width: 100%;
+			display: flex;
+			flex-direction: column;
+			gap: 8px;
+			text-align: center;
+			
+			& > p:first-of-type {
+				color: var(--red);
+				font-size: 40px;
+			}
+
+			& > p:last-of-type {
+				font-size: 32px;
 			}
 		}
 

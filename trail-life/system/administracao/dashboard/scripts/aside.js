@@ -36,13 +36,21 @@
 })();
 
 (() => {
+	const initialActive = 1;
+
 	let currentActiveButton = window.document.querySelectorAll(
-		'button[for-dashboard-panel="1"]',
+		`button[for-dashboard-panel="${initialActive}"]`,
 	);
 
+	currentActiveButton.forEach((button) => {
+		button.classList.add('--on');
+	});
+
 	let currentActivePanel = window.document.querySelector(
-		'div[dashboard-panel-id="1"]',
+		`div[dashboard-panel-id="${initialActive}"]`,
 	);
+
+	currentActivePanel.classList.add('--on')
 
 	window.document
 		.querySelectorAll('button[aside-menu-container__option]')
@@ -81,9 +89,11 @@
 	window.document
 		.querySelectorAll('button[logout-button]')
 		.forEach((button) => {
-			button.addEventListener('click', () => {
-				document.cookie =
-					'a_auth=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+			button.addEventListener('click', async () => {
+				await fetch ("/system/administracao/dashboard/logout/logout.php", {
+					method: "POST"
+				})
+
 				location.reload();
 			});
 		});

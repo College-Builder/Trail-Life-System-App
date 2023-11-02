@@ -1,11 +1,10 @@
 <?php
 class Mysql {
-    private static $conn;
-
-    private static $host;
-    private static $username;
-    private static $password;
-    private static $database;
+    private $conn;
+    private $host;
+    private $username;
+    private $password;
+    private $database;
 
     public function __construct($host, $username, $password, $database) {
         $this->host = $host;
@@ -13,18 +12,18 @@ class Mysql {
         $this->password = $password;
         $this->database = $database;
 
-        self::$conn = new mysqli(self::$host, $this->username, $this->password, $this->database);
+        $this->conn = new mysqli($this->host, $this->username, $this->password, $this->database);
 
-        if (self::$conn->connect_error) {
-            die("Connection failed: " . self::$conn->connect_error);
+        if ($this->conn->connect_error) {
+            die("Connection failed: " . $this->conn->connect_error);
         }
     }
 
-    public static function query($sql, $params = array()) {
-        $stmt = self::$conn->prepare($sql);
+    public function query($sql, $params = array()) {
+        $stmt = $this->conn->prepare($sql);
 
         if ($stmt === false) {
-            die("Error in query preparation: " . self::$conn->error);
+            die("Error in query preparation: " . $this->conn->error);
         }
 
         if (!empty($params)) {
