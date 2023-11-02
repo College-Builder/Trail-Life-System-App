@@ -1,4 +1,3 @@
-<!--
 <?php
       define('BASE_DIR', '/opt/lampp/htdocs/');
 
@@ -20,15 +19,14 @@
             $result = $mysql::query($sql, $params);
 
             if ($result->num_rows == 0) {
-                  header("Location: http://localhost/trail-life/system/administracao/login/");
+                  header("Location: http://localhost/system/administracao/login/");
                   exit();
             }
       } else {
-            header("Location: http://localhost/trail-life/system/administracao/login/");
+            header("Location: http://localhost/system/administracao/login/");
             exit();
       }
 ?>
--->
 <!doctype html>
 <html lang="pt-BR">
   <head>
@@ -109,7 +107,7 @@
     />
     <!---->
     <!---->
-    <script defer src="./scripts/aside.js" charset="utf-8"></script>
+    <script defer src="./scripts/aside.js?v=1.0" charset="utf-8"></script>
   </head>
   <body>
     <header>
@@ -184,7 +182,7 @@
             </ul>
           </div>
           <div>
-            <button class="--default-text-hover-animation">
+            <button logout-button class="--default-text-hover-animation">
               <i class="bi bi-box-seam"></i>
               Sair
             </button>

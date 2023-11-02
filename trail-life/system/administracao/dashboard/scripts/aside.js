@@ -76,3 +76,15 @@
 			});
 		});
 })();
+
+(() => {
+	window.document
+		.querySelectorAll('button[logout-button]')
+		.forEach((button) => {
+			button.addEventListener('click', () => {
+				document.cookie =
+					'a_auth=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+				location.reload();
+			});
+		});
+})();
