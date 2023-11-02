@@ -1,0 +1,51 @@
+header {
+	z-index: 2;
+	width: 100%;
+	position: fixed;
+	background-color: white;
+
+	& > div:first-of-type {
+		padding-top: 32px;
+		padding-bottom: 28px;
+
+		& > div {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 100%;
+			position: relative;
+
+			img {
+				height: 34px;
+			}
+
+			button {
+				font-size: 32px;
+				position: absolute;
+				left: 0px;
+			}
+		}
+	}
+}
+
+@media (min-width: 375px) {
+	header {
+		& > div:first-of-type {
+			& > div {
+				img {
+					height: 40px;
+				}
+
+				button {
+					font-size: 36px;
+				}
+			}
+		}
+	}
+}
+
+@media (min-width: 1200px) {
+	header {
+		display: none;
+	}
+}

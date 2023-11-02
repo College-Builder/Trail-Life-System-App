@@ -82,6 +82,9 @@
     <meta name="robots" content="noindex, nofollow" />
     <!---->
     <!---->
+    <title>Dashboard | Login</title>
+    <!---->
+    <!---->
     <link rel="stylesheet" href="./styles/main/main.css" />
     <!---->
     <!---->
