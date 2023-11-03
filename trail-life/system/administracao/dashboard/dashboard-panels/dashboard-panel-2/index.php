@@ -8,7 +8,7 @@
                   <!---->
                   <div class="default-panel-container__table-actions-container">
                         <div class="pill-icon-button-container">
-                              <a href="#">
+                              <a href="/system/administracao/dashboard/add/carga/">
                                     + Carga
                               </a>
                         </div>

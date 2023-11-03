@@ -63,10 +63,218 @@ if (isset($_COOKIE['a_auth'])) {
       Custom head tags
       -->
       <title>Add Carga | Administração</title>
+      <!---->
+      <!---->
+      <link rel="stylesheet" href="../styles/interact-form/interact-form.css?v=<?php echo time(); ?>">
 </head>
 
 <body>
-
+      <main>
+            <div class="interact-form-container">
+                  <div class="default-hrz-padding interact-form-container__header-container">
+                        <h1>
+                              <i class="bi bi-box-seam"></i>
+                              Nova Carga
+                        </h1>
+                  </div>
+                  <div class="default-hrz-padding interact-form-container__main-container">
+                        <form class="default-form" method="" action="">
+                              <div>
+                                    <div class="default-form__input-container">
+                                          <label for="">Código Cliente:</label>
+                                          <div>
+                                                <div>
+                                                      <select name="" id="">
+                                                            <option value="">Hello</option>
+                                                            <option value="">Word</option>
+                                                      </select>
+                                                      <span>
+                                                            <i class="bi bi-chevron-down"></i>
+                                                      </span>
+                                                </div>
+                                                <span class="default-input__error-message">
+                                                      <i class="bi bi-exclamation-octagon"></i>
+                                                      <i error-message></i>
+                                                </span>
+                                          </div>
+                                    </div>
+                                    <div class="default-form__input-container">
+                                          <label for="">Placa Cavalo:</label>
+                                          <div>
+                                                <div>
+                                                      <input type="text" placeholder="Placa Cavalo">
+                                                </div>
+                                                <span class="default-input__error-message">
+                                                      <i class="bi bi-exclamation-octagon"></i>
+                                                      <i error-message></i>
+                                                </span>
+                                          </div>
+                                    </div>
+                                    <div class="default-form__make-row">
+                                          <div class="default-form__input-container">
+                                                <label for="">Placa Carreta 1:</label>
+                                                <div>
+                                                      <div>
+                                                            <input type="text" placeholder="Placa Carreta 1">
+                                                      </div>
+                                                      <span class="default-input__error-message">
+                                                            <i class="bi bi-exclamation-octagon"></i>
+                                                            <i error-message></i>
+                                                      </span>
+                                                </div>
+                                          </div>
+                                          <div class="default-form__input-container">
+                                                <label for="">Placa Carreta 2:</label>
+                                                <div>
+                                                      <div>
+                                                            <input type="text" placeholder="Placa Carreta 2">
+                                                      </div>
+                                                      <span class="default-input__error-message">
+                                                            <i class="bi bi-exclamation-octagon"></i>
+                                                            <i error-message></i>
+                                                      </span>
+                                                </div>
+                                          </div>
+                                          <div class="default-form__input-container">
+                                                <label for="">Placa Carreta 3:</label>
+                                                <div>
+                                                      <div>
+                                                            <input type="text" placeholder="Placa Carreta 3">
+                                                      </div>
+                                                      <span class="default-input__error-message">
+                                                            <i class="bi bi-exclamation-octagon"></i>
+                                                            <i error-message></i>
+                                                      </span>
+                                                </div>
+                                          </div>
+                                    </div>
+                                    <div class="default-form__input-container">
+                                          <label for="">Solicitante:</label>
+                                          <div>
+                                                <div>
+                                                      <select name="" id="">
+                                                            <option value="">Hello</option>
+                                                            <option value="">Word</option>
+                                                      </select>
+                                                      <span>
+                                                            <i class="bi bi-chevron-down"></i>
+                                                      </span>
+                                                </div>
+                                                <span class="default-input__error-message">
+                                                      <i class="bi bi-exclamation-octagon"></i>
+                                                      <i error-message></i>
+                                                </span>
+                                          </div>
+                                    </div>
+                                    <div class="default-form__input-container">
+                                          <label for="">Status Transporte:</label>
+                                          <div>
+                                                <div>
+                                                      <select name="" id="">
+                                                            <option value="">Hello</option>
+                                                            <option value="">Word</option>
+                                                      </select>
+                                                      <span>
+                                                            <i class="bi bi-chevron-down"></i>
+                                                      </span>
+                                                </div>
+                                                <span class="default-input__error-message">
+                                                      <i class="bi bi-exclamation-octagon"></i>
+                                                      <i error-message></i>
+                                                </span>
+                                          </div>
+                                    </div>
+                                    <div class="default-form__make-row">
+                                          <div class="default-form__input-container">
+                                                <label for="">Tipo de Carga:</label>
+                                                <div>
+                                                      <div>
+                                                            <select name="" id="">
+                                                                  <option value="">Hello</option>
+                                                                  <option value="">Word</option>
+                                                            </select>
+                                                            <span>
+                                                                  <i class="bi bi-chevron-down"></i>
+                                                            </span>
+                                                      </div>
+                                                      <span class="default-input__error-message">
+                                                            <i class="bi bi-exclamation-octagon"></i>
+                                                            <i error-message></i>
+                                                      </span>
+                                                </div>
+                                          </div>
+                                          <div class="default-form__input-container">
+                                                <label for="">Situação Transporte:</label>
+                                                <div>
+                                                      <div>
+                                                            <select name="" id="">
+                                                                  <option value="">Hello</option>
+                                                                  <option value="">Word</option>
+                                                            </select>
+                                                            <span>
+                                                                  <i class="bi bi-chevron-down"></i>
+                                                            </span>
+                                                      </div>
+                                                      <span class="default-input__error-message">
+                                                            <i class="bi bi-exclamation-octagon"></i>
+                                                            <i error-message></i>
+                                                      </span>
+                                                </div>
+                                          </div>
+                                    </div>
+                                    <div class="default-form__make-row">
+                                          <div class="default-form__input-container">
+                                                <label for="">Ponto de Partida:</label>
+                                                <div>
+                                                      <div>
+                                                            <select name="" id="">
+                                                                  <option value="">Hello</option>
+                                                                  <option value="">Word</option>
+                                                            </select>
+                                                            <span>
+                                                                  <i class="bi bi-chevron-down"></i>
+                                                            </span>
+                                                      </div>
+                                                      <span class="default-input__error-message">
+                                                            <i class="bi bi-exclamation-octagon"></i>
+                                                            <i error-message></i>
+                                                      </span>
+                                                </div>
+                                          </div>
+                                          <div class="default-form__input-container">
+                                                <label for="">Destino:</label>
+                                                <div>
+                                                      <div>
+                                                            <select name="" id="">
+                                                                  <option value="">Hello</option>
+                                                                  <option value="">Word</option>
+                                                            </select>
+                                                            <span>
+                                                                  <i class="bi bi-chevron-down"></i>
+                                                            </span>
+                                                      </div>
+                                                      <span class="default-input__error-message">
+                                                            <i class="bi bi-exclamation-octagon"></i>
+                                                            <i error-message></i>
+                                                      </span>
+                                                </div>
+                                          </div>
+                                    </div>
+                              </div>
+                              <div>
+                                    <div class="default-button-container">
+                                          <button class="--red-button">
+                                                <span class="default-button__loading">
+                                                      <i class="bi bi-arrow-repeat"></i>
+                                                </span>
+                                                Adicionar
+                                          </button>
+                                    </div>
+                              </div>
+                        </form>
+                  </div>
+            </div>
+      </main>
 </body>
 
 </html>
