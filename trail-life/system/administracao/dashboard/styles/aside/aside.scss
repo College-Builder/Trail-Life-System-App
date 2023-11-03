@@ -43,17 +43,7 @@ aside.aside-menu {
 							color: var(--red);
 						}
 
-						& > i:first-of-type {
-							color: var(--red);
-						}
-
-						display: flex;
-						align-items: center;
-						gap: 8px;
-						text-align: left;
-						width: 100%;
-						font-size: 18px;
-						transition: ease-in-out 0.35s;
+						justify-content: left;
 
 						i {
 							font-style: normal;
@@ -68,24 +58,6 @@ aside.aside-menu {
 			align-items: end;
 			justify-content: center;
 			height: 100%;
-
-			button {
-				& > i:first-of-type {
-					color: var(--red);
-				}
-
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				gap: 8px;
-				width: 100%;
-				font-size: 18px;
-				padding: 14px 0px;
-
-				i {
-					font-style: normal;
-				}
-			}
 		}
 	}
 }

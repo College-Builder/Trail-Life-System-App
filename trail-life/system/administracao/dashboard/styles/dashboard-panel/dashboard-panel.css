@@ -1,0 +1,155 @@
+div.default-panel-container {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  padding-top: 180px;
+  padding-bottom: 160px;
+  height: 100vh;
+  overflow: scroll;
+  background-color: var(--light-gray);
+}
+div.default-panel-container > div:first-of-type {
+  text-align: center;
+}
+div.default-panel-container > div:last-of-type > div {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+@media (min-width: 1200px) {
+  div.default-panel-container {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+  div.default-panel-container > div:first-of-type {
+    text-align: left;
+  }
+  div.default-panel-container > div:last-of-type > div {
+    gap: 40px;
+  }
+}
+/**/
+/**/
+/**/
+/**/
+div.default-panel-container__table-actions-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  width: 100%;
+}
+@media (min-width: 1200px) {
+  div.default-panel-container__table-actions-container {
+    flex-direction: row;
+    align-items: start;
+    justify-content: left;
+  }
+}
+div.default-panel-container__table-actions-container div.pill-icon-button-container {
+  justify-content: left;
+}
+
+/**/
+/**/
+div.default-panel-container__table-actions-container__inputs-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  width: 100%;
+}
+div.default-panel-container__table-actions-container__inputs-container > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  width: 100%;
+}
+@media (min-width: 1200px) {
+  div.default-panel-container__table-actions-container__inputs-container > div {
+    flex-direction: row;
+    align-items: start;
+    justify-content: left;
+  }
+}
+
+/**/
+/**/
+div.default-panel-container__table-container {
+  width: 100%;
+  padding: 22px 0px;
+  overflow: auto;
+}
+div.default-panel-container__table-container::-webkit-scrollbar {
+  display: initial;
+  height: 8px;
+}
+div.default-panel-container__table-container > div table {
+  width: 100%;
+  border-collapse: collapse;
+}
+div.default-panel-container__table-container > div table th, div.default-panel-container__table-container > div table tr {
+  min-width: 140px;
+}
+div.default-panel-container__table-container > div table thead {
+  border-bottom: 2px solid var(--gray);
+}
+div.default-panel-container__table-container > div table thead th {
+  padding: 20px 0px;
+}
+div.default-panel-container__table-container > div table thead th button {
+  font-size: 20px;
+  border: 2px solid var(--red);
+  color: var(--red);
+  border-radius: 8px;
+  padding: 16px 20px;
+  transition: ease-in-out 0.35s;
+}
+div.default-panel-container__table-container > div table thead th button:hover {
+  background-color: var(--red);
+  color: white;
+}
+div.default-panel-container__table-container > div table tbody > tr:nth-child(odd) {
+  background-color: rgba(178, 12, 48, 0.1568627451);
+}
+div.default-panel-container__table-container > div table tbody > tr > td {
+  padding: 24px 12px;
+  text-align: center;
+  white-space: nowrap;
+}
+div.default-panel-container__table-container > div table tbody > tr > td:last-of-type div {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+}
+div.default-panel-container__table-container > div table tbody > tr > td:last-of-type div a {
+  font-size: 20px;
+  color: var(--yellow);
+}
+div.default-panel-container__table-container > div table tbody > tr > td:last-of-type div a i {
+  display: flex;
+}
+div.default-panel-container__table-container > div table tbody > tr > td:last-of-type div input {
+  width: 18px;
+  height: 18px;
+}
+
+/**/
+/**/
+div.download-csv-button-container {
+  display: flex;
+  justify-content: left;
+  padding-top: 14px;
+}
+div.download-csv-button-container button {
+  white-space: nowrap;
+  width: min-content;
+}
+
+/*# sourceMappingURL=dashboard-panel.css.map */

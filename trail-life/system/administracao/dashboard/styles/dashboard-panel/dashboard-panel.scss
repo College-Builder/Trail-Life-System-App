@@ -1,0 +1,182 @@
+div.default-panel-container {
+      display: flex;
+      flex-direction: column;
+      gap: 60px;
+      padding-top: 180px;
+      padding-bottom: 160px;
+      height: 100vh;
+      overflow: scroll;
+      background-color: var(--light-gray);
+
+      & > div:first-of-type {
+            text-align: center;
+      }
+
+      & > div:last-of-type {
+            & > div {
+                  display: flex;
+                  flex-direction: column;
+                  gap: 16px;
+            }
+            
+      }
+}
+
+@media (min-width: 1200px) {
+      div.default-panel-container {
+            padding-top: 80px;
+            padding-bottom: 80px;
+
+            & > div:first-of-type {
+                  text-align: left;
+            }
+
+            & > div:last-of-type {
+                  & > div {
+                        gap: 40px;
+                  }
+            }
+      }
+}
+
+/**/
+/**/
+
+@mixin table-actions-container-grid($break-line) {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      width: 100%;
+
+      @if $break-line == true {
+            @media (min-width: 1200px) {
+
+                  flex-direction: row;
+                  align-items: start;
+                  justify-content: left;
+            }
+      }
+}
+
+/**/
+/**/
+
+div.default-panel-container__table-actions-container {
+      @include table-actions-container-grid(true);
+
+      div.pill-icon-button-container {
+            justify-content: left;
+      }
+
+}
+
+/**/
+/**/
+
+div.default-panel-container__table-actions-container__inputs-container {
+      @include table-actions-container-grid(false);
+
+      & > div {
+            @include table-actions-container-grid(true);
+      }
+}
+
+/**/
+/**/
+
+div.default-panel-container__table-container {
+      &::-webkit-scrollbar {
+		display: initial;
+            height: 8px;
+	}
+
+      width: 100%;
+      padding: 22px 0px;
+      overflow: auto;
+
+      & > div {
+            table {
+                  width: 100%;
+                  border-collapse: collapse;
+
+                  th, tr {
+                        min-width: 140px;
+                  }
+
+                  thead {
+                        border-bottom: 2px solid var(--gray);
+
+                        th {
+                              padding: 20px 0px;
+
+                              button {
+                                    &:hover {
+                                          background-color: var(--red);
+                                          color: white;
+                                    }
+
+                                    font-size: 20px;
+                                    border: 2px solid var(--red);
+                                    color: var(--red);
+                                    border-radius: 8px;
+                                    padding: 16px 20px;
+                                    transition: ease-in-out 0.35s;
+                              }
+                        }
+                  }
+
+                  tbody {
+                        & > tr {
+                              &:nth-child(odd) {
+                                    background-color: #b20c3028;
+                              }
+                              
+                              & > td {
+                                    &:last-of-type {
+                                          div {
+                                                display: flex;
+                                                gap: 12px;
+                                                align-items: center;
+                                                justify-content: center;
+
+                                                a {
+                                                      font-size: 20px;
+                                                      color: var(--yellow);
+
+                                                      i {
+                                                            display: flex;
+                                                      }
+                                                }
+
+                                                input {
+                                                      width: 18px;
+                                                      height: 18px;
+                                                }
+                                          }
+                                    }
+
+                                    padding: 24px 12px;
+                                    text-align: center;
+                                    white-space: nowrap;
+                              }
+                        }
+                  }
+            }
+      }
+}
+
+/**/
+/**/
+
+div.download-csv-button-container {
+      display: flex;
+      justify-content: left;
+      padding-top: 14px;
+
+      button {
+            white-space: nowrap;
+            width: min-content;
+      }
+}

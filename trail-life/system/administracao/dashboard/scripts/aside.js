@@ -36,7 +36,11 @@
 })();
 
 (() => {
-	const initialActive = 1;
+	if (!localStorage.getItem('initialActive')) {
+		localStorage.setItem('initialActive', '1')
+	}
+
+	const initialActive = localStorage.getItem('initialActive')
 
 	let currentActiveButton = window.document.querySelectorAll(
 		`button[for-dashboard-panel="${initialActive}"]`,
@@ -59,6 +63,8 @@
 				currentActivePanel.classList.remove('--on');
 
 				const forDashboard = button.getAttribute('for-dashboard-panel');
+
+				localStorage.setItem('initialActive', forDashboard)
 
 				const newCurrentActivePanel = window.document.querySelector(
 					`div[dashboard-panel-id="${forDashboard}"]`,

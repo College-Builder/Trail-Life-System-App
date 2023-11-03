@@ -35,18 +35,9 @@ aside.aside-menu > div > div:nth-of-type(2) ul {
   gap: 28px;
 }
 aside.aside-menu > div > div:nth-of-type(2) ul li button {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  text-align: left;
-  width: 100%;
-  font-size: 18px;
-  transition: ease-in-out 0.35s;
+  justify-content: left;
 }
 aside.aside-menu > div > div:nth-of-type(2) ul li button.--on {
-  color: var(--red);
-}
-aside.aside-menu > div > div:nth-of-type(2) ul li button > i:first-of-type {
   color: var(--red);
 }
 aside.aside-menu > div > div:nth-of-type(2) ul li button i {
@@ -57,21 +48,6 @@ aside.aside-menu > div > div:last-of-type {
   align-items: end;
   justify-content: center;
   height: 100%;
-}
-aside.aside-menu > div > div:last-of-type button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  width: 100%;
-  font-size: 18px;
-  padding: 14px 0px;
-}
-aside.aside-menu > div > div:last-of-type button > i:first-of-type {
-  color: var(--red);
-}
-aside.aside-menu > div > div:last-of-type button i {
-  font-style: normal;
 }
 
 /*# sourceMappingURL=aside.css.map */

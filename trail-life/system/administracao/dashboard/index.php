@@ -65,13 +65,22 @@ if (isset($_COOKIE['a_auth'])) {
   <title>Dashboard | Administração</title>
   <!---->
   <!---->
-  <link rel="stylesheet" href="./styles/main/main.css?v=<?php echo time(); ?>" type="text/css" media="screen" title="no title"
-    charset="utf-8" />
-  <link rel="stylesheet" href="./styles/aside/aside.css" type="text/css" media="all" />
+  <link rel="stylesheet" href="./styles/main/main.css?v=<?php echo time(); ?>" type="text/css" media="screen"
+    title="no title" charset="utf-8" />
+  <link rel="stylesheet" href="./styles/aside/aside.css?v=<?php echo time(); ?>" type="text/css" media="all" />
   <link rel="stylesheet" href="./styles/header/header.css?v=<?php echo time(); ?>" type="text/css" media="all" />
+  <link rel="stylesheet" href="./styles/dashboard-panel/dashboard-panel.css?v=<?php echo time(); ?>">
   <!---->
   <!---->
-  <script defer src="./scripts/aside.js?v=1.0" charset="utf-8"></script>
+  <script defer src="./scripts/aside.js?v=5.0" charset="utf-8"></script>
+  <script defer src="./scripts/dashboard-panel.js?v=2.0" charset="utf-8"></script>
+  <!--
+      Dashboard-Panel 1
+  -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!---->
+  <!---->
+  <link rel="stylesheet" href="./styles/dashboard-panel-1/dashboard-panel-1.css?v=<?php echo time(); ?>">
 </head>
 
 <body>
@@ -102,25 +111,25 @@ if (isset($_COOKIE['a_auth'])) {
         <div>
           <ul>
             <li>
-              <button aside-menu-container__option for-dashboard-panel="1" class="--default-text-hover-animation">
+              <button aside-menu-container__option for-dashboard-panel="1" class="default-icon-button">
                 <i class="bi bi-box-seam"></i>
-                <i>Entregassdasd assdasd sa </i>
+                <i>Controle Financeiro</i>
               </button>
             </li>
             <li>
-              <button aside-menu-container__option for-dashboard-panel="2" class="--default-text-hover-animation">
-                <i class="bi bi-box-seam"></i>
-                <i>Entregas</i>
-              </button>
-            </li>
-            <li>
-              <button aside-menu-container__option for-dashboard-panel="3" class="--default-text-hover-animation">
+              <button aside-menu-container__option for-dashboard-panel="2" class="default-icon-button">
                 <i class="bi bi-box-seam"></i>
                 <i>Entregas</i>
               </button>
             </li>
             <li>
-              <button aside-menu-container__option for-dashboard-panel="4" class="--default-text-hover-animation">
+              <button aside-menu-container__option for-dashboard-panel="3" class="default-icon-button">
+                <i class="bi bi-box-seam"></i>
+                <i>Entregas</i>
+              </button>
+            </li>
+            <li>
+              <button aside-menu-container__option for-dashboard-panel="4" class="default-icon-button">
                 <i class="bi bi-box-seam"></i>
                 <i>Entregas</i>
               </button>
@@ -128,7 +137,7 @@ if (isset($_COOKIE['a_auth'])) {
           </ul>
         </div>
         <div>
-          <button logout-button class="--default-text-hover-animation">
+          <button logout-button class="default-icon-button">
             <i class="bi bi-box-seam"></i>
             Sair
           </button>
@@ -147,11 +156,21 @@ if (isset($_COOKIE['a_auth'])) {
       <!---->
       <!---->
       <div class="dashboard-system-container__dashboard-container">
+        <!---->
+        <!---->
         <div dashboard-panel-id="1">
           <?php include './dashboard-panels/dashboard-panel-1/index.php'; ?>
         </div>
-        <div dashboard-panel-id="2" style="background-color: purple"></div>
+        <!---->
+        <!---->
+        <div dashboard-panel-id="2">
+          <?php include './dashboard-panels/dashboard-panel-2/index.php'; ?>
+        </div>
+        <!---->
+        <!---->
         <div dashboard-panel-id="3" style="background-color: green"></div>
+        <!---->
+        <!---->
         <div dashboard-panel-id="4" style="background-color: red"></div>
       </div>
     </div>
