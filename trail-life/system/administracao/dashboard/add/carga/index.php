@@ -42,12 +42,28 @@ if (isset($_COOKIE['a_auth'])) {
             type="image/x-icon" />
       <!---->
       <!---->
+
+
+      <script defer src="../scripts/modules.js?v=2.0"></script>
+      <!--
       <script defer src="https://college-builder.s3.amazonaws.com/trail-life/scripts/modules.js"></script>
+      -->
+
+
+      <script defer src="../scripts/auto-apply.js?v=1.0"></script>
+      <!--
       <script defer src="https://college-builder.s3.amazonaws.com/trail-life/scripts/auto-apply.js"></script>
+      -->
+
       <!---->
       <!---->
       <link rel="stylesheet" href="https://college-builder.s3.amazonaws.com/trail-life/styles/index/index.css" />
+
+      <link rel="stylesheet" href="../styles/styles/styles.css?v=<?php echo time(); ?>">
+      <!--
       <link rel="stylesheet" href="https://college-builder.s3.amazonaws.com/trail-life/styles/styles/styles.css" />
+      -->
+
       <link rel="stylesheet"
             href="https://college-builder.s3.amazonaws.com/trail-life/styles/controller/controller.css" />
       <!---->
@@ -84,10 +100,30 @@ if (isset($_COOKIE['a_auth'])) {
                                           <label for="">Código Cliente:</label>
                                           <div>
                                                 <div>
-                                                      <select name="" id="">
-                                                            <option value="">Hello</option>
-                                                            <option value="">Word</option>
-                                                      </select>
+                                                      <button pseudo-select
+                                                            class="default-form__input-container__pseudo-select"
+                                                            type="button">
+                                                            <div>
+                                                                  <option
+                                                                        class="default-form__input-container__pseudo-select__pseudo_option"
+                                                                        value="1"
+                                                                        >
+                                                                        1
+                                                                  </option>
+                                                                  <option
+                                                                        class="default-form__input-container__pseudo-select__pseudo_option"
+                                                                        value="2"
+                                                                        >
+                                                                        2
+                                                                  </option>
+                                                                  <option
+                                                                        class="default-form__input-container__pseudo-select__pseudo_option"
+                                                                        value="3"
+                                                                        >
+                                                                        3
+                                                                  </option>
+                                                            </div>
+                                                      </button>
                                                       <span>
                                                             <i class="bi bi-chevron-down"></i>
                                                       </span>
@@ -108,156 +144,6 @@ if (isset($_COOKIE['a_auth'])) {
                                                       <i class="bi bi-exclamation-octagon"></i>
                                                       <i error-message></i>
                                                 </span>
-                                          </div>
-                                    </div>
-                                    <div class="default-form__make-row">
-                                          <div class="default-form__input-container">
-                                                <label for="">Placa Carreta 1:</label>
-                                                <div>
-                                                      <div>
-                                                            <input type="text" placeholder="Placa Carreta 1">
-                                                      </div>
-                                                      <span class="default-input__error-message">
-                                                            <i class="bi bi-exclamation-octagon"></i>
-                                                            <i error-message></i>
-                                                      </span>
-                                                </div>
-                                          </div>
-                                          <div class="default-form__input-container">
-                                                <label for="">Placa Carreta 2:</label>
-                                                <div>
-                                                      <div>
-                                                            <input type="text" placeholder="Placa Carreta 2">
-                                                      </div>
-                                                      <span class="default-input__error-message">
-                                                            <i class="bi bi-exclamation-octagon"></i>
-                                                            <i error-message></i>
-                                                      </span>
-                                                </div>
-                                          </div>
-                                          <div class="default-form__input-container">
-                                                <label for="">Placa Carreta 3:</label>
-                                                <div>
-                                                      <div>
-                                                            <input type="text" placeholder="Placa Carreta 3">
-                                                      </div>
-                                                      <span class="default-input__error-message">
-                                                            <i class="bi bi-exclamation-octagon"></i>
-                                                            <i error-message></i>
-                                                      </span>
-                                                </div>
-                                          </div>
-                                    </div>
-                                    <div class="default-form__input-container">
-                                          <label for="">Solicitante:</label>
-                                          <div>
-                                                <div>
-                                                      <select name="" id="">
-                                                            <option value="">Hello</option>
-                                                            <option value="">Word</option>
-                                                      </select>
-                                                      <span>
-                                                            <i class="bi bi-chevron-down"></i>
-                                                      </span>
-                                                </div>
-                                                <span class="default-input__error-message">
-                                                      <i class="bi bi-exclamation-octagon"></i>
-                                                      <i error-message></i>
-                                                </span>
-                                          </div>
-                                    </div>
-                                    <div class="default-form__input-container">
-                                          <label for="">Status Transporte:</label>
-                                          <div>
-                                                <div>
-                                                      <select name="" id="">
-                                                            <option value="">Hello</option>
-                                                            <option value="">Word</option>
-                                                      </select>
-                                                      <span>
-                                                            <i class="bi bi-chevron-down"></i>
-                                                      </span>
-                                                </div>
-                                                <span class="default-input__error-message">
-                                                      <i class="bi bi-exclamation-octagon"></i>
-                                                      <i error-message></i>
-                                                </span>
-                                          </div>
-                                    </div>
-                                    <div class="default-form__make-row">
-                                          <div class="default-form__input-container">
-                                                <label for="">Tipo de Carga:</label>
-                                                <div>
-                                                      <div>
-                                                            <select name="" id="">
-                                                                  <option value="">Hello</option>
-                                                                  <option value="">Word</option>
-                                                            </select>
-                                                            <span>
-                                                                  <i class="bi bi-chevron-down"></i>
-                                                            </span>
-                                                      </div>
-                                                      <span class="default-input__error-message">
-                                                            <i class="bi bi-exclamation-octagon"></i>
-                                                            <i error-message></i>
-                                                      </span>
-                                                </div>
-                                          </div>
-                                          <div class="default-form__input-container">
-                                                <label for="">Situação Transporte:</label>
-                                                <div>
-                                                      <div>
-                                                            <select name="" id="">
-                                                                  <option value="">Hello</option>
-                                                                  <option value="">Word</option>
-                                                            </select>
-                                                            <span>
-                                                                  <i class="bi bi-chevron-down"></i>
-                                                            </span>
-                                                      </div>
-                                                      <span class="default-input__error-message">
-                                                            <i class="bi bi-exclamation-octagon"></i>
-                                                            <i error-message></i>
-                                                      </span>
-                                                </div>
-                                          </div>
-                                    </div>
-                                    <div class="default-form__make-row">
-                                          <div class="default-form__input-container">
-                                                <label for="">Ponto de Partida:</label>
-                                                <div>
-                                                      <div>
-                                                            <select name="" id="">
-                                                                  <option value="">Hello</option>
-                                                                  <option value="">Word</option>
-                                                            </select>
-                                                            <span>
-                                                                  <i class="bi bi-chevron-down"></i>
-                                                            </span>
-                                                      </div>
-                                                      <span class="default-input__error-message">
-                                                            <i class="bi bi-exclamation-octagon"></i>
-                                                            <i error-message></i>
-                                                      </span>
-                                                </div>
-                                          </div>
-                                          <div class="default-form__input-container">
-                                                <label for="">Destino:</label>
-                                                <div>
-                                                      <div>
-                                                            <select name="" id="">
-                                                                  <option value="">Hello</option>
-                                                                  <option value="">Word</option>
-                                                            </select>
-                                                            <span>
-                                                                  <i class="bi bi-chevron-down"></i>
-                                                            </span>
-                                                      </div>
-                                                      <span class="default-input__error-message">
-                                                            <i class="bi bi-exclamation-octagon"></i>
-                                                            <i error-message></i>
-                                                      </span>
-                                                </div>
                                           </div>
                                     </div>
                               </div>
