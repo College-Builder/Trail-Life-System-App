@@ -42,28 +42,12 @@ if (isset($_COOKIE['a_auth'])) {
             type="image/x-icon" />
       <!---->
       <!---->
-
-
-      <script defer src="../scripts/modules.js?v=2.0"></script>
-      <!--
       <script defer src="https://college-builder.s3.amazonaws.com/trail-life/scripts/modules.js"></script>
-      -->
-
-
-      <script defer src="../scripts/auto-apply.js?v=1.0"></script>
-      <!--
       <script defer src="https://college-builder.s3.amazonaws.com/trail-life/scripts/auto-apply.js"></script>
-      -->
-
       <!---->
       <!---->
       <link rel="stylesheet" href="https://college-builder.s3.amazonaws.com/trail-life/styles/index/index.css" />
-
-      <link rel="stylesheet" href="../styles/styles/styles.css?v=<?php echo time(); ?>">
-      <!--
       <link rel="stylesheet" href="https://college-builder.s3.amazonaws.com/trail-life/styles/styles/styles.css" />
-      -->
-
       <link rel="stylesheet"
             href="https://college-builder.s3.amazonaws.com/trail-life/styles/controller/controller.css" />
       <!---->
@@ -81,7 +65,7 @@ if (isset($_COOKIE['a_auth'])) {
       <title>Add Carga | Administração</title>
       <!---->
       <!---->
-      <link rel="stylesheet" href="../styles/interact-form/interact-form.css?v=<?php echo time(); ?>">
+      <link rel="stylesheet" href="../styles/interact-form/interact-form.css">
 </head>
 
 <body>
@@ -97,31 +81,30 @@ if (isset($_COOKIE['a_auth'])) {
                         <form class="default-form" method="" action="">
                               <div>
                                     <div class="default-form__input-container">
-                                          <label for="">Código Cliente:</label>
+                                          <label for="cod-cliente">Código Cliente:</label>
                                           <div>
                                                 <div>
-                                                      <button pseudo-select
+                                                      <button pseudo-select id="cod-cliente"
                                                             class="default-form__input-container__pseudo-select"
                                                             type="button">
-                                                            <div>
-                                                                  <option
-                                                                        class="default-form__input-container__pseudo-select__pseudo_option"
-                                                                        value="1"
-                                                                        >
-                                                                        1
-                                                                  </option>
-                                                                  <option
-                                                                        class="default-form__input-container__pseudo-select__pseudo_option"
-                                                                        value="2"
-                                                                        >
-                                                                        2
-                                                                  </option>
-                                                                  <option
-                                                                        class="default-form__input-container__pseudo-select__pseudo_option"
-                                                                        value="3"
-                                                                        >
-                                                                        3
-                                                                  </option>
+                                                            <div pseudo-select__options-container>
+                                                                  <div>
+                                                                        <option
+                                                                              class="default-form__input-container__pseudo-select__pseudo_option"
+                                                                              value="1">
+                                                                              Lorem ipsum dolor sit amet consectetur
+                                                                        </option>
+                                                                        <option
+                                                                              class="default-form__input-container__pseudo-select__pseudo_option"
+                                                                              value="2">
+                                                                              adipisicing elit. Vel pariatur alias ut ex
+                                                                        </option>
+                                                                        <option
+                                                                              class="default-form__input-container__pseudo-select__pseudo_option"
+                                                                              value="3">
+                                                                              3
+                                                                        </option>
+                                                                  </div>
                                                             </div>
                                                       </button>
                                                       <span>
@@ -135,15 +118,160 @@ if (isset($_COOKIE['a_auth'])) {
                                           </div>
                                     </div>
                                     <div class="default-form__input-container">
-                                          <label for="">Placa Cavalo:</label>
+                                          <label for="placa-cavalo">Placa Cavalo:</label>
                                           <div>
                                                 <div>
-                                                      <input type="text" placeholder="Placa Cavalo">
+                                                      <input id="placa-cavalo" type="text" placeholder="Placa Cavalo">
                                                 </div>
                                                 <span class="default-input__error-message">
                                                       <i class="bi bi-exclamation-octagon"></i>
                                                       <i error-message></i>
                                                 </span>
+                                          </div>
+                                    </div>
+                                    <div class="default-form__make-row">
+                                          <div class="default-form__input-container">
+                                                <label for="placa-carreta-1">Placa Carreta 1:</label>
+                                                <div>
+                                                      <div>
+                                                            <input id="placa-carreta-1" type="text"
+                                                                  placeholder="Placa Carreta 1">
+                                                      </div>
+                                                      <span class="default-input__error-message">
+                                                            <i class="bi bi-exclamation-octagon"></i>
+                                                            <i error-message></i>
+                                                      </span>
+                                                </div>
+                                          </div>
+                                          <div class="default-form__input-container">
+                                                <label for="placa-carreta-2">Placa Carreta 2:</label>
+                                                <div>
+                                                      <div>
+                                                            <input id="placa-carreta-2" type="text"
+                                                                  placeholder="Placa Carreta 2">
+                                                      </div>
+                                                      <span class="default-input__error-message">
+                                                            <i class="bi bi-exclamation-octagon"></i>
+                                                            <i error-message></i>
+                                                      </span>
+                                                </div>
+                                          </div>
+                                          <div class="default-form__input-container">
+                                                <label for="placa-carreta-3">Placa Carreta 3:</label>
+                                                <div>
+                                                      <div>
+                                                            <input id="placa-carreta-3" type="text"
+                                                                  placeholder="Placa Carreta 3">
+                                                      </div>
+                                                      <span class="default-input__error-message">
+                                                            <i class="bi bi-exclamation-octagon"></i>
+                                                            <i error-message></i>
+                                                      </span>
+                                                </div>
+                                          </div>
+                                    </div>
+                                    <div class="default-form__input-container">
+                                          <label for="tipo-de-carga">Tipo de Carga:</label>
+                                          <div>
+                                                <div>
+                                                      <button pseudo-select id="tipo-de-carga"
+                                                            class="default-form__input-container__pseudo-select"
+                                                            type="button">
+                                                            <div pseudo-select__options-container>
+                                                                  <div>
+                                                                        <option
+                                                                              class="default-form__input-container__pseudo-select__pseudo_option"
+                                                                              value="1">
+                                                                              Lorem ipsum dolor sit amet consectetur
+                                                                        </option>
+                                                                        <option
+                                                                              class="default-form__input-container__pseudo-select__pseudo_option"
+                                                                              value="2">
+                                                                              adipisicing elit. Vel pariatur alias ut ex
+                                                                        </option>
+                                                                        <option
+                                                                              class="default-form__input-container__pseudo-select__pseudo_option"
+                                                                              value="3">
+                                                                              3
+                                                                        </option>
+                                                                  </div>
+                                                            </div>
+                                                      </button>
+                                                      <span>
+                                                            <i class="bi bi-chevron-down"></i>
+                                                      </span>
+                                                </div>
+                                                <span class="default-input__error-message">
+                                                      <i class="bi bi-exclamation-octagon"></i>
+                                                      <i error-message></i>
+                                                </span>
+                                          </div>
+                                    </div>
+                                    <div class="default-form__input-container">
+                                          <label for="ponto-de-partida">Ponto de Partida:</label>
+                                          <div>
+                                                <div>
+                                                      <button pseudo-select id="ponto-de-partida"
+                                                            class="default-form__input-container__pseudo-select"
+                                                            type="button">
+                                                            <div pseudo-select__options-container>
+                                                                  <div>
+                                                                        <option
+                                                                              class="default-form__input-container__pseudo-select__pseudo_option"
+                                                                              value="1">
+                                                                              Lorem ipsum dolor sit amet
+                                                                              consectetur
+                                                                        </option>
+                                                                        <option
+                                                                              class="default-form__input-container__pseudo-select__pseudo_option"
+                                                                              value="2">
+                                                                              adipisicing elit. Vel pariatur alias
+                                                                              ut ex
+                                                                        </option>
+                                                                        <option
+                                                                              class="default-form__input-container__pseudo-select__pseudo_option"
+                                                                              value="3">
+                                                                              3
+                                                                        </option>
+                                                                  </div>
+                                                            </div>
+                                                      </button>
+                                                      <span>
+                                                            <i class="bi bi-chevron-down"></i>
+                                                      </span>
+                                                </div>
+                                                <span class="default-input__error-message">
+                                                      <i class="bi bi-exclamation-octagon"></i>
+                                                      <i error-message></i>
+                                                </span>
+                                          </div>
+                                    </div>
+                                    <div class="default-form__make-row">
+                                          <div class="default-form__input-container">
+                                                <label for="destino-cidade">Destino - Cidade:</label>
+                                                <div>
+                                                      <div>
+                                                            <input id="destino-cidade" type="text"
+                                                                  placeholder="Cidade">
+                                                      </div>
+                                                      <span class="default-input__error-message">
+                                                            <i class="bi bi-exclamation-octagon"></i>
+                                                            <i error-message></i>
+                                                      </span>
+                                                </div>
+                                          </div>
+                                          <div class="default-form__input-container">
+                                                <label for="destino-numero">Destino - Número:</label>
+                                                <div>
+                                                      <div>
+                                                            <input id="destino-numero" type="number"
+                                                                  placeholder="Número">
+                                                      </div>
+                                                      <span class="default-input__error-message">
+                                                            <i class="bi bi-exclamation-octagon"></i>
+                                                            <i error-message></i>
+                                                      </span>
+                                                </div>
                                           </div>
                                     </div>
                               </div>

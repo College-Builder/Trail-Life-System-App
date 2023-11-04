@@ -115,7 +115,7 @@ div.default-panel-container__table-container > div table thead th button:hover {
   color: white;
 }
 div.default-panel-container__table-container > div table tbody > tr:nth-child(odd) {
-  background-color: rgba(178, 12, 48, 0.1568627451);
+  background-color: var(--light-red);
 }
 div.default-panel-container__table-container > div table tbody > tr > td {
   padding: 24px 12px;

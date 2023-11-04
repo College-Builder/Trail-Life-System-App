@@ -130,7 +130,7 @@ div.default-panel-container__table-container {
                   tbody {
                         & > tr {
                               &:nth-child(odd) {
-                                    background-color: #b20c3028;
+                                    background-color: var(--light-red);
                               }
                               
                               & > td {

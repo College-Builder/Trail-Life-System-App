@@ -65,11 +65,11 @@ if (isset($_COOKIE['a_auth'])) {
   <title>Dashboard | Administração</title>
   <!---->
   <!---->
-  <link rel="stylesheet" href="./styles/main/main.css?v=<?php echo time(); ?>" type="text/css" media="screen"
+  <link rel="stylesheet" href="./styles/main/main.css" type="text/css" media="screen"
     title="no title" charset="utf-8" />
-  <link rel="stylesheet" href="./styles/aside/aside.css?v=<?php echo time(); ?>" type="text/css" media="all" />
-  <link rel="stylesheet" href="./styles/header/header.css?v=<?php echo time(); ?>" type="text/css" media="all" />
-  <link rel="stylesheet" href="./styles/dashboard-panel/dashboard-panel.css?v=<?php echo time(); ?>">
+  <link rel="stylesheet" href="./styles/aside/aside.css" type="text/css" media="all" />
+  <link rel="stylesheet" href="./styles/header/header.css" type="text/css" media="all" />
+  <link rel="stylesheet" href="./styles/dashboard-panel/dashboard-panel.css">
   <!---->
   <!---->
   <script defer src="./scripts/aside.js?v=5.0" charset="utf-8"></script>
