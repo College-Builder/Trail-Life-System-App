@@ -6,7 +6,7 @@ div.default-panel-container {
   padding-bottom: 160px;
   width: 100%;
   height: 100vh;
-  overflow: scroll;
+  overflow-y: scroll;
   background-color: var(--light-gray);
 }
 div.default-panel-container > div:first-of-type {

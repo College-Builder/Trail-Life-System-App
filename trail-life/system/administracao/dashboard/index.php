@@ -65,8 +65,8 @@ if (isset($_COOKIE['a_auth'])) {
   <title>Dashboard | Administração</title>
   <!---->
   <!---->
-  <link rel="stylesheet" href="./styles/main/main.css" type="text/css" media="screen"
-    title="no title" charset="utf-8" />
+  <link rel="stylesheet" href="./styles/main/main.css" type="text/css" media="screen" title="no title"
+    charset="utf-8" />
   <link rel="stylesheet" href="./styles/aside/aside.css" type="text/css" media="all" />
   <link rel="stylesheet" href="./styles/header/header.css" type="text/css" media="all" />
   <link rel="stylesheet" href="./styles/dashboard-panel/dashboard-panel.css">
@@ -168,10 +168,14 @@ if (isset($_COOKIE['a_auth'])) {
         </div>
         <!---->
         <!---->
-        <div dashboard-panel-id="3" style="background-color: green"></div>
+        <div dashboard-panel-id="3">
+          <?php include './dashboard-panels/dashboard-panel-3/index.php'; ?>
+        </div>
         <!---->
         <!---->
-        <div dashboard-panel-id="4" style="background-color: red"></div>
+        <div dashboard-panel-id="4">
+          <?php include './dashboard-panels/dashboard-panel-4/index.php'; ?>
+        </div>
       </div>
     </div>
   </main>

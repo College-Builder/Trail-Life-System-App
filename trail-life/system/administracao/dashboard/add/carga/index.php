@@ -283,55 +283,88 @@ if (isset($_COOKIE['a_auth'])) {
                                                                         <div>
                                                                               <option
                                                                                     class="default-form__input-container__pseudo-select__pseudo_option"
-                                                                                    value="1">
-                                                                                    Lorem ipsum dolor sit amet
-                                                                                    consectetur
+                                                                                    value="AC">Acre</option>
+                                                                              <option
+                                                                                    class="default-form__input-container__pseudo-select__pseudo_option"
+                                                                                    value="AL">Alagoas</option>
+                                                                              <option
+                                                                                    class="default-form__input-container__pseudo-select__pseudo_option"
+                                                                                    value="AP">Amapá</option>
+                                                                              <option
+                                                                                    class="default-form__input-container__pseudo-select__pseudo_option"
+                                                                                    value="AM">Amazonas</option>
+                                                                              <option
+                                                                                    class="default-form__input-container__pseudo-select__pseudo_option"
+                                                                                    value="BA">Bahia</option>
+                                                                              <option
+                                                                                    class="default-form__input-container__pseudo-select__pseudo_option"
+                                                                                    value="CE">Ceará</option>
+                                                                              <option
+                                                                                    class="default-form__input-container__pseudo-select__pseudo_option"
+                                                                                    value="DF">Distrito Federal</option>
+                                                                              <option
+                                                                                    class="default-form__input-container__pseudo-select__pseudo_option"
+                                                                                    value="ES">Espírito Santo</option>
+                                                                              <option
+                                                                                    class="default-form__input-container__pseudo-select__pseudo_option"
+                                                                                    value="GO">Goiás</option>
+                                                                              <option
+                                                                                    class="default-form__input-container__pseudo-select__pseudo_option"
+                                                                                    value="MA">Maranhão</option>
+                                                                              <option
+                                                                                    class="default-form__input-container__pseudo-select__pseudo_option"
+                                                                                    value="MT">Mato Grosso</option>
+                                                                              <option
+                                                                                    class="default-form__input-container__pseudo-select__pseudo_option"
+                                                                                    value="MS">Mato Grosso do Sul
                                                                               </option>
                                                                               <option
                                                                                     class="default-form__input-container__pseudo-select__pseudo_option"
-                                                                                    value="2">
-                                                                                    adipisicing elit. Vel pariatur alias
-                                                                                    ut ex
+                                                                                    value="MG">Minas Gerais</option>
+                                                                              <option
+                                                                                    class="default-form__input-container__pseudo-select__pseudo_option"
+                                                                                    value="PA">Pará</option>
+                                                                              <option
+                                                                                    class="default-form__input-container__pseudo-select__pseudo_option"
+                                                                                    value="PB">Paraíba</option>
+                                                                              <option
+                                                                                    class="default-form__input-container__pseudo-select__pseudo_option"
+                                                                                    value="PR">Paraná</option>
+                                                                              <option
+                                                                                    class="default-form__input-container__pseudo-select__pseudo_option"
+                                                                                    value="PE">Pernambuco</option>
+                                                                              <option
+                                                                                    class="default-form__input-container__pseudo-select__pseudo_option"
+                                                                                    value="PI">Piauí</option>
+                                                                              <option
+                                                                                    class="default-form__input-container__pseudo-select__pseudo_option"
+                                                                                    value="RJ">Rio de Janeiro</option>
+                                                                              <option
+                                                                                    class="default-form__input-container__pseudo-select__pseudo_option"
+                                                                                    value="RN">Rio Grande do Norte
                                                                               </option>
                                                                               <option
                                                                                     class="default-form__input-container__pseudo-select__pseudo_option"
-                                                                                    value="3">
-                                                                                    3
+                                                                                    value="RS">Rio Grande do Sul
                                                                               </option>
                                                                               <option
                                                                                     class="default-form__input-container__pseudo-select__pseudo_option"
-                                                                                    value="1">
-                                                                                    Lorem ipsum dolor sit amet
-                                                                                    consectetur
-                                                                              </option>
+                                                                                    value="RO">Rondônia</option>
                                                                               <option
                                                                                     class="default-form__input-container__pseudo-select__pseudo_option"
-                                                                                    value="2">
-                                                                                    adipisicing elit. Vel pariatur alias
-                                                                                    ut ex
-                                                                              </option>
+                                                                                    value="RR">Roraima</option>
                                                                               <option
                                                                                     class="default-form__input-container__pseudo-select__pseudo_option"
-                                                                                    value="3">
-                                                                                    3
-                                                                              </option>
+                                                                                    value="SC">Santa Catarina</option>
                                                                               <option
                                                                                     class="default-form__input-container__pseudo-select__pseudo_option"
-                                                                                    value="1">
-                                                                                    Lorem ipsum dolor sit amet
-                                                                                    consectetur
-                                                                              </option>
+                                                                                    value="SP">São Paulo</option>
                                                                               <option
                                                                                     class="default-form__input-container__pseudo-select__pseudo_option"
-                                                                                    value="2">
-                                                                                    adipisicing elit. Vel pariatur alias
-                                                                                    ut ex
-                                                                              </option>
+                                                                                    value="SE">Sergipe</option>
                                                                               <option
                                                                                     class="default-form__input-container__pseudo-select__pseudo_option"
-                                                                                    value="3">
-                                                                                    3
-                                                                              </option>
+                                                                                    value="TO">Tocantins</option>
                                                                         </div>
                                                                   </div>
                                                             </button>
