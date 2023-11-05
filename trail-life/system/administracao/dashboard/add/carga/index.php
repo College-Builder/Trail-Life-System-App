@@ -251,8 +251,7 @@ if (isset($_COOKIE['a_auth'])) {
                                                 <label for="destino-cidade">Destino - Cidade:</label>
                                                 <div>
                                                       <div>
-                                                            <input id="destino-cidade" type="text"
-                                                                  placeholder="Cidade">
+                                                            <input id="destino-cidade" type="text" placeholder="Cidade">
                                                       </div>
                                                       <span class="default-input__error-message">
                                                             <i class="bi bi-exclamation-octagon"></i>
@@ -266,6 +265,79 @@ if (isset($_COOKIE['a_auth'])) {
                                                       <div>
                                                             <input id="destino-numero" type="number"
                                                                   placeholder="Número">
+                                                      </div>
+                                                      <span class="default-input__error-message">
+                                                            <i class="bi bi-exclamation-octagon"></i>
+                                                            <i error-message></i>
+                                                      </span>
+                                                </div>
+                                          </div>
+                                          <div class="default-form__input-container">
+                                                <label for="destino - estado">Destino - Estado</label>
+                                                <div>
+                                                      <div>
+                                                            <button pseudo-select id="destino-estado"
+                                                                  class="default-form__input-container__pseudo-select"
+                                                                  type="button">
+                                                                  <div pseudo-select__options-container>
+                                                                        <div>
+                                                                              <option
+                                                                                    class="default-form__input-container__pseudo-select__pseudo_option"
+                                                                                    value="1">
+                                                                                    Lorem ipsum dolor sit amet
+                                                                                    consectetur
+                                                                              </option>
+                                                                              <option
+                                                                                    class="default-form__input-container__pseudo-select__pseudo_option"
+                                                                                    value="2">
+                                                                                    adipisicing elit. Vel pariatur alias
+                                                                                    ut ex
+                                                                              </option>
+                                                                              <option
+                                                                                    class="default-form__input-container__pseudo-select__pseudo_option"
+                                                                                    value="3">
+                                                                                    3
+                                                                              </option>
+                                                                              <option
+                                                                                    class="default-form__input-container__pseudo-select__pseudo_option"
+                                                                                    value="1">
+                                                                                    Lorem ipsum dolor sit amet
+                                                                                    consectetur
+                                                                              </option>
+                                                                              <option
+                                                                                    class="default-form__input-container__pseudo-select__pseudo_option"
+                                                                                    value="2">
+                                                                                    adipisicing elit. Vel pariatur alias
+                                                                                    ut ex
+                                                                              </option>
+                                                                              <option
+                                                                                    class="default-form__input-container__pseudo-select__pseudo_option"
+                                                                                    value="3">
+                                                                                    3
+                                                                              </option>
+                                                                              <option
+                                                                                    class="default-form__input-container__pseudo-select__pseudo_option"
+                                                                                    value="1">
+                                                                                    Lorem ipsum dolor sit amet
+                                                                                    consectetur
+                                                                              </option>
+                                                                              <option
+                                                                                    class="default-form__input-container__pseudo-select__pseudo_option"
+                                                                                    value="2">
+                                                                                    adipisicing elit. Vel pariatur alias
+                                                                                    ut ex
+                                                                              </option>
+                                                                              <option
+                                                                                    class="default-form__input-container__pseudo-select__pseudo_option"
+                                                                                    value="3">
+                                                                                    3
+                                                                              </option>
+                                                                        </div>
+                                                                  </div>
+                                                            </button>
+                                                            <span>
+                                                                  <i class="bi bi-chevron-down"></i>
+                                                            </span>
                                                       </div>
                                                       <span class="default-input__error-message">
                                                             <i class="bi bi-exclamation-octagon"></i>
