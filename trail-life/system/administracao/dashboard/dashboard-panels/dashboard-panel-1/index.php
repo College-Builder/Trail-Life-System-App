@@ -1,4 +1,4 @@
-<div default-panel-container class="default-panel-container">
+<div apply-hrz-padding class="default-panel-container">
       <div>
             <h1>Panel 1</h1>
       </div>

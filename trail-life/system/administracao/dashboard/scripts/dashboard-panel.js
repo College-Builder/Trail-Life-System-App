@@ -1,5 +1,5 @@
 (() => {
-      window.document.querySelectorAll('div[default-panel-container]').forEach((container) => {
+      window.document.querySelectorAll('[apply-hrz-padding]').forEach((container) => {
             handleWidth(container)
 
             window.addEventListener("resize", () => {

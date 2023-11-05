@@ -3,7 +3,8 @@ aside.aside-menu {
   min-width: 300px;
   background-color: white;
   height: 100vh;
-  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 aside.aside-menu > div {
   display: flex;

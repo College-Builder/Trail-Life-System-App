@@ -4,7 +4,7 @@ div.default-panel-container {
   gap: 60px;
   padding-top: 180px;
   padding-bottom: 160px;
-  height: 100vh;
+  width: 100%;
   overflow: scroll;
   background-color: var(--light-gray);
 }
@@ -21,6 +21,9 @@ div.default-panel-container > div:last-of-type > div {
   div.default-panel-container {
     padding-top: 80px;
     padding-bottom: 80px;
+    width: calc(100vw - 300px);
+    height: 100vh;
+    overflow-x: hidden;
   }
   div.default-panel-container > div:first-of-type {
     text-align: left;
@@ -63,6 +66,7 @@ div.default-panel-container__table-actions-container__inputs-container {
   width: 100%;
 }
 div.default-panel-container__table-actions-container__inputs-container > div {
+  display: none;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -81,13 +85,17 @@ div.default-panel-container__table-actions-container__inputs-container > div {
 /**/
 /**/
 div.default-panel-container__table-container {
-  width: 100%;
-  padding: 22px 0px;
-  overflow: auto;
+  padding-top: 22px;
+  padding-bottom: 22px;
+  overflow: scroll;
 }
 div.default-panel-container__table-container::-webkit-scrollbar {
-  display: initial;
+  width: 0;
   height: 8px;
+}
+div.default-panel-container__table-container > div {
+  width: 100%;
+  min-width: fit-content;
 }
 div.default-panel-container__table-container > div table {
   width: 100%;
@@ -116,6 +124,9 @@ div.default-panel-container__table-container > div table thead th button:hover {
 }
 div.default-panel-container__table-container > div table tbody > tr:nth-child(odd) {
   background-color: var(--light-red);
+}
+div.default-panel-container__table-container > div table tbody > tr:nth-child(even) {
+  background-color: white;
 }
 div.default-panel-container__table-container > div table tbody > tr > td {
   padding: 24px 12px;
