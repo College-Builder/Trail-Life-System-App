@@ -62,6 +62,10 @@
 			button.addEventListener('click', () => {
 				currentActivePanel.classList.remove('--on');
 
+				currentActiveButton.forEach((button) => {
+					button.classList.remove('--on');
+				});
+
 				const forDashboard = button.getAttribute('for-dashboard-panel');
 
 				localStorage.setItem('initialActive', forDashboard)
@@ -73,10 +77,6 @@
 				newCurrentActivePanel.classList.add('--on');
 
 				currentActivePanel = newCurrentActivePanel;
-
-				currentActiveButton.forEach((button) => {
-					button.classList.remove('--on');
-				});
 
 				const newCurrentActiveButton = window.document.querySelectorAll(
 					`button[for-dashboard-panel="${forDashboard}"]`,

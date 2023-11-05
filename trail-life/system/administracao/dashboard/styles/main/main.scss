@@ -56,14 +56,20 @@ div.dashboard-system-container__aside-menu-container {
 div.dashboard-system-container__dashboard-container {
 	height: 100vh;
 	width: 100%;
+	position: relative;
 
 	& > div {
 		&.--on {
-			display: block;
+			filter: opacity(100%);
+			pointer-events: all;
 		}
 
-		display: none;
+		pointer-events: none;
+		filter: opacity(0%);
 		height: 100vh;
 		width: 100%;
+		position: absolute;
+		top: 0px;
+		left: 0px;
 	}
 }
