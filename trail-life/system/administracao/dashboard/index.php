@@ -112,33 +112,33 @@ if (isset($_COOKIE['a_auth'])) {
           <ul>
             <li>
               <button aside-menu-container__option for-dashboard-panel="1" class="default-icon-button">
-                <i class="bi bi-box-seam"></i>
-                <i>Controle Financeiro</i>
+                <i class="bi bi-coin"></i>
+                Controle Financeiro
               </button>
             </li>
             <li>
               <button aside-menu-container__option for-dashboard-panel="2" class="default-icon-button">
                 <i class="bi bi-box-seam"></i>
-                <i>Entregas</i>
+                Controle de Cargas
               </button>
             </li>
             <li>
               <button aside-menu-container__option for-dashboard-panel="3" class="default-icon-button">
-                <i class="bi bi-box-seam"></i>
-                <i>Entregas</i>
+                <i class="bi bi-truck-flatbed"></i>
+                Controle de Motoristas
               </button>
             </li>
             <li>
               <button aside-menu-container__option for-dashboard-panel="4" class="default-icon-button">
-                <i class="bi bi-box-seam"></i>
-                <i>Entregas</i>
+                <i class="bi bi-person"></i>
+                Controles de Clientes
               </button>
             </li>
           </ul>
         </div>
         <div>
           <button logout-button class="default-icon-button">
-            <i class="bi bi-box-seam"></i>
+            <i class="bi bi-arrow-bar-left"></i>
             Sair
           </button>
         </div>

@@ -1,12 +1,10 @@
-<div apply-hrz-padding class="default-panel-container">
-      <div>
-            <h1>Panel 2</h1>
+<div class="default-panel-container">
+      <div apply-hrz-padding>
+            <h1>Controle de Cargas</h1>
       </div>
       <div>
             <div class="dashboard-panel-2-content-container">
-                  <!---->
-                  <!---->
-                  <div class="default-panel-container__table-actions-container">
+                  <div apply-hrz-padding class="default-panel-container__table-actions-container">
                         <div class="pill-icon-button-container">
                               <a href="/system/administracao/dashboard/add/carga/">
                                     + Carga
@@ -14,16 +12,16 @@
                         </div>
                         <div class="default-panel-container__table-actions-container__inputs-container">
                               <div>
-                                    <input class="pill-input" type="text" placeholder="Hello">
-                                    <input class="pill-input" type="text" placeholder="Hello">
+                                    <input class="pill-input" type="text" placeholder="Procurar">
+                                    <input class="pill-input" type="text" placeholder="Solicitante">
                               </div>
-                              <input class="pill-input" type="text" placeholder="Hello">
+                              <input class="pill-input" type="text" placeholder="Destino">
                         </div>
                   </div>
                   <!---->
                   <!---->
-                  <div class="default-panel-container__table-container">
-                        <div>
+                  <div click-scroll class="default-panel-container__table-container">
+                        <div apply-hrz-padding>
                               <table>
                                     <thead>
                                           <tr>
@@ -115,7 +113,7 @@
                   </div>
                   <!---->
                   <!---->
-                  <div class="download-csv-button-container">
+                  <div apply-hrz-padding class="download-csv-button-container">
                         <button class="default-icon-button">
                               <i class="bi bi-download"></i>
                               Download .csv

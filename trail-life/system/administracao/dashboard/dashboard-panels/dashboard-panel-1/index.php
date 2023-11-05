@@ -1,6 +1,6 @@
 <div apply-hrz-padding class="default-panel-container">
       <div>
-            <h1>Panel 1</h1>
+            <h1>Controle Financeiro</h1>
       </div>
       <div>
             <div class="dashboard-panel-1-content-container">

@@ -21,3 +21,41 @@
             }
       }
 })()
+
+window.document
+.querySelectorAll('div[click-scroll]')
+.forEach((sliderContainer) => {
+      let isDown = false;
+      let startX;
+      let position;
+      let scrollLeft;
+
+      sliderContainer.addEventListener('touchmove', () => {
+            isDown = true;
+      });
+      sliderContainer.addEventListener('touchend', () => {
+            isDown = false;
+      });
+      sliderContainer.addEventListener('mousedown', (e) => {
+            isDown = true;
+            sliderContainer.classList.add('active');
+            startX = e.pageX - sliderContainer.offsetLeft;
+            scrollLeft = sliderContainer.scrollLeft;
+      });
+      sliderContainer.addEventListener('mouseleave', () => {
+            isDown = false;
+            sliderContainer.classList.remove('active');
+      });
+      sliderContainer.addEventListener('mouseup', () => {
+            isDown = false;
+            sliderContainer.classList.remove('active');
+      });
+      sliderContainer.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - sliderContainer.offsetLeft;
+            const walk = x - startX;
+            sliderContainer.scrollLeft = scrollLeft - walk;
+            position = sliderContainer.scrollLeft;
+      });
+});

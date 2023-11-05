@@ -9,7 +9,7 @@ aside.aside-menu {
 aside.aside-menu > div {
   display: flex;
   flex-direction: column;
-  padding: 48px;
+  padding: 48px 36px;
   min-height: 600px;
   height: 100%;
   gap: 40px;
@@ -40,9 +40,6 @@ aside.aside-menu > div > div:nth-of-type(2) ul li button {
 }
 aside.aside-menu > div > div:nth-of-type(2) ul li button.--on {
   color: var(--red);
-}
-aside.aside-menu > div > div:nth-of-type(2) ul li button i {
-  font-style: normal;
 }
 aside.aside-menu > div > div:last-of-type {
   display: flex;

@@ -9,7 +9,7 @@ aside.aside-menu {
 	& > div {
 		display: flex;
 		flex-direction: column;
-		padding: 48px;
+		padding: 48px 36px;
 		min-height: 600px;
 		height: 100%;
 		gap: 40px;
@@ -45,10 +45,6 @@ aside.aside-menu {
 						}
 
 						justify-content: left;
-
-						i {
-							font-style: normal;
-						}
 					}
 				}
 			}
