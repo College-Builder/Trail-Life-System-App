@@ -121,7 +121,7 @@ if (isset($_COOKIE['a_auth'])) {
                                           <label for="placa-cavalo">Placa Cavalo:</label>
                                           <div>
                                                 <div>
-                                                      <input id="placa-cavalo" type="text" placeholder="Placa Cavalo">
+                                                      <input id="placa-cavalo" type="text" pseudo-type="plate-br" placeholder="Placa Cavalo">
                                                 </div>
                                                 <span class="default-input__error-message">
                                                       <i class="bi bi-exclamation-octagon"></i>
@@ -134,7 +134,7 @@ if (isset($_COOKIE['a_auth'])) {
                                                 <label for="placa-carreta-1">Placa Carreta 1:</label>
                                                 <div>
                                                       <div>
-                                                            <input id="placa-carreta-1" type="text"
+                                                            <input id="placa-carreta-1" type="text" pseudo-type="plate-br"
                                                                   placeholder="Placa Carreta 1">
                                                       </div>
                                                       <span class="default-input__error-message">
@@ -147,7 +147,7 @@ if (isset($_COOKIE['a_auth'])) {
                                                 <label for="placa-carreta-2">Placa Carreta 2:</label>
                                                 <div>
                                                       <div>
-                                                            <input id="placa-carreta-2" type="text"
+                                                            <input id="placa-carreta-2" type="text" pseudo-type="plate-br"
                                                                   placeholder="Placa Carreta 2">
                                                       </div>
                                                       <span class="default-input__error-message">
@@ -160,7 +160,7 @@ if (isset($_COOKIE['a_auth'])) {
                                                 <label for="placa-carreta-3">Placa Carreta 3:</label>
                                                 <div>
                                                       <div>
-                                                            <input id="placa-carreta-3" type="text"
+                                                            <input id="placa-carreta-3" type="text" pseudo-type="plate-br"
                                                                   placeholder="Placa Carreta 3">
                                                       </div>
                                                       <span class="default-input__error-message">
