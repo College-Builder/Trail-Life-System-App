@@ -84,6 +84,24 @@ if (isset($_COOKIE['a_auth'])) {
 </head>
 
 <body>
+  <div default-alerts-container class="default-hrz-padding  default-alerts-container">
+    <template>
+      <div class="default-alerts-container__alert-container">
+        <div>
+          <div>
+            <p class="default-alerts-container__alert-container__icon">
+              <i default-alert-container__icon class="bi"></i>
+            </p>
+            <p>
+              <i default-alert-container__message></i>
+            </p>
+          </div>
+        </div>
+      </div>
+    </template>
+  </div>
+  <!---->
+  <!---->
   <header>
     <div class="default-hrz-padding">
       <div>
@@ -134,6 +152,12 @@ if (isset($_COOKIE['a_auth'])) {
                 Controles de Clientes
               </button>
             </li>
+            <li>
+              <button aside-menu-container__option for-dashboard-panel="5" class="default-icon-button">
+                <i class="bi bi-file-lock2"></i>
+                Controles de Admins
+              </button>
+            </li>
           </ul>
         </div>
         <div>
@@ -175,6 +199,10 @@ if (isset($_COOKIE['a_auth'])) {
         <!---->
         <div dashboard-panel-id="4">
           <?php include './dashboard-panels/dashboard-panel-4/index.php'; ?>
+        </div>
+        <!---->
+        <div dashboard-panel-id="5">
+          <?php include './dashboard-panels/dashboard-panel-5/index.php'; ?>
         </div>
       </div>
     </div>

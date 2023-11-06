@@ -17,7 +17,7 @@ $requestHandler = new RequestHandler();
 
 try {
       if (!($_SERVER["REQUEST_METHOD"] == "POST")) {
-            $requestHandler::throwReqException(405, 'Method Not Allowed. Please use a POST request.');
+            $requestHandler::throwReqException(405, 'Método Não Permitido. Por favor, utilize uma requisição POST.');
       }
 
       $authCookie = $_COOKIE['a_auth'];

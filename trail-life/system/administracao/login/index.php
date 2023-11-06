@@ -88,6 +88,8 @@ if (isset($_COOKIE['a_auth'])) {
       </div>
     </template>
   </div>
+  <!---->
+  <!---->
   <main>
     <div class="default-hrz-padding">
       <div>
@@ -97,7 +99,7 @@ if (isset($_COOKIE['a_auth'])) {
             alt="Trail Life Administração Logo" />
         </div>
         <div>
-          <form email-form-container__form class="default-form" method="POST" action="php/login.php">
+          <form email-form-container__form class="default-form" method="POST" action="/system/administracao/login/php/login/index.php">
             <div>
               <div class="default-form__input-container">
                 <label for="login-form-username">Usuário:</label>

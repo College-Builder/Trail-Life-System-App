@@ -96,11 +96,19 @@
 		.querySelectorAll('button[logout-button]')
 		.forEach((button) => {
 			button.addEventListener('click', async () => {
-				await fetch ("/system/administracao/dashboard/logout/logout.php", {
+				const req = await fetch ("/system/administracao/dashboard/php/logout/index.php", {
 					method: "POST"
 				})
 
-				location.reload();
+				if (req.status === 200) {
+					location.reload();
+				} else {
+					spawnAlert(
+						'warning',
+						'Oops, algo deu errado. Por favor, tente novamente mais tarde.',
+					);
+				}
+
 			});
 		});
 })();

@@ -1,12 +1,14 @@
 <?php
-class Mysql {
+class Mysql
+{
     private $conn;
     private $host;
     private $username;
     private $password;
     private $database;
 
-    public function __construct($host, $username, $password, $database) {
+    public function __construct($host, $username, $password, $database)
+    {
         $this->host = $host;
         $this->username = $username;
         $this->password = $password;
@@ -19,7 +21,8 @@ class Mysql {
         }
     }
 
-    public function query($sql, $params = array()) {
+    public function query($sql, $params = array())
+    {
         $stmt = $this->conn->prepare($sql);
 
         if ($stmt === false) {

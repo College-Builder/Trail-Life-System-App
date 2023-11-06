@@ -9,10 +9,10 @@ require_once BASE_DIR . "global-modules/cypher/cypher.php";
 $dotenv = Dotenv\Dotenv::createImmutable(BASE_DIR);
 $dotenv->load();
 
-$host = $_ENV["SQL_DB_HOST_ADMINISTRACAO_LOGIN"];
-$user = $_ENV["SQL_DB_USER_ADMINISTRACAO_LOGIN"];
-$password = $_ENV["SQL_DB_PASSWORD_ADMINISTRACAO_LOGIN"];
-$database = $_ENV["SQL_DB_DATABASE_ADMINISTRACAO_LOGIN"];
+$host = $_ENV["SQL_HOST_ADMINISTRACAO_LOGIN"];
+$user = $_ENV["SQL_USER_ADMINISTRACAO_LOGIN"];
+$password = $_ENV["SQL_PASSWORD_ADMINISTRACAO_LOGIN"];
+$database = $_ENV["SQL_DATABASE_ADMINISTRACAO_LOGIN"];
 
 $mysql = new Mysql($host, $user, $password, $database);
 
@@ -20,7 +20,7 @@ $requestHandler = new RequestHandler();
 
 try {
   if (!($_SERVER["REQUEST_METHOD"] == "POST")) {
-    $requestHandler::throwReqException(405, 'Method Not Allowed. Please use a POST request.');
+    $requestHandler::throwReqException(405, 'Método Não Permitido. Por favor, utilize uma requisição POST.');
   }
 
   $usuario = $_POST["usuario"];
@@ -37,15 +37,16 @@ try {
   if (strlen($usuario) < 1 || strlen($senha) < 1) {
     $status = 400;
     $label = strlen($usuario) < 1 ? 'usuario' : 'senha';
-    $message = strlen($usuario) < 1 ? 'Por favor, forneça um usuário válido.' : 'Por favor, forneça um senha válida.';
+    $message = strlen($usuario) < 1 ? 'Por favor, forneça um usuário válido.' : 'Por favor, forneça uma senha válida.';
 
     $requestHandler::throwReqFormException($status, $label, $message);
   }
 
-  $h_senha = hash('sha512', $senha);
+  $h_usuario = Cypher::encryptStringUsingSHA512($usuario);
+  $h_senha = Cypher::encryptStringUsingSHA512($senha);
 
-  $sql = 'SELECT id, usuario FROM usuarios_adm WHERE senha = ?;';
-  $params = array($h_senha);
+  $sql = 'SELECT id, usuario FROM usuarios_adm WHERE usuario = ? AND senha = ?;';
+  $params = array($h_usuario, $h_senha);
   $result = $mysql->query($sql, $params);
 
   if ($result->num_rows == 0) {
@@ -56,25 +57,7 @@ try {
     $requestHandler::throwReqFormException($status, $label, $message);
   }
 
-  $id;
-
-  foreach ($result as $row) {
-    $_id = $row['id'];
-    $_usuario = $row['usuario'];
-
-    if (Cypher::decryptString($_usuario, $_ENV["USUARIOS_ADM_NAME_KEY"]) == $usuario) {
-      $id = $_id;
-      break;
-    }
-  }
-
-  if (!isset($id)) {
-    $status = 400;
-    $label = 'usuario';
-    $message = 'Usuário ou senha errada!';
-
-    $requestHandler::throwReqFormException($status, $label, $message);
-  }
+  $id = ($row = mysqli_fetch_assoc($result)) ? $row['id'] : "";
 
   $a_token = bin2hex(random_bytes(20));
 
