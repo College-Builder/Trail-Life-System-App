@@ -108,7 +108,7 @@ if (isset($_COOKIE['a_auth'])) {
                 <div>
                   <div>
                     <input placeholder="Senha" type="password" name="senha" id="password" />
-                    <button type="button">
+                    <button tabindex="-1" type="button">
                       <i class="bi bi-eye"></i>
                     </button>
                   </div>

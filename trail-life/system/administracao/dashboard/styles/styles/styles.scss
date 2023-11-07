@@ -34,11 +34,7 @@ $colors: (
 /**/
 /**/
 
-@mixin default-button {
-	&:hover {
-		color: white;
-	}
-
+@mixin load-button {
 	&.--pre-loading {
 		pointer-events: none;
 	}
@@ -56,19 +52,6 @@ $colors: (
 			display: inline-block;
 		}
 	}
-
-	display: flex;
-	gap: 8px;
-	align-items: center;
-	justify-content: center;
-	max-width: 400px;
-	width: 100%;
-	border-radius: 8px;
-	padding: 16px 24px;
-	font-size: 16px;
-	font-weight: light;
-	text-align: center;
-	position: relative;
 
 	span.default-button__loading {
 		display: none;
@@ -95,15 +78,20 @@ $colors: (
 /**/
 /**/
 
-@mixin icon-button {
+@mixin default-button {
+	&:hover {
+		color: white;
+	}
+
 	display: flex;
-	justify-content: center;
-	align-items: center;
 	gap: 8px;
+	align-items: center;
+	justify-content: center;
 	width: 100%;
+	padding: 16px 24px;
 	font-size: 18px;
-	text-align: left;
-	transition: ease-in-out 0.35s;
+	text-align: center;
+	position: relative;
 }
 
 /**/
@@ -118,6 +106,8 @@ div.default-button-container {
 	button,
 	a {
 		@include default-button;
+		@include load-button;
+		border-radius: 8px;
 	}
 }
 
@@ -130,37 +120,36 @@ div.default-button-container {
 /**/
 /**/
 
-a.default-icon-button,
-button.default-icon-button {
-	@include icon-button;
-
-	&:hover {
-		color: var(--red);
-	}
-}
-
-/**/
-/**/
-
-div.pill-icon-button-container {
+div.pill-button-container {
 	display: flex;
 	justify-content: center;
 	width: 100%;
 
 	a,
 	button {
-		@include icon-button;
-
-		&:hover {
-			background-color: var(--red);
-			color: white;
-		}
-
+		@include default-button;
+		@include load-button;
 		border-radius: 80px;
-		padding: 16px 24px;
-		border: 2px solid var(--red);
+	}
+}
+
+/**/
+/**/
+
+a.default-icon-button,
+button.default-icon-button {
+	&:hover {
 		color: var(--red);
 	}
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 8px;
+	width: 100%;
+	font-size: 18px;
+	text-align: left;
+	transition: ease-in-out 0.35s;
 }
 
 /**/
@@ -244,8 +233,7 @@ div.default-form__input-container {
 				border-radius: 8px;
 				border: 1px solid var(--gray);
 				padding: 16px;
-				font-size: 16px;
-				padding: 16px;
+				font-size: 18px;
 				background-color: white;
 			}
 
@@ -404,7 +392,7 @@ input.pill-input {
 /**/
 
 div.default-alerts-container {
-	z-index: 5;
+	z-index: 6;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -466,19 +454,4 @@ div.default-alerts-container {
 			}
 		}
 	}
-}
-
-/**/
-/**/
-
-div.default-confirm-container {
-	z-index: 6;
-	width: 100%;
-	min-width: 300px;
-	height: 100vh;
-	min-height: 400px;
-	background-color: rgba(0, 0, 0, 0.4);
-	position: fixed;
-	top: 0px;
-	left: 0px;
 }

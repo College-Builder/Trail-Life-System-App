@@ -77,6 +77,10 @@ try {
             )
       );
 
+      $h_usuario = Cypher::encryptStringUsingSHA512($usuario);
+      $h_email = Cypher::encryptStringUsingAES256($email, $_ENV["USUARIOS_ADM_EMAIL_CYPHER_KEY"]);
+      $h_senha = Cypher::encryptStringUsingSHA512($senha);
+
       foreach ($mask as $field => $rules) {
             if (!isset($_POST[$field]) || strlen($_POST[$field]) === 0) {
                   $status = 400;
@@ -126,6 +130,21 @@ try {
                   $requestHandler::throwReqFormException($status, $label, $message);
             }
 
+            if ($field === 'usuario') {
+                  $mysql = new Mysql($host, $user, $password, $database);
+                  $sql = 'SELECT id FROM usuarios_adm WHERE usuario = ?;';
+                  $params = array($h_usuario);
+                  $result = $mysql->query($sql, $params);
+
+                  if ($result->num_rows !== 0) {
+                        $status = 400;
+                        $label = 'usuario';
+                        $message = 'Usuário já existe. Por favor, tente utilizar outro nome de usuário.';
+
+                        $requestHandler::throwReqFormException($status, $label, $message);
+                  }
+            }
+
             if ($field === 'senha' && $senha !== $confirmeSenha) {
                   $status = 400;
                   $label = 'confirme-senha';
@@ -136,30 +155,12 @@ try {
 
             if ($field === 'permissao' && ($permissao !== 'read' and $permissao !== 'write' and $permissao !== 'sudo')) {
                   $status = 400;
-                  $label = 'email';
+                  $label = 'permissao';
                   $message = 'Por favor, forneça uma permissão válida.';
 
                   $requestHandler::throwReqFormException($status, $label, $message);
             }
       }
-
-      $h_usuario = Cypher::encryptStringUsingSHA512($usuario);
-
-      $mysql = new Mysql($host, $user, $password, $database);
-      $sql = 'SELECT id FROM usuarios_adm WHERE usuario = ?;';
-      $params = array($h_usuario);
-      $result = $mysql->query($sql, $params);
-
-      if ($result->num_rows !== 0) {
-            $status = 400;
-            $label = 'usuario';
-            $message = 'Usuário já existe. Por favor, tente utilizar outro nome de usuário.';
-
-            $requestHandler::throwReqFormException($status, $label, $message);
-      }
-
-      $h_email = Cypher::encryptStringUsingAES256($email, $_ENV["USUARIOS_ADM_EMAIL_CYPHER_KEY"]);
-      $h_senha = Cypher::encryptStringUsingSHA512($senha);
 
       $sql = 'INSERT INTO usuarios_adm (email, nome, usuario, senha, permissao) values (?, ?, ?, ?, ?);';
       $params = array($h_email, $nome, $h_usuario, $h_senha, $permissao);

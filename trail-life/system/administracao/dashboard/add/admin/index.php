@@ -138,7 +138,7 @@ if (isset($_COOKIE['a_auth'])) {
                                                       <div>
                                                             <input id="password" placeholder="Senha" name="senha"
                                                                   type="password">
-                                                            <button type="button">
+                                                            <button tabindex="-1" type="button">
                                                                   <i class="bi bi-eye"></i>
                                                             </button>
                                                       </div>
@@ -154,7 +154,7 @@ if (isset($_COOKIE['a_auth'])) {
                                                       <div>
                                                             <input id="confirme-senha" placeholder="Confirme Senha"
                                                                   name="confirme-senha" type="password">
-                                                            <button type="button">
+                                                            <button tabindex="-1" type="button">
                                                                   <i class="bi bi-eye"></i>
                                                             </button>
                                                       </div>
@@ -186,7 +186,7 @@ if (isset($_COOKIE['a_auth'])) {
                                                                         </option>
                                                                         <option
                                                                               class="default-form__input-container__pseudo-select__pseudo_option"
-                                                                              value="admin">
+                                                                              value="sudo">
                                                                               Todas
                                                                         </option>
                                                                   </div>

@@ -31,13 +31,20 @@ if (isset($_COOKIE['a_auth'])) {
     type="image/x-icon" />
   <!---->
   <!---->
+  <script defer src="./scripts/modules.js?v=2.1" charset="utf-8"></script>
+  <!--
   <script defer src="https://college-builder.s3.amazonaws.com/trail-life/scripts/modules.js"></script>
+  -->
+
+  <script defer src="./scripts/auto-apply.js?v=2.4" charset="utf-8"></script>
+  <!--
   <script defer src="https://college-builder.s3.amazonaws.com/trail-life/scripts/auto-apply.js"></script>
+  -->
   <!---->
   <!---->
   <link rel="stylesheet" href="https://college-builder.s3.amazonaws.com/trail-life/styles/index/index.css" />
-  
-  <link rel="stylesheet" href="./styles/styles/styles.css">
+
+  <link rel="stylesheet" href="./styles/styles/styles.css?v=<?php echo time(); ?>">
   <!--
   <link rel="stylesheet" href="https://college-builder.s3.amazonaws.com/trail-life/styles/styles/styles.css" />
   -->
@@ -63,17 +70,14 @@ if (isset($_COOKIE['a_auth'])) {
   <link rel="stylesheet" href="./styles/aside/aside.css" type="text/css" media="all" />
   <link rel="stylesheet" href="./styles/header/header.css" type="text/css" media="all" />
   <link rel="stylesheet" href="./styles/dashboard-panel/dashboard-panel.css">
+  <link rel="stylesheet" href="./styles/dashboard-panel-1/dashboard-panel-1.css?v=<?php echo time(); ?>">
   <!---->
   <!---->
   <script defer src="./scripts/aside.js?v=5.0" charset="utf-8"></script>
   <script defer src="./scripts/dashboard-panel.js?v=2.0" charset="utf-8"></script>
-  <!--
-      Dashboard-Panel 1
-  -->
+  <!---->
+  <!---->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <!---->
-  <!---->
-  <link rel="stylesheet" href="./styles/dashboard-panel-1/dashboard-panel-1.css?v=<?php echo time(); ?>">
 </head>
 
 <body>
@@ -95,8 +99,33 @@ if (isset($_COOKIE['a_auth'])) {
   </div>
   <!---->
   <!---->
-  <div class="default-hrz-padding default-confirm-container">
-
+  <div default-confirm-container class="default-hrz-padding default-confirm-container">
+    <div>
+      <div>
+        <p>
+          <i default-confirm-container__icon class="bi"></i>
+          <i default-confirm-container__title></i>
+        </p>
+      </div>
+      <div>
+        <div click-scroll class="default-panel-container__table-container">
+          <div content-container></div>
+        </div>
+      </div>
+      <div>
+        <div class="pill-button-container">
+          <button default-confirm-container__cancel-button class="--green-button">Cancelar</button>
+        </div>
+        <div class="pill-button-container">
+          <button default-confirm-container__confirm-button class="--red-button">
+          <span class="default-button__loading">
+                    <i class="bi bi-arrow-repeat"></i>
+                  </span>
+            Confirmar
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
   <!---->
   <!---->

@@ -5,8 +5,8 @@
       <div>
             <div class="dashboard-panel-2-content-container">
                   <div apply-hrz-padding class="default-panel-container__table-actions-container">
-                        <div class="pill-icon-button-container">
-                              <a href="/system/administracao/dashboard/add/admin/">
+                        <div class="pill-button-container">
+                              <a class="--red-button" href="/system/administracao/dashboard/add/admin/">
                                     + Admin
                               </a>
                         </div>
@@ -18,7 +18,7 @@
                   <!---->
                   <div click-scroll class="default-panel-container__table-container">
                         <div apply-hrz-padding>
-                              <table>
+                              <table admins-table>
                                     <thead>
                                           <tr>
                                                 <th>
@@ -31,13 +31,13 @@
                                                       Permissão
                                                 </th>
                                                 <th>
-                                                      <button admins-table__delete-item>
+                                                      <button>
                                                             <i class="bi bi-trash"></i>
                                                       </button>
                                                 </th>
                                           </tr>
                                     </thead>
-                                    <tbody admins-table>
+                                    <tbody>
                                           <template admins-table__tamplate>
                                                 <tr>
                                                       <template>
@@ -70,12 +70,23 @@
 </div>
 <script>
       (() => {
+
+      })();
+</script>
+<script>
+      (async () => {
             const authToken = document.cookie.split('; ').find(cookie => cookie.startsWith('a_auth=')).split('=')[1];
-            const action = "/system/administracao/dashboard/get/php/admins/index.php"
-            const tbody = window.document.querySelector('tbody[admins-table]')
+            const getAction = "/system/administracao/dashboard/get/php/admins/index.php"
+            const delAction = "/system/administracao/dashboard/delete/php/admins/index.php"
+
             const searchInput = window.document.querySelector('input[admins-table-search-input]')
 
-            renderTable()
+            const table = window.document.querySelector('table[admins-table]')
+            const tbody = table.querySelector('tbody')
+
+            const deleteItemsButton = table.querySelector('thead').querySelector("button")
+
+            await renderTable()
 
             searchInput.addEventListener("input", () => {
                   tbody.querySelectorAll("tr").forEach((tr) => {
@@ -89,8 +100,87 @@
                   })
             })
 
+            deleteItemsButton.addEventListener("click", () => {
+                  const tableClone = table.cloneNode(true)
+                  let numberOfRowToDelete = 0
+
+                  tableClone.querySelector("thead").querySelector("button").remove()
+
+                  tableClone.querySelector("tbody").querySelectorAll("tr").forEach((tr) => {
+                        const checkbox = tr.querySelector('input[type="checkbox"]')
+
+                        if (checkbox.checked) {
+                              checkbox.parentElement.querySelector("a").remove()
+
+                              numberOfRowToDelete++
+
+                              return
+                        }
+
+                        tr.remove()
+                  })
+
+                  if (!numberOfRowToDelete) {
+                        spawnAlert("warning", "Por favor, marque os itens que deseja excluir.")
+
+                        return
+                  }
+
+                  spawnConfirm(tableClone, {
+                        title: numberOfRowToDelete === 1 ? "Excluir Admin" : "Excluir Admins",
+                        iconClass: "bi-trash",
+                        callback: async (closeConfirmContainer) => {
+                              let body = {
+                                    ids: []
+                              }
+
+                              tableClone.querySelector("tbody").querySelectorAll("tr").forEach(tr => {
+                                    const checkbox = tr.querySelector('input[type="checkbox"]')
+
+                                    if (checkbox.checked) {
+                                          body.ids.push(tr.getAttribute("identifier"))
+                                    }
+                              })
+
+                              body = JSON.stringify(body)
+
+                              const req = await fetch(delAction, {
+                                    method: "DELETE",
+                                    headers: {
+                                          Authorization: `${authToken}`
+                                    },
+                                    body,
+                              })
+
+                              if (req.status === 500) {
+                                    spawnAlert(
+                                          'warning',
+                                          'Oops, algo deu errado. Por favor, tente novamente mais tarde.'
+                                    );
+
+                                    return
+                              } 
+
+                              if (req.status !== 200) {
+                                    const res = await req.json()
+
+                                    spawnAlert(
+                                          'warning',
+                                          res.message, 
+                                    );
+
+                                    return
+                              } 
+
+                              closeConfirmContainer()
+
+                              location.reload();
+                        }
+                  })
+            })
+
             async function renderTable() {
-                  const req = await fetch(action, {
+                  const req = await fetch(getAction, {
                         headers: {
                               Authorization: `${authToken}`
                         }
@@ -131,8 +221,8 @@
                                     usableTableTemplate.setAttribute("identifier", user[key])
 
                                     return
-                              } 
-                              
+                              }
+
 
                               if (!usableTableTemplate.getAttribute('content')) {
                                     usableTableTemplate.setAttribute('content', `${user[key].toLowerCase()}`)
@@ -143,8 +233,8 @@
 
                               const usableItemTemplate = itemTemplate.cloneNode(true).content.children[0]
 
-                              usableItemTemplate.innerText = user[key] 
-                              
+                              usableItemTemplate.innerText = user[key]
+
                               usableTableTemplate.prepend(usableItemTemplate)
                         })
 

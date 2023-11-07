@@ -69,14 +69,12 @@ div.default-button-container a {
   gap: 8px;
   align-items: center;
   justify-content: center;
-  max-width: 400px;
   width: 100%;
-  border-radius: 8px;
   padding: 16px 24px;
-  font-size: 16px;
-  font-weight: light;
+  font-size: 18px;
   text-align: center;
   position: relative;
+  border-radius: 8px;
 }
 div.default-button-container button:hover,
 div.default-button-container a:hover {
@@ -119,6 +117,60 @@ div.default-button-container a span.default-button__loading i {
 }
 /**/
 /**/
+div.pill-button-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+div.pill-button-container a,
+div.pill-button-container button {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 16px 24px;
+  font-size: 18px;
+  text-align: center;
+  position: relative;
+  border-radius: 80px;
+}
+div.pill-button-container a:hover,
+div.pill-button-container button:hover {
+  color: white;
+}
+div.pill-button-container a.--pre-loading,
+div.pill-button-container button.--pre-loading {
+  pointer-events: none;
+}
+div.pill-button-container a.--loading,
+div.pill-button-container button.--loading {
+  color: var(--gray);
+  border: solid 2px var(--gray);
+  pointer-events: none;
+}
+div.pill-button-container a.--loading:hover,
+div.pill-button-container button.--loading:hover {
+  background-color: transparent;
+}
+div.pill-button-container a.--loading span.default-button__loading,
+div.pill-button-container button.--loading span.default-button__loading {
+  display: inline-block;
+}
+div.pill-button-container a span.default-button__loading,
+div.pill-button-container button span.default-button__loading {
+  display: none;
+  animation: spinner 1s forwards linear infinite;
+}
+div.pill-button-container a span.default-button__loading i,
+div.pill-button-container button span.default-button__loading i {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/**/
+/**/
 a.default-icon-button,
 button.default-icon-button {
   display: flex;
@@ -133,34 +185,6 @@ button.default-icon-button {
 a.default-icon-button:hover,
 button.default-icon-button:hover {
   color: var(--red);
-}
-
-/**/
-/**/
-div.pill-icon-button-container {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-}
-div.pill-icon-button-container a,
-div.pill-icon-button-container button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  width: 100%;
-  font-size: 18px;
-  text-align: left;
-  transition: ease-in-out 0.35s;
-  border-radius: 80px;
-  padding: 16px 24px;
-  border: 2px solid var(--red);
-  color: var(--red);
-}
-div.pill-icon-button-container a:hover,
-div.pill-icon-button-container button:hover {
-  background-color: var(--red);
-  color: white;
 }
 
 /**/
@@ -227,8 +251,7 @@ div.default-form__input-container > div > div textarea {
   border-radius: 8px;
   border: 1px solid var(--gray);
   padding: 16px;
-  font-size: 16px;
-  padding: 16px;
+  font-size: 18px;
   background-color: white;
 }
 div.default-form__input-container > div > div button.default-form__input-container__pseudo-select {
@@ -339,47 +362,15 @@ div.default-form__button-container a {
   gap: 8px;
   align-items: center;
   justify-content: center;
-  max-width: 400px;
   width: 100%;
-  border-radius: 8px;
   padding: 16px 24px;
-  font-size: 16px;
-  font-weight: light;
+  font-size: 18px;
   text-align: center;
   position: relative;
 }
 div.default-form__button-container button:hover,
 div.default-form__button-container a:hover {
   color: white;
-}
-div.default-form__button-container button.--pre-loading,
-div.default-form__button-container a.--pre-loading {
-  pointer-events: none;
-}
-div.default-form__button-container button.--loading,
-div.default-form__button-container a.--loading {
-  color: var(--gray);
-  border: solid 2px var(--gray);
-  pointer-events: none;
-}
-div.default-form__button-container button.--loading:hover,
-div.default-form__button-container a.--loading:hover {
-  background-color: transparent;
-}
-div.default-form__button-container button.--loading span.default-button__loading,
-div.default-form__button-container a.--loading span.default-button__loading {
-  display: inline-block;
-}
-div.default-form__button-container button span.default-button__loading,
-div.default-form__button-container a span.default-button__loading {
-  display: none;
-  animation: spinner 1s forwards linear infinite;
-}
-div.default-form__button-container button span.default-button__loading i,
-div.default-form__button-container a span.default-button__loading i {
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 /**/
@@ -395,7 +386,7 @@ input.pill-input {
 /**/
 /**/
 div.default-alerts-container {
-  z-index: 5;
+  z-index: 6;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -447,20 +438,6 @@ div.default-alerts-container > div.default-alerts-container__alert-container > d
 }
 div.default-alerts-container > div.default-alerts-container__alert-container > div > div > p i {
   font-style: normal;
-}
-
-/**/
-/**/
-div.default-confirm-container {
-  z-index: 6;
-  width: 100%;
-  min-width: 300px;
-  height: 100vh;
-  min-height: 400px;
-  background-color: rgba(0, 0, 0, 0.4);
-  position: fixed;
-  top: 0px;
-  left: 0px;
 }
 
 /*# sourceMappingURL=styles.css.map */
