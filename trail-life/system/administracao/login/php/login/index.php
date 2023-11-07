@@ -50,8 +50,6 @@ try {
   $result = $mysql->query($sql, $params);
 
   setcookie('a_auth', $a_token, time() + 604800, "/");
-
-  $requestHandler::return200();
 } catch (ReqException $e) {
   $requestHandler::handleCustomException($e);
 } catch (ReqFormException $e) {

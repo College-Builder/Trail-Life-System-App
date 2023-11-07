@@ -130,22 +130,18 @@
                         title: numberOfRowToDelete === 1 ? "Excluir Admin" : "Excluir Admins",
                         iconClass: "bi-trash",
                         callback: async (closeConfirmContainer) => {
-                              let body = {
-                                    ids: []
-                              }
+                              let body = new FormData()
 
                               tableClone.querySelector("tbody").querySelectorAll("tr").forEach(tr => {
                                     const checkbox = tr.querySelector('input[type="checkbox"]')
 
                                     if (checkbox.checked) {
-                                          body.ids.push(tr.getAttribute("identifier"))
+                                          body.append('ids', tr.getAttribute("identifier"))
                                     }
                               })
 
-                              body = JSON.stringify(body)
-
                               const req = await fetch(delAction, {
-                                    method: "DELETE",
+                                    method: "POST",
                                     headers: {
                                           Authorization: `${authToken}`
                                     },
@@ -174,7 +170,12 @@
 
                               closeConfirmContainer()
 
-                              location.reload();
+                              spawnAlert(
+                                    'success',
+                                    'Itens deletados com successo.'
+                              );
+
+                              renderTable()
                         }
                   })
             })
@@ -185,6 +186,12 @@
                               Authorization: `${authToken}`
                         }
                   })
+
+                  if (req.status === 403) {
+                        window.location.reload();
+
+                        return;
+                  }
 
                   if (req.status === 500) {
                         spawnAlert(
@@ -206,11 +213,11 @@
                         return;
                   }
 
-                  tbody.querySelectorAll("tr").forEach((tr) => {
+                  const tableTemplate = tbody.querySelectorAll('template')[0]
+
+                  tbody.querySelectorAll("tr").forEach(tr => {
                         tr.remove()
                   })
-
-                  const tableTemplate = tbody.querySelectorAll('template')[0]
 
                   res.data.forEach((user) => {
                         const usableTableTemplate = tableTemplate.cloneNode(true).content.children[0]

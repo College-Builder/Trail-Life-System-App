@@ -1,8 +1,8 @@
 <?php include './util.php' ?>
 <?php
 try {
-      if (!($_SERVER["REQUEST_METHOD"] == "DELETE")) {
-            $requestHandler::throwReqException(405, 'Método Não Permitido. Por favor, utilize uma requisição DELETE.');
+      if (!($_SERVER["REQUEST_METHOD"] == "POST")) {
+            $requestHandler::throwReqException(405, 'Método Não Permitido. Por favor, utilize uma requisição POST.');
       }
 
       $headers = getallheaders();
@@ -15,15 +15,11 @@ try {
             $requestHandler::throwReqException(403, 'Proibido. Você não tem permissão para acessar este recurso.');
       }
 
-      $request_body = file_get_contents('php://input');
-      $data = json_decode($request_body, true); 
+      $ids = $_POST['ids'];
 
-      if (!isset($data['ids'])) {
-            $requestHandler::throwReqFormException(400, 'ids', 'Por favor, forneça ids válidos.');
+      if (!isset($ids)) {
+            $requestHandler::throwReqFormException(400, 'ids', 'Nenhum item selecionado para deletar.');
       }
-
-
-      $ids = $data['ids'];
 
       if (!is_array($ids)) {
             $ids = array($ids);
@@ -46,7 +42,6 @@ try {
             $params = array($id);
             $result = $mysql->query($sql, $params);
       }
-
 } catch (ReqException $e) {
       $requestHandler::handleCustomException($e);
 } catch (ReqFormException $e) {

@@ -33,11 +33,6 @@ class ReqFormException extends Exception
 
 class RequestHandler
 {
-  public static function return200()
-  {
-    http_response_code(200);
-  }
-
   public static function returnJSON($data) {
     $data = array(
       'status' => 200,
@@ -48,6 +43,7 @@ class RequestHandler
     http_response_code(200);
     header('Content-Type: application/json');
     echo json_encode($data);
+    exit();
   }
 
   public static function throwReqException($status, $message)
@@ -80,6 +76,7 @@ class RequestHandler
     http_response_code($data['status']);
     header('Content-Type: application/json');
     echo json_encode($data);
+    exit();
   }
 }
 ?>

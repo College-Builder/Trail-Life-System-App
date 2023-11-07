@@ -317,17 +317,17 @@ function spawnConfirm(content, {title, iconClass, callback}) {
 
 	confirmContainer.classList.add("--on")
 
-	if (!spawnConfirmIsFirstTime) {
-		return
-	}
-
-	spawnConfirmIsFirstTime = false
 
       const cancelButton = window.document.querySelector("button[default-confirm-container__cancel-button]")
-
-	cancelButton.addEventListener("click", () => closeConfirmContainer())
-
       const confirmButton = window.document.querySelector("button[default-confirm-container__confirm-button]")
+
+	if (spawnConfirmIsFirstTime) {
+		spawnConfirmIsFirstTime = false
+
+		cancelButton.addEventListener("click", () => closeConfirmContainer())
+	}
+
+	confirmButton.removeEventListener("click", null);
 
       confirmButton.addEventListener("click", async () => {
             handleButtonLoading(true, confirmButton)

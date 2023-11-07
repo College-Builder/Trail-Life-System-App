@@ -163,8 +163,6 @@ try {
       $sql = 'INSERT INTO usuarios_adm (email, nome, usuario, senha, permissao) values (?, ?, ?, ?, ?);';
       $params = array($h_email, $nome, $h_usuario, $h_senha, $permissao);
       $result = $mysql->query($sql, $params);
-
-      $requestHandler::return200();
 } catch (ReqException $e) {
       $requestHandler::handleCustomException($e);
 } catch (ReqFormException $e) {

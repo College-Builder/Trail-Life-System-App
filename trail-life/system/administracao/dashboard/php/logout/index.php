@@ -7,17 +7,15 @@ try {
 
       $authCookie = $_COOKIE['a_auth'];
 
-      if (isset($authCookie)) {
-            $sql = 'DELETE FROM usuarios_adm_session WHERE token = ?;';
-            $params = array($authCookie);
-            $result = $mysql->query($sql, $params);
+      if (!isset($authCookie)) {
+            return;
+      } 
 
-            setcookie("a_auth", "", time() - 3600, "/");
+      $sql = 'DELETE FROM usuarios_adm_session WHERE token = ?;';
+      $params = array($authCookie);
+      $result = $mysql->query($sql, $params);
 
-            $requestHandler::return200();
-      } else {
-            $requestHandler::return200();
-      }
+      setcookie("a_auth", "", time() - 3600, "/");
 } catch (ReqException $e) {
       $requestHandler::handleCustomException($e);
 }
