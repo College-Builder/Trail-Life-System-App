@@ -1,19 +1,8 @@
 <?php
-define('BASE_DIR', '/opt/lampp/htdocs/');
-
-require BASE_DIR . 'vendor/autoload.php';
-require_once BASE_DIR . "global-modules/mysql/mysql.php";
-
-$dotenv = Dotenv\Dotenv::createImmutable(BASE_DIR);
-$dotenv->load();
-
-$host = $_ENV["SQL_HOST_ADMINISTRACAO_DASHBOARD"];
-$user = $_ENV["SQL_USER_ADMINISTRACAO_DASHBOARD"];
-$password = $_ENV["SQL_PASSWORD_ADMINISTRACAO_DASHBOARD"];
-$database = $_ENV["SQL_DATABASE_ADMINISTRACAO_DASHBOARD"];
-
+include './util.php';
+?>
+<?php
 if (isset($_COOKIE['a_auth'])) {
-      $mysql = new Mysql($host, $user, $password, $database);
       $sql = 'SELECT id, token FROM usuarios_adm_session WHERE token = ?;';
       $params = array($_COOKIE['a_auth']);
       $result = $mysql->query($sql, $params);
@@ -72,7 +61,7 @@ if (isset($_COOKIE['a_auth'])) {
 </head>
 
 <body>
-      <div default-alerts-container class="default-hrz-padding  default-alerts-container">
+      <div default-alerts-container class="default-hrz-padding default-alerts-container">
             <template>
                   <div class="default-alerts-container__alert-container">
                         <div>
@@ -110,7 +99,7 @@ if (isset($_COOKIE['a_auth'])) {
                                                             <input id="email" name="email" type="text"
                                                                   placeholder="Email">
                                                       </div>
-                                                      <span class="default-input__error-message">
+                                                      <span>
                                                             <i class="bi bi-exclamation-octagon"></i>
                                                             <i error-message></i>
                                                       </span>
@@ -120,10 +109,9 @@ if (isset($_COOKIE['a_auth'])) {
                                                 <label for="nome">Nome:</label>
                                                 <div>
                                                       <div>
-                                                            <input id="nome" name="nome" type="text"
-                                                                  placeholder="Nome">
+                                                            <input id="nome" name="nome" type="text" placeholder="Nome">
                                                       </div>
-                                                      <span class="default-input__error-message">
+                                                      <span>
                                                             <i class="bi bi-exclamation-octagon"></i>
                                                             <i error-message></i>
                                                       </span>
@@ -136,7 +124,7 @@ if (isset($_COOKIE['a_auth'])) {
                                                             <input id="usuario" name="usuario" type="text"
                                                                   placeholder="Usuário">
                                                       </div>
-                                                      <span class="default-input__error-message">
+                                                      <span>
                                                             <i class="bi bi-exclamation-octagon"></i>
                                                             <i error-message></i>
                                                       </span>
@@ -154,7 +142,7 @@ if (isset($_COOKIE['a_auth'])) {
                                                                   <i class="bi bi-eye"></i>
                                                             </button>
                                                       </div>
-                                                      <span class="default-input__error-message">
+                                                      <span>
                                                             <i class="bi bi-exclamation-octagon"></i>
                                                             <i error-message=""></i>
                                                       </span>
@@ -164,13 +152,13 @@ if (isset($_COOKIE['a_auth'])) {
                                                 <label for="confirme-senha">Confirme Senha:</label>
                                                 <div>
                                                       <div>
-                                                            <input id="confirm-password" placeholder="Confirme Senha"
-                                                                  name="confirm-password" type="password">
+                                                            <input id="confirme-senha" placeholder="Confirme Senha"
+                                                                  name="confirme-senha" type="password">
                                                             <button type="button">
                                                                   <i class="bi bi-eye"></i>
                                                             </button>
                                                       </div>
-                                                      <span class="default-input__error-message">
+                                                      <span>
                                                             <i class="bi bi-exclamation-octagon"></i>
                                                             <i error-message=""></i>
                                                       </span>
@@ -208,7 +196,7 @@ if (isset($_COOKIE['a_auth'])) {
                                                             <i class="bi bi-chevron-down"></i>
                                                       </span>
                                                 </div>
-                                                <span class="default-input__error-message">
+                                                <span>
                                                       <i class="bi bi-exclamation-octagon"></i>
                                                       <i error-message></i>
                                                 </span>

@@ -1,19 +1,8 @@
 <?php
-define('BASE_DIR', '/opt/lampp/htdocs/');
-
-require BASE_DIR . 'vendor/autoload.php';
-require_once BASE_DIR . "global-modules/mysql/mysql.php";
-
-$dotenv = Dotenv\Dotenv::createImmutable(BASE_DIR);
-$dotenv->load();
-
-$host = $_ENV["SQL_HOST_ADMINISTRACAO_DASHBOARD"];
-$user = $_ENV["SQL_USER_ADMINISTRACAO_DASHBOARD"];
-$password = $_ENV["SQL_PASSWORD_ADMINISTRACAO_DASHBOARD"];
-$database = $_ENV["SQL_DATABASE_ADMINISTRACAO_DASHBOARD"];
-
+include './util.php';
+?>
+<?php
 if (isset($_COOKIE['a_auth'])) {
-  $mysql = new Mysql($host, $user, $password, $database);
   $sql = 'SELECT id, token FROM usuarios_adm_session WHERE token = ?;';
   $params = array($_COOKIE['a_auth']);
   $result = $mysql->query($sql, $params);
@@ -99,35 +88,37 @@ if (isset($_COOKIE['a_auth'])) {
             alt="Trail Life Administração Logo" />
         </div>
         <div>
-          <form email-form-container__form class="default-form" method="POST" action="/system/administracao/login/php/login/index.php">
+          <form email-form-container__form class="default-form" method="POST"
+            action="/system/administracao/login/php/login/index.php">
             <div>
               <div class="default-form__input-container">
-                <label for="login-form-username">Usuário:</label>
-                <div default-input>
+                <label for="username">Usuário:</label>
+                <div>
                   <div>
-                    <input placeholder="Usuário" type="text" name="usuario" id="login-form-username" />
+                    <input placeholder="Usuário" type="text" name="usuario" id="username" />
                   </div>
-                  <span class="default-input__error-message">
+                  <span>
                     <i class="bi bi-exclamation-octagon"></i>
                     <i error-message></i>
                   </span>
                 </div>
               </div>
               <div class="default-form__input-container">
-                <label for="login-form-password">Senha:</label>
-                <div default-input>
+                <label for="password">Senha:</label>
+                <div>
                   <div>
-                    <input placeholder="Senha" type="password" name="senha" id="login-form-password" />
+                    <input placeholder="Senha" type="password" name="senha" id="password" />
                     <button type="button">
                       <i class="bi bi-eye"></i>
                     </button>
                   </div>
-                  <span class="default-input__error-message">
+                  <span>
                     <i class="bi bi-exclamation-octagon"></i>
                     <i error-message></i>
                   </span>
                 </div>
               </div>
+
             </div>
             <div>
               <div class="default-form__button-container">

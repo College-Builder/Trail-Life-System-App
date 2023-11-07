@@ -1,19 +1,8 @@
 <?php
-define('BASE_DIR', '/opt/lampp/htdocs/');
-
-require BASE_DIR . 'vendor/autoload.php';
-require_once BASE_DIR . "global-modules/mysql/mysql.php";
-
-$dotenv = Dotenv\Dotenv::createImmutable(BASE_DIR);
-$dotenv->load();
-
-$host = $_ENV["SQL_HOST_ADMINISTRACAO_DASHBOARD"];
-$user = $_ENV["SQL_USER_ADMINISTRACAO_DASHBOARD"];
-$password = $_ENV["SQL_PASSWORD_ADMINISTRACAO_DASHBOARD"];
-$database = $_ENV["SQL_DATABASE_ADMINISTRACAO_DASHBOARD"];
-
+include './util.php';
+?>
+<?php
 if (isset($_COOKIE['a_auth'])) {
-  $mysql = new Mysql($host, $user, $password, $database);
   $sql = 'SELECT id, token FROM usuarios_adm_session WHERE token = ?;';
   $params = array($_COOKIE['a_auth']);
   $result = $mysql->query($sql, $params);
@@ -47,7 +36,11 @@ if (isset($_COOKIE['a_auth'])) {
   <!---->
   <!---->
   <link rel="stylesheet" href="https://college-builder.s3.amazonaws.com/trail-life/styles/index/index.css" />
+  
+  <link rel="stylesheet" href="./styles/styles/styles.css">
+  <!--
   <link rel="stylesheet" href="https://college-builder.s3.amazonaws.com/trail-life/styles/styles/styles.css" />
+  -->
   <link rel="stylesheet" href="https://college-builder.s3.amazonaws.com/trail-life/styles/controller/controller.css" />
   <!---->
   <!---->
@@ -84,7 +77,7 @@ if (isset($_COOKIE['a_auth'])) {
 </head>
 
 <body>
-  <div default-alerts-container class="default-hrz-padding  default-alerts-container">
+  <div default-alerts-container class="default-hrz-padding default-alerts-container">
     <template>
       <div class="default-alerts-container__alert-container">
         <div>
@@ -99,6 +92,11 @@ if (isset($_COOKIE['a_auth'])) {
         </div>
       </div>
     </template>
+  </div>
+  <!---->
+  <!---->
+  <div class="default-hrz-padding default-confirm-container">
+
   </div>
   <!---->
   <!---->
@@ -123,7 +121,22 @@ if (isset($_COOKIE['a_auth'])) {
       <div>
         <div>
           <p><i class="bi bi-person-circle"></i></p>
-          <p>Admin</p>
+          <p>
+            <?php
+            $sql = 'SELECT id, token FROM usuarios_adm_session WHERE token = ?;';
+            $params = array($_COOKIE['a_auth']);
+            $result = $mysql->query($sql, $params);
+
+            $id = ($row = mysqli_fetch_assoc($result)) ? $row['id'] : "";
+
+            $sql = 'SELECT nome FROM usuarios_adm WHERE id = ?;';
+            $params = array($id);
+            $result = $mysql->query($sql, $params);
+
+            $name = ($row = mysqli_fetch_assoc($result)) ? $row['nome'] : "";
+            echo $name;
+            ?>
+          </p>
         </div>
         <hr />
         <div>

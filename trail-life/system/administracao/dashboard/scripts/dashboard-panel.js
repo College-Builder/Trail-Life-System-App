@@ -59,3 +59,26 @@ window.document
             position = sliderContainer.scrollLeft;
       });
 });
+
+(() => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const alertMessage = urlParams.get('alert');
+      const timestamp = urlParams.get('timestamp');
+
+      if (!alertMessage || !timestamp) {
+            return
+      }
+
+      const dataAtual = new Date();
+      const dataAntiga = new Date(timestamp);
+
+      const diferencaEmMilissegundos = dataAtual - dataAntiga;
+      const diferencaEmSegundos = diferencaEmMilissegundos / 1000;
+
+      if (diferencaEmSegundos <= 10) {
+            spawnAlert(
+                  'success',
+                  alertMessage.replace(/%20/g, " "),
+            );
+      }
+})();

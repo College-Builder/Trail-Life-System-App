@@ -1,22 +1,7 @@
 <?php
-define('BASE_DIR', '/opt/lampp/htdocs/');
-
-require BASE_DIR . 'vendor/autoload.php';
-require_once BASE_DIR . "global-modules/cypher/cypher.php";
-require_once BASE_DIR . "global-modules/request-handler/request-handler.php";
-require_once BASE_DIR . "global-modules/validate-api-data/validate-api-data.php";
-
-$dotenv = Dotenv\Dotenv::createImmutable(BASE_DIR);
-$dotenv->load();
-
-$host = $_ENV["SQL_HOST_ADMINISTRACAO_ADD"];
-$user = $_ENV["SQL_USER_ADMINISTRACAO_ADD"];
-$password = $_ENV["SQL_PASSWORD_ADMINISTRACAO_ADD"];
-$database = $_ENV["SQL_DATABASE_ADMINISTRACAO_ADD"];
-
-$requestHandler = new RequestHandler();
-$validateApiDate = new ValidateApiData();
-
+include './util.php';
+?>
+<?php
 try {
       if (!($_SERVER["REQUEST_METHOD"] == "POST")) {
             $requestHandler::throwReqException(405, 'Método Não Permitido. Por favor, utilize uma requisição POST.');
@@ -32,17 +17,17 @@ try {
             $requestHandler::throwReqException(403, 'Proibido. Você não tem permissão para acessar este recurso.');
       }
 
-      $email = $_POST['email'];
-      $nome = $_POST['nome'];
-      $usuario = $_POST['usuario'];
-      $senha = $_POST['senha'];
-      $confirmeSenha = $_POST['confirme-senha'];
-      $permissao = $_POST['permissao'];
+      $email = isset($_POST['email']) ? trim($_POST['email']) : null;
+      $nome = isset($_POST['nome']) ? trim($_POST['nome']) : null;
+      $usuario = isset($_POST['usuario']) ? trim($_POST['usuario']) : null;
+      $senha = isset($_POST['senha']) ? trim($_POST['senha']) : null;
+      $confirmeSenha = isset($_POST['confirme-senha']) ? trim($_POST['confirme-senha']) : null;
+      $permissao = isset($_POST['permissao']) ? trim($_POST['permissao']) : null;
 
       $mask = array(
             'email' => array(
                   'undefined' => false,
-                  'maxLength' => 100,
+                  'maxLength' => 50,
                   'minLength' => 5,
                   'errorMessage' => array(
                         'undefined' => 'Por favor, forneça um email válido.',
@@ -93,7 +78,7 @@ try {
       );
 
       foreach ($mask as $field => $rules) {
-            if (!isset($_POST[$field])) {
+            if (!isset($_POST[$field]) || strlen($_POST[$field]) === 0) {
                   $status = 400;
                   $label = $field;
                   $message = $rules['errorMessage']['undefined'];
@@ -116,37 +101,66 @@ try {
 
                   $requestHandler::throwReqFormException($status, $label, $message);
             }
+
+            if ($field === 'email' && !$validateApiDate->validateEmail($email)) {
+                  $status = 400;
+                  $label = 'email';
+                  $message = 'Por favor, forneça um email válido.';
+
+                  $requestHandler::throwReqFormException($status, $label, $message);
+            } 
+
+            if ($field === 'nome' && !$validateApiDate->validateInputString($nome)) {
+                  $status = 400;
+                  $label = "nome";
+                  $message = 'Por favor, utilize apenas letras e números.';
+
+                  $requestHandler::throwReqFormException($status, $label, $message);
+            }
+
+            if ($field === 'usuario' && !$validateApiDate->validateInputString($usuario)) {
+                  $status = 400;
+                  $label = "usuario";
+                  $message = 'Por favor, utilize apenas letras e números.';
+
+                  $requestHandler::throwReqFormException($status, $label, $message);
+            }
+
+            if ($field === 'senha' && $senha !== $confirmeSenha) {
+                  $status = 400;
+                  $label = 'confirme-senha';
+                  $message = 'As senhas não conferem. Por favor, verifique se as duas senhas são iguais.';
+
+                  $requestHandler::throwReqFormException($status, $label, $message);
+            }
+
+            if ($field === 'permissao' && ($permissao !== 'read' and $permissao !== 'write' and $permissao !== 'sudo')) {
+                  $status = 400;
+                  $label = 'email';
+                  $message = 'Por favor, forneça uma permissão válida.';
+
+                  $requestHandler::throwReqFormException($status, $label, $message);
+            }
       }
 
-      if (!$validateApiDate->validateEmail($email)) {
+      $h_usuario = Cypher::encryptStringUsingSHA512($usuario);
+
+      $mysql = new Mysql($host, $user, $password, $database);
+      $sql = 'SELECT id FROM usuarios_adm WHERE usuario = ?;';
+      $params = array($h_usuario);
+      $result = $mysql->query($sql, $params);
+
+      if ($result->num_rows !== 0) {
             $status = 400;
-            $label = 'email';
-            $message = 'Por favor, forneça um email válido.';
-
-            $requestHandler::throwReqFormException($status, $label, $message);
-      }
-
-      if ($senha !== $confirmeSenha) {
-            $status = 400;
-            $label = 'confirme-senha';
-            $message = 'As senhas não conferem. Por favor, verifique se as duas senhas são iguais.';
-
-            $requestHandler::throwReqFormException($status, $label, $message);
-      }
-
-      if ($permissao !== 'read' and $permissao !== 'write' and $permissao !== 'sudo') {
-            $status = 400;
-            $label = 'email';
-            $message = 'Por favor, forneça uma permissão válida.';
+            $label = 'usuario';
+            $message = 'Usuário já existe. Por favor, tente utilizar outro nome de usuário.';
 
             $requestHandler::throwReqFormException($status, $label, $message);
       }
 
       $h_email = Cypher::encryptStringUsingAES256($email, $_ENV["USUARIOS_ADM_EMAIL_CYPHER_KEY"]);
-      $h_usuario = Cypher::encryptStringUsingSHA512($usuario);
       $h_senha = Cypher::encryptStringUsingSHA512($senha);
 
-      $mysql = new Mysql($host, $user, $password, $database);
       $sql = 'INSERT INTO usuarios_adm (email, nome, usuario, senha, permissao) values (?, ?, ?, ?, ?);';
       $params = array($h_email, $nome, $h_usuario, $h_senha, $permissao);
       $result = $mysql->query($sql, $params);

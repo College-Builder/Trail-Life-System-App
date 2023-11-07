@@ -39,10 +39,16 @@
 
             if (req.status === 200) {
                   console.log(req)
-            } else if (req.status === 400) {
-                  const res = await req.json()
+                  const url = new URL("http://localhost/system/administracao/dashboard")
 
-                  console.log(res)
+                  url.searchParams.append('alert', "Novo admin criado com sucesso.".replace(/ /g, "%20"))
+                  url.searchParams.append("timestamp", new Date())
+
+                  window.location.href = url
+            } else if (req.status === 400) {
+                  const {label, message} = await req.json()
+
+                  handleFormErrorMessageResponse(label, message);
             } else if (req.status === 403) {
                   const res = await req.json()
 

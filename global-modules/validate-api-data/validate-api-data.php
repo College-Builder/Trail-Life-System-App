@@ -55,5 +55,9 @@ class ValidateApiData
 
             return true;
       }
+
+      public function validateInputString($input) {
+            return preg_match('/^[A-Za-z0-9\s]+$/', $input);
+      }
 }
 ?>

@@ -1,19 +1,8 @@
 <?php
-define('BASE_DIR', '/opt/lampp/htdocs/');
-
-require BASE_DIR . 'vendor/autoload.php';
-require_once BASE_DIR . "global-modules/mysql/mysql.php";
-
-$dotenv = Dotenv\Dotenv::createImmutable(BASE_DIR);
-$dotenv->load();
-
-$host = $_ENV["SQL_HOST_ADMINISTRACAO_DASHBOARD"];
-$user = $_ENV["SQL_USER_ADMINISTRACAO_DASHBOARD"];
-$password = $_ENV["SQL_PASSWORD_ADMINISTRACAO_DASHBOARD"];
-$database = $_ENV["SQL_DATABASE_ADMINISTRACAO_DASHBOARD"];
-
+include './util.php';
+?>
+<?php
 if (isset($_COOKIE['a_auth'])) {
-      $mysql = new Mysql($host, $user, $password, $database);
       $sql = 'SELECT id, token FROM usuarios_adm_session WHERE token = ?;';
       $params = array($_COOKIE['a_auth']);
       $result = $mysql->query($sql, $params);

@@ -38,6 +38,18 @@ class RequestHandler
     http_response_code(200);
   }
 
+  public static function returnJSON($data) {
+    $data = array(
+      'status' => 200,
+      'data' => $data,
+      'timestamp' => date('Y-m-d H:i:s'),
+    );
+
+    http_response_code(200);
+    header('Content-Type: application/json');
+    echo json_encode($data);
+  }
+
   public static function throwReqException($status, $message)
   {
     $data = array(
