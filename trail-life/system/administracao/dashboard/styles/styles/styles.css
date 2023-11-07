@@ -440,4 +440,83 @@ div.default-alerts-container > div.default-alerts-container__alert-container > d
   font-style: normal;
 }
 
+/**/
+/**/
+div.default-confirm-container {
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-width: 300px;
+  height: 100vh;
+  min-height: 600px;
+  overflow-y: scroll;
+  transition: ease-in-out 0.48s;
+  background-color: rgba(0, 0, 0, 0.4);
+  filter: opacity(0%);
+  pointer-events: none;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+}
+div.default-confirm-container.--on {
+  filter: opacity(100%);
+  pointer-events: all;
+}
+div.default-confirm-container.--on > div {
+  transform: translateY(0%);
+}
+div.default-confirm-container > div {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 100%;
+  background-color: white;
+  transform: translateY(-340%);
+  transition: ease-in-out 1.4s;
+  padding: 48px 38px;
+  border-radius: 8px;
+}
+div.default-confirm-container > div > div:first-of-type p {
+  text-align: center;
+  font-size: 22px;
+}
+div.default-confirm-container > div > div:first-of-type p > i:first-of-type {
+  color: var(--red);
+}
+div.default-confirm-container > div > div:first-of-type p i {
+  font-style: normal;
+}
+div.default-confirm-container > div > div:nth-of-type(2) {
+  max-height: 260px;
+  overflow-y: scroll;
+}
+div.default-confirm-container > div > div:last-of-type {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+@media (min-width: 350px) {
+  div.default-confirm-container > div > div:first-of-type p {
+    font-size: 28px;
+  }
+}
+@media (min-width: 400px) {
+  div.default-confirm-container > div {
+    padding: 48px;
+  }
+}
+@media (min-width: 600px) {
+  div.default-confirm-container > div > div:last-of-type {
+    flex-direction: row;
+  }
+}
+@media (min-width: 1000px) {
+  div.default-confirm-container > div {
+    max-width: 880px;
+  }
+}
+
 /*# sourceMappingURL=styles.css.map */

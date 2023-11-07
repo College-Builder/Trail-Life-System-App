@@ -1,4 +1,6 @@
-<?php include './util.php' ?>
+<?php
+include './util.php';
+?>
 <?php
 try {
       if (!($_SERVER["REQUEST_METHOD"] == "POST")) {
@@ -15,6 +17,7 @@ try {
             $requestHandler::throwReqException(403, 'Proibido. Você não tem permissão para acessar este recurso.');
       }
 
+      /*
       $email = isset($_POST['email']) ? trim($_POST['email']) : null;
       $nome = isset($_POST['nome']) ? trim($_POST['nome']) : null;
       $usuario = isset($_POST['usuario']) ? trim($_POST['usuario']) : null;
@@ -165,6 +168,7 @@ try {
       $result = $mysql->query($sql, $params);
 
       $requestHandler::return200();
+      */
 } catch (ReqException $e) {
       $requestHandler::handleCustomException($e);
 } catch (ReqFormException $e) {

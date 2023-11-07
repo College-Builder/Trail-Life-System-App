@@ -48,8 +48,15 @@ function setPseudoSelectProperties(button) {
 		'div[pseudo-select__options-container]',
 	);
 
-	options[0].setAttribute('selected', '');
-	button.prepend(options[0]);
+	const selectValue = button.getAttribute("select-value")
+	let selectOption = options[0]
+
+	if (selectValue) {
+		selectOption = button.querySelector(`option[value="${selectValue}"]`)
+	}
+
+	selectOption.setAttribute('selected', '')
+	button.prepend(selectOption);
 
 	const originalOptionsContainerHeight =
 		getComputedStyle(optionsContainer).height;
@@ -290,4 +297,45 @@ function spawnAlert(type, text) {
 			}, 700);
 		}, 6000);
 	}, 1000);
+}
+
+spawnConfirmIsFirstTime = true
+function spawnConfirm(content, {title, iconClass, callback}) {
+	const confirmContainer = window.document.querySelector("div[default-confirm-container]")
+	const contentContainer = confirmContainer.querySelector("div[content-container]")
+
+      confirmContainer.querySelector("i[default-confirm-container__icon]").classList.add(iconClass)
+      confirmContainer.querySelector("i[default-confirm-container__title]").innerText = title
+
+      while (contentContainer.firstChild) {
+            contentContainer.removeChild(contentContainer.firstChild)
+      }
+
+	if (content) {
+		contentContainer.append(content)
+	}
+
+	confirmContainer.classList.add("--on")
+
+	if (!spawnConfirmIsFirstTime) {
+		return
+	}
+
+	spawnConfirmIsFirstTime = false
+
+      const cancelButton = window.document.querySelector("button[default-confirm-container__cancel-button]")
+
+	cancelButton.addEventListener("click", () => closeConfirmContainer())
+
+      const confirmButton = window.document.querySelector("button[default-confirm-container__confirm-button]")
+
+      confirmButton.addEventListener("click", async () => {
+            handleButtonLoading(true, confirmButton)
+            await callback(() => closeConfirmContainer())
+            handleButtonLoading(false, confirmButton)
+      })
+
+      function closeConfirmContainer() {
+            confirmContainer.classList.remove("--on")
+      }
 }

@@ -1,6 +1,4 @@
-<?php
-include './util.php';
-?>
+<?php include './util.php' ?>
 <?php
 try {
       if (!($_SERVER["REQUEST_METHOD"] == "GET")) {

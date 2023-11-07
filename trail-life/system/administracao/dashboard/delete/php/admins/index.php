@@ -1,6 +1,4 @@
-<?php
-include './util.php';
-?>
+<?php include './util.php' ?>
 <?php
 try {
       if (!($_SERVER["REQUEST_METHOD"] == "DELETE")) {
@@ -18,7 +16,7 @@ try {
       }
 
       $request_body = file_get_contents('php://input');
-      $data = json_decode($request_body, true); // true for associative array
+      $data = json_decode($request_body, true); 
 
       if (!isset($data['ids'])) {
             $requestHandler::throwReqFormException(400, 'ids', 'Por favor, forneça ids válidos.');

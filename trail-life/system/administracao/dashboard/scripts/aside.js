@@ -1,4 +1,10 @@
 (() => {
+	window.document.querySelectorAll('aside[aside-menu]').forEach((aside) => {
+		aside.style.height = `${window.innerHeight}px`
+	})
+})();
+
+(() => {
 	const asideMenuContainer = window.document.querySelector(
 		'div[aside-menu-container]',
 	);
@@ -95,20 +101,30 @@
 	window.document
 		.querySelectorAll('button[logout-button]')
 		.forEach((button) => {
-			button.addEventListener('click', async () => {
-				const req = await fetch ("/system/administracao/dashboard/php/logout/index.php", {
-					method: "POST"
+			button.addEventListener("click", () => {
+				const content = window.document.createElement("p")
+
+				content.innerText = 'Tem certeza que deseja sair?'
+				content.style.fontSize = "20px"
+
+				spawnConfirm(content, {
+					title: 'Sair',
+					iconClass: "bi-arrow-bar-left",
+					callback: async (closeConfirmContainer) => {
+						const req = await fetch ("/system/administracao/dashboard/php/logout/index.php", {
+							method: "POST"
+						})
+
+						if (req.status === 200) {
+							location.reload();
+						} else {
+							spawnAlert(
+								'warning',
+								'Oops, algo deu errado. Por favor, tente novamente mais tarde.',
+							);
+						}
+					}
 				})
-
-				if (req.status === 200) {
-					location.reload();
-				} else {
-					spawnAlert(
-						'warning',
-						'Oops, algo deu errado. Por favor, tente novamente mais tarde.',
-					);
-				}
-
-			});
+			})
 		});
 })();

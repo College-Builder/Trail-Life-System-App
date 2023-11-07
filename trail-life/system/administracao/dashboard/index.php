@@ -1,20 +1,16 @@
+<?php include './util.php' ?>
 <?php
-include './util.php';
-?>
-<?php
-if (isset($_COOKIE['a_auth'])) {
-  $sql = 'SELECT id, token FROM usuarios_adm_session WHERE token = ?;';
-  $params = array($_COOKIE['a_auth']);
-  $result = $mysql->query($sql, $params);
+$sql = 'SELECT id, token FROM usuarios_adm_session WHERE token = ?;';
+$params = array($_COOKIE['a_auth']);
+$result = $mysql->query($sql, $params);
 
-  if ($result->num_rows == 0) {
-    header("Location: /system/administracao/login/");
-    exit();
-  }
-} else {
-  header("Location: /system/administracao/login/");
-  exit();
-}
+$id = ($row = mysqli_fetch_assoc($result)) ? $row['id'] : "";
+
+$sql = 'SELECT nome FROM usuarios_adm WHERE id = ?;';
+$params = array($id);
+$result = $mysql->query($sql, $params);
+
+$name = ($row = mysqli_fetch_assoc($result)) ? $row['nome'] : "";
 ?>
 <!doctype html>
 <html lang="pt-BR">
@@ -114,13 +110,13 @@ if (isset($_COOKIE['a_auth'])) {
       </div>
       <div>
         <div class="pill-button-container">
-          <button default-confirm-container__cancel-button class="--green-button">Cancelar</button>
+          <button default-confirm-container__cancel-button class="--red-button">Cancelar</button>
         </div>
         <div class="pill-button-container">
-          <button default-confirm-container__confirm-button class="--red-button">
-          <span class="default-button__loading">
-                    <i class="bi bi-arrow-repeat"></i>
-                  </span>
+          <button default-confirm-container__confirm-button class="--green-button">
+            <span class="default-button__loading">
+              <i class="bi bi-arrow-repeat"></i>
+            </span>
             Confirmar
           </button>
         </div>
@@ -151,20 +147,7 @@ if (isset($_COOKIE['a_auth'])) {
         <div>
           <p><i class="bi bi-person-circle"></i></p>
           <p>
-            <?php
-            $sql = 'SELECT id, token FROM usuarios_adm_session WHERE token = ?;';
-            $params = array($_COOKIE['a_auth']);
-            $result = $mysql->query($sql, $params);
-
-            $id = ($row = mysqli_fetch_assoc($result)) ? $row['id'] : "";
-
-            $sql = 'SELECT nome FROM usuarios_adm WHERE id = ?;';
-            $params = array($id);
-            $result = $mysql->query($sql, $params);
-
-            $name = ($row = mysqli_fetch_assoc($result)) ? $row['nome'] : "";
-            echo $name;
-            ?>
+            <?php echo $name ?>
           </p>
         </div>
         <hr />

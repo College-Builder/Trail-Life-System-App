@@ -1,4 +1,26 @@
 <?php include './util.php' ?>
+<?php
+$id = $_GET['id'];
+
+if (!isset($id) || !is_numeric($id)) {
+      header("Location: /system/administracao/dashboard");
+      exit();
+}
+
+$sql = 'SELECT email, nome, permissao FROM usuarios_adm WHERE id = ?;';
+$params = array($id);
+$result = $mysql->query($sql, $params);
+
+if ($result->num_rows !== 1) {
+      header("Location: /system/administracao/dashboard");
+      exit();
+}
+
+$row = mysqli_fetch_assoc($result);
+$email = Cypher::decryptStringUsingAES256($row['email'], $_ENV["USUARIOS_ADM_EMAIL_CYPHER_KEY"]);
+$nome = $row['nome'];
+$permissao = $row['permissao'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -38,7 +60,7 @@
       <!--
       Custom head tags
       -->
-      <title>Add Admin | Administração</title>
+      <title>Modificar Admin | Administração</title>
       <!---->
       <!---->
       <link rel="stylesheet" href="/system/administracao/dashboard/styles/interact-form/interact-form.css">
@@ -71,13 +93,15 @@
                   <div class="default-hrz-padding interact-form-container__header-container">
                         <h1>
                               <i class="bi bi-box-seam"></i>
-                              Novo Admin
+                              Modificar
+                              <?php
+                              echo $nome;
+                              ?>
                         </h1>
                   </div>
                   <div class="default-hrz-padding interact-form-container__main-container">
                         <form class="default-form" method="POST"
-                              action="/system/administracao/dashboard/add/admin/php/add/index.php"
-                              sucess-message="Novo Admin criado com successo.">
+                              action="/system/administracao/dashboard/update/admin/php/update/index.php" sucess-message="<?php echo $nome ?> modificado com successo.">
                               <div>
                                     <div class="default-form__make-row">
                                           <div class="default-form__input-container">
@@ -85,7 +109,7 @@
                                                 <div>
                                                       <div>
                                                             <input id="email" name="email" type="text"
-                                                                  placeholder="Email">
+                                                                  placeholder="Email" value="<?php echo $email ?>">
                                                       </div>
                                                       <span>
                                                             <i class="bi bi-exclamation-octagon"></i>
@@ -97,58 +121,12 @@
                                                 <label for="nome">Nome:</label>
                                                 <div>
                                                       <div>
-                                                            <input id="nome" name="nome" type="text" placeholder="Nome">
+                                                            <input id="nome" name="nome" type="text" placeholder="Nome"
+                                                                  value="<?php echo $nome ?>">
                                                       </div>
                                                       <span>
                                                             <i class="bi bi-exclamation-octagon"></i>
                                                             <i error-message></i>
-                                                      </span>
-                                                </div>
-                                          </div>
-                                          <div class="default-form__input-container">
-                                                <label for="usuario">Usuário:</label>
-                                                <div>
-                                                      <div>
-                                                            <input id="usuario" name="usuario" type="text"
-                                                                  placeholder="Usuário">
-                                                      </div>
-                                                      <span>
-                                                            <i class="bi bi-exclamation-octagon"></i>
-                                                            <i error-message></i>
-                                                      </span>
-                                                </div>
-                                          </div>
-                                    </div>
-                                    <div class="default-form__make-row">
-                                          <div class="default-form__input-container">
-                                                <label for="senha">Senha:</label>
-                                                <div>
-                                                      <div>
-                                                            <input id="password" placeholder="Senha" name="senha"
-                                                                  type="password">
-                                                            <button tabindex="-1" type="button">
-                                                                  <i class="bi bi-eye"></i>
-                                                            </button>
-                                                      </div>
-                                                      <span>
-                                                            <i class="bi bi-exclamation-octagon"></i>
-                                                            <i error-message=""></i>
-                                                      </span>
-                                                </div>
-                                          </div>
-                                          <div class="default-form__input-container">
-                                                <label for="confirme-senha">Confirme Senha:</label>
-                                                <div>
-                                                      <div>
-                                                            <input id="confirme-senha" placeholder="Confirme Senha"
-                                                                  name="confirme-senha" type="password">
-                                                            <button tabindex="-1" type="button">
-                                                                  <i class="bi bi-eye"></i>
-                                                            </button>
-                                                      </div>
-                                                      <span>
-                                                            <i class="bi bi-exclamation-octagon"></i>
-                                                            <i error-message=""></i>
                                                       </span>
                                                 </div>
                                           </div>
@@ -159,7 +137,7 @@
                                                 <div>
                                                       <button pseudo-select id="tipo-de-carga" name="permissao"
                                                             class="default-form__input-container__pseudo-select"
-                                                            type="button">
+                                                            type="button" select-value="<?php echo $permissao ?>">
                                                             <div pseudo-select__options-container>
                                                                   <div>
                                                                         <option
@@ -197,7 +175,7 @@
                                                 <span class="default-button__loading">
                                                       <i class="bi bi-arrow-repeat"></i>
                                                 </span>
-                                                Adicionar
+                                                Modificar
                                           </button>
                                     </div>
                               </div>

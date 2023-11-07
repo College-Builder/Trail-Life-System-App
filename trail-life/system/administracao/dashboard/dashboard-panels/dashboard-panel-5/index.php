@@ -22,13 +22,13 @@
                                     <thead>
                                           <tr>
                                                 <th>
+                                                      Permissão
+                                                </th>
+                                                <th>
                                                       Nome
                                                 </th>
                                                 <th>
                                                       Email
-                                                </th>
-                                                <th>
-                                                      Permissão
                                                 </th>
                                                 <th>
                                                       <button>
@@ -45,7 +45,7 @@
                                                       </template>
                                                       <td>
                                                             <div>
-                                                                  <a href="" target="_blank">
+                                                                  <a  admins-table__tamplate__update-link>
                                                                         <i class="bi bi-pencil-square"></i>
                                                                   </a>
                                                                   <input type="checkbox">
@@ -215,6 +215,8 @@
                   res.data.forEach((user) => {
                         const usableTableTemplate = tableTemplate.cloneNode(true).content.children[0]
                         const itemTemplate = usableTableTemplate.querySelector("template")
+
+                        usableTableTemplate.querySelector("a[admins-table__tamplate__update-link]").setAttribute("href", `/system/administracao/dashboard/update/admin?id=${user.id}`)
 
                         Object.keys(user).forEach((key) => {
                               if (key === 'id') {
