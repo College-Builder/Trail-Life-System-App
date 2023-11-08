@@ -20,5 +20,5 @@ $mysql = new Mysql($host, $user, $password, $database);
 <?php
 $requestHandler = new RequestHandler();
 $validateApiDate = new ValidateApiData();
-$validateAdminData = new ValidateAdminData()
+$validateMotoristaData = new ValidateMotoristaData()
 ?>

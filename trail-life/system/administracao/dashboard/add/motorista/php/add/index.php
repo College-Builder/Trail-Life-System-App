@@ -15,30 +15,31 @@ try {
             $requestHandler::throwReqException(403, 'Proibido. Você não tem permissão para acessar este recurso.');
       }
 
-      $email = isset($_POST['email']) ? trim($_POST['email']) : null;
       $nome = isset($_POST['nome']) ? trim($_POST['nome']) : null;
-      $usuario = isset($_POST['usuario']) ? trim($_POST['usuario']) : null;
-      $senha = isset($_POST['senha']) ? trim($_POST['senha']) : null;
-      $confirmeSenha = isset($_POST['confirme-senha']) ? trim($_POST['confirme-senha']) : null;
-      $permissao = isset($_POST['permissao']) ? trim($_POST['permissao']) : null;
+      $rg = isset($_POST['rg']) ? trim($_POST['rg']) : null;
+      $cpf = isset($_POST['cpf']) ? trim($_POST['cpf']) : null;
+      $celular = isset($_POST['celular']) ? trim($_POST['celular']) : null;
+      $nome_emergencia = isset($_POST['nome-emergencia']) ? trim($_POST['nome-emergencia']) : null;
+      $celular_emergencia = isset($_POST['celular-emergencia']) ? trim($_POST['celular-emergencia']) : null;
+      $email_emergencia = isset($_POST['email-emergencia']) ? trim($_POST['email-emergencia']) : null;
 
-      $validateAdminData->validateEmail($email);
-      $validateAdminData->validateNome($nome);
-      $validateAdminData->validateUsuario($usuario);
-      $validateAdminData->validateSenha($senha);
+      $validateMotoristaData->validateNome($nome);
+      $validateMotoristaData->validateRG($rg);
+      $validateMotoristaData->validateCPF($cpf);
+      $validateMotoristaData->validateCelular($celular);
+      $validateMotoristaData->validateNome($nome_emergencia, 'nome-emergencia');
+      $validateMotoristaData->validateCelular($celular_emergencia, 'celular-emergencia');
+      $validateMotoristaData->validateEmail($email_emergencia, 'email-emergencia');
 
-      if ($senha !== $confirmeSenha) {
-            $requestHandler::throwReqFormException(400, 'confirme-senha', 'Por favor, verifique se a senha e a confirmação de senha são idênticas.');
-      }
+      $h_rg = Cypher::encryptStringUsingSHA512($rg);
+      $h_cpf = Cypher::encryptStringUsingSHA512($cpf);
+      $h_celular = Cypher::encryptStringUsingAES256($celular, $_ENV["MOTORISTAS_CELULAR_CYPHER_KEY"]);
+      $h_nome_emergencia = Cypher::encryptStringUsingAES256($nome_emergencia, $_ENV["MOTORISTAS_NOME_EMERGENCIA_CYPHER_KEY"]);
+      $h_celular_emergencia = Cypher::encryptStringUsingAES256($celular_emergencia, $_ENV["MOTORISTAS_CELULAR_EMERGENCIA_CYPHER_KEY"]);
+      $h_email_emergencia = Cypher::encryptStringUsingAES256($email_emergencia, $_ENV["MOTORISTAS_EMAIL_EMERGENCIA_CYPHER_KEY"]);
 
-      $validateAdminData->validatePermissao($permissao);
-
-      $h_email = Cypher::encryptStringUsingAES256($email, $_ENV["USUARIOS_ADM_EMAIL_CYPHER_KEY"]);
-      $h_usuario = Cypher::encryptStringUsingSHA512($usuario);
-      $h_senha = Cypher::encryptStringUsingSHA512($senha);
-
-      $sql = 'INSERT INTO usuarios_adm (email, nome, usuario, senha, permissao) values (?, ?, ?, ?, ?);';
-      $params = array($h_email, $nome, $h_usuario, $h_senha, $permissao);
+      $sql = 'INSERT INTO motoristas (nome, celular, rg, cpf, nome_emergencia, celular_emergencia, email_emergencia) VALUES (?, ?, ?, ?, ?, ?, ?);';
+      $params = array($nome, $h_celular, $h_rg, $h_cpf, $h_nome_emergencia, $h_celular_emergencia, $h_email_emergencia);
       $result = $mysql->query($sql, $params);
 } catch (ReqException $e) {
       $requestHandler::handleCustomException($e);

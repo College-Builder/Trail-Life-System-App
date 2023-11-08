@@ -76,7 +76,7 @@
                   </div>
                   <div class="default-hrz-padding interact-form-container__main-container">
                         <form class="default-form" method="POST"
-                              action="/system/administracao/dashboard/add/admin/php/add/index.php"
+                              action="/system/administracao/dashboard/add/motorista/php/add/index.php"
                               sucess-message="Novo Motorista criado com successo.">
                               <div>
                                     <div class="default-form__make-row">
@@ -135,11 +135,11 @@
                                     </div>
                                     <div class="default-form__make-row">
                                           <div class="default-form__input-container">
-                                                <label for="contato-emergencia-nome">Contato de Emergência:</label>
+                                                <label for="nome-emergencia">Contato de Emergência:</label>
                                                 <div>
                                                       <div>
-                                                            <input id="contato-emergencia-nome"
-                                                                  name="contato-emergencia-nome" type="text"
+                                                            <input id="nome-emergencia"
+                                                                  name="nome-emergencia" type="text"
                                                                   placeholder="Nome Completo">
                                                       </div>
                                                       <span>
@@ -149,12 +149,11 @@
                                                 </div>
                                           </div>
                                           <div class="default-form__input-container">
-                                                <label for="contato-emergencia-email">Contato de Emergência:</label>
+                                                <label for="celular-emergencia">Contato de Emergência::</label>
                                                 <div>
                                                       <div>
-                                                            <input id="contato-emergencia-email"
-                                                                  name="contato-emergencia-email" type="text"
-                                                                  placeholder="Email">
+                                                            <input id="celular-emergencia" name="celular-emergencia" type="text"
+                                                                  pseudo-type="phone" placeholder="Celular">
                                                       </div>
                                                       <span>
                                                             <i class="bi bi-exclamation-octagon"></i>
@@ -163,11 +162,12 @@
                                                 </div>
                                           </div>
                                           <div class="default-form__input-container">
-                                                <label for="contato-emergencia-celular">Contato de Emergência::</label>
+                                                <label for="email-emergencia">Contato de Emergência:</label>
                                                 <div>
                                                       <div>
-                                                            <input id="contato-emergencia-celular" name="contato-emergencia-celular" type="text"
-                                                                  pseudo-type="phone" placeholder="Celular">
+                                                            <input id="email-emergencia"
+                                                                  name="email-emergencia" type="text"
+                                                                  placeholder="Email">
                                                       </div>
                                                       <span>
                                                             <i class="bi bi-exclamation-octagon"></i>
