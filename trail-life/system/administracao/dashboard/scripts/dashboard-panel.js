@@ -85,7 +85,7 @@ window.document
 
 
 (async () => {
-      const titles = ['clientes', 'admins']
+      const titles = ['motoristas', 'clientes', 'admins']
       const authToken = document.cookie.split('; ').find(cookie => cookie.startsWith('a_auth=')).split('=')[1];
 
       titles.forEach((title) => {

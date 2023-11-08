@@ -15,7 +15,6 @@ try {
             $requestHandler::throwReqException(403, 'Proibido. Você não tem permissão para acessar este recurso.');
       }
 
-      $mysql = new Mysql($host, $user, $password, $database);
       $sql = 'SELECT id, email, nome, permissao FROM usuarios_adm;';
       $params = array();
       $result = $mysql->query($sql, $params);

@@ -15,7 +15,7 @@ try {
             $requestHandler::throwReqException(403, 'Proibido. Você não tem permissão para acessar este recurso.');
       }
 
-      $sql = 'SELECT id, empresa, cnpj, estado, cidade, rua, numero, celular, email FROM clientes;';
+      $sql = 'SELECT nome, celular, status FROM motoristas;';
       $params = array();
       $result = $mysql->query($sql, $params);
 
@@ -24,14 +24,9 @@ try {
       while ($row = $result->fetch_assoc()) {
             $data[] = array(
                   'id' => $row['id'],
-                  'empresa' => $row['empresa'],
-                  'cnpj' => Cypher::decryptStringUsingAES256($row['cnpj'], $_ENV["CLIENTES_CNPJ_CYPHER_KEY"]),
-                  'estado' => Cypher::decryptStringUsingAES256($row['estado'], $_ENV["CLIENTES_ESTADO_CYPHER_KEY"]),
-                  'cidade' => Cypher::decryptStringUsingAES256($row['cidade'], $_ENV["CLIENTES_CIDADE_CYPHER_KEY"]),
-                  'rua' => Cypher::decryptStringUsingAES256($row['rua'], $_ENV["CLIENTES_RUA_CYPHER_KEY"]),
-                  'numero' => Cypher::decryptStringUsingAES256($row['numero'], $_ENV["CLIENTES_NUMERO_CYPHER_KEY"]),
-                  'celular' => Cypher::decryptStringUsingAES256($row['celular'], $_ENV["CLIENTES_CELULAR_CYPHER_KEY"]),
-                  'email' => Cypher::decryptStringUsingAES256($row['email'], $_ENV["CLIENTES_EMAIL_CYPHER_KEY"]),
+                  'nome' => $row['nome'],
+                  'celular' => Cypher::decryptStringUsingAES256($row['celular'], $_ENV["MOTORISTAS_CELULAR_CYPHER_KEY"]),
+                  'status' => $row['status']
             );
       }
 
