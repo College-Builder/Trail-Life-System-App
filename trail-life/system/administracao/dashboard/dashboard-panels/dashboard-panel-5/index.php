@@ -21,15 +21,9 @@
                               <table admins-table>
                                     <thead>
                                           <tr>
-                                                <th>
-                                                      Permissão
-                                                </th>
-                                                <th>
-                                                      Nome
-                                                </th>
-                                                <th>
-                                                      Email
-                                                </th>
+                                                <template>
+                                                      <th></th>
+                                                </template>
                                                 <th>
                                                       <button>
                                                             <i class="bi bi-trash"></i>
@@ -38,14 +32,14 @@
                                           </tr>
                                     </thead>
                                     <tbody>
-                                          <template admins-table__tamplate>
+                                          <template>
                                                 <tr>
                                                       <template>
                                                             <td></td>
                                                       </template>
                                                       <td>
                                                             <div>
-                                                                  <a  admins-table__tamplate__update-link>
+                                                                  <a>
                                                                         <i class="bi bi-pencil-square"></i>
                                                                   </a>
                                                                   <input type="checkbox">
@@ -60,7 +54,7 @@
                   <!---->
                   <!---->
                   <div apply-hrz-padding class="download-csv-button-container">
-                        <button class="default-icon-button">
+                        <button download-admins-table-button class="default-icon-button">
                               <i class="bi bi-download"></i>
                               Download .csv
                         </button>

@@ -17,12 +17,13 @@ if ($result->num_rows !== 1) {
 }
 
 $row = mysqli_fetch_assoc($result);
+
 $email = Cypher::decryptStringUsingAES256($row['email'], $_ENV["USUARIOS_ADM_EMAIL_CYPHER_KEY"]);
 $nome = $row['nome'];
 $permissao = $row['permissao'];
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
       <meta charset="UTF-8" />

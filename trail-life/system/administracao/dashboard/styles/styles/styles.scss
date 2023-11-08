@@ -237,6 +237,16 @@ div.default-form__input-container {
 				background-color: white;
 			}
 
+			input::-webkit-outer-spin-button,
+				input::-webkit-inner-spin-button {
+				-webkit-appearance: none;
+				margin: 0;
+			}
+
+			input[type=number] {
+				-moz-appearance: textfield;
+			}
+
 			button.default-form__input-container__pseudo-select {
 				&.--off {
 					& > div:last-of-type {

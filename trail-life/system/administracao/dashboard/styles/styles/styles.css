@@ -254,6 +254,14 @@ div.default-form__input-container > div > div textarea {
   font-size: 18px;
   background-color: white;
 }
+div.default-form__input-container > div > div input::-webkit-outer-spin-button,
+div.default-form__input-container > div > div input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+div.default-form__input-container > div > div input[type=number] {
+  -moz-appearance: textfield;
+}
 div.default-form__input-container > div > div button.default-form__input-container__pseudo-select {
   padding: 0px;
   text-align: left;

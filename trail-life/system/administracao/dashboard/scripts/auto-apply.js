@@ -6,6 +6,10 @@ window.document.querySelectorAll('input[type="password"]').forEach((input) => {
 	setPasswordButtonProperties(input);
 });
 
+window.document.querySelectorAll('input[pseudo-type="cnpj"]').forEach((input) => {
+	setCnpjInputProperties(input)
+});
+
 window.document.querySelectorAll('input[pseudo-type="cpf"]').forEach((input) => {
 	setCpfInputProperties(input)
 });

@@ -155,6 +155,35 @@ function setPlateBrInputProperties(input) {
 	});
 }
 
+function setCnpjInputProperties(input) {
+	input.addEventListener('input', () => {
+		let value = String(input.value.replace(/\D/g, ''));
+
+		if (value.length === 0) {
+			input.value = '';
+		} else if (value.length <= 2) {
+			input.value = `${value}`;
+		} else if (value.length <= 5) {
+			input.value = `${value.slice(0, 2)}.${value.slice(2, value.length)}`;
+		} else if (value.length <= 8) {
+			input.value = `${value.slice(0, 2)}.${value.slice(2, 5)}.${value.slice(
+			5,
+			8,
+			)}`;
+		} else if (value.length <= 12) {
+			input.value = `${value.slice(0, 2)}.${value.slice(2, 5)}.${value.slice(
+			5,
+			8,
+			)}/${value.slice(8, 12)}`;
+		} else {
+			input.value = `${value.slice(0, 2)}.${value.slice(2, 5)}.${value.slice(
+			5,
+			8,
+			)}/${value.slice(8, 12)}-${value.slice(12, 14)}`;
+		}
+	});
+}
+
 function setCpfInputProperties(input) {
 	input.addEventListener('input', () => {
 		let value = String(input.value.replace(/\D/g, ''));

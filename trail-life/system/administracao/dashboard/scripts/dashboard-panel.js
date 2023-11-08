@@ -83,19 +83,27 @@ window.document
       }
 })();
 
-(async () => {
-      const authToken = document.cookie.split('; ').find(cookie => cookie.startsWith('a_auth=')).split('=')[1];
-      const getAction = "/system/administracao/dashboard/get/php/admins/index.php"
-      const delAction = "/system/administracao/dashboard/delete/php/admins/index.php"
-      const searchInput = window.document.querySelector('input[admins-table-search-input]')
-      const table = window.document.querySelector('table[admins-table]')
-      const tbody = table.querySelector('tbody')
-      const deleteItemsButton = table.querySelector('thead').querySelector("button")
 
-      setTableAttributes(authToken, getAction, delAction, searchInput, table, tbody, deleteItemsButton)
+(async () => {
+      const titles = ['clientes', 'admins']
+      const authToken = document.cookie.split('; ').find(cookie => cookie.startsWith('a_auth=')).split('=')[1];
+
+      titles.forEach((title) => {
+            const getAction = `/system/administracao/dashboard/get/php/${title}/index.php`
+            const updateAction = `/system/administracao/dashboard/update/${title.substring(0, title.length - 1)}`
+            const delAction = `/system/administracao/dashboard/delete/php/${title}/index.php`
+            const searchInput = window.document.querySelector(`input[${title}-table-search-input]`)
+            const table = window.document.querySelector(`table[${title}-table]`)
+            const downloadTableButton = window.document.querySelector(`button[download-${title}-table-button]`)
+
+            setTableAttributes(authToken, getAction, updateAction, delAction, searchInput, table, downloadTableButton)
+      })
 })();
 
-async function setTableAttributes(authToken, getAction, delAction, searchInput, table, tbody, deleteItemsButton) {
+async function setTableAttributes(authToken, getAction, updateAction, delAction, searchInput, table, downloadTableButton) {
+      const thead = table.querySelector('thead')
+      const tbody = table.querySelector('tbody')
+
       await renderTable()
 
       searchInput.addEventListener("input", () => {
@@ -110,7 +118,7 @@ async function setTableAttributes(authToken, getAction, delAction, searchInput, 
             })
       })
 
-      deleteItemsButton.addEventListener("click", () => {
+      thead.querySelector("button").addEventListener("click", () => {
             const tableClone = table.cloneNode(true)
             let numberOfRowToDelete = 0
 
@@ -225,41 +233,64 @@ async function setTableAttributes(authToken, getAction, delAction, searchInput, 
                   return;
             }
 
-            const tableTemplate = tbody.querySelectorAll('template')[0]
+            if (res.data.length === 0) {
+                  table.style.display = 'none'
+                  downloadTableButton.parentElement.style.display = "none"
+
+                  return
+            }
+
+            const isTheadRendered = thead.querySelectorAll("th").length > 1
+
+            if (!isTheadRendered) {
+                  const tableHeadTemplate = thead.querySelectorAll('template')[0]
+
+                  Object.keys(res.data[0]).forEach(key => {
+                        if (key === 'id') {
+                              return
+                        }
+
+                        const usableTableHeadTemplate = tableHeadTemplate.cloneNode(true).content.children[0]
+                        usableTableHeadTemplate.innerText = key
+                        tableHeadTemplate.parentElement.prepend(usableTableHeadTemplate)
+                  })
+            } 
+
+            const tableBodyTemplate = tbody.querySelectorAll('template')[0]
 
             tbody.querySelectorAll("tr").forEach(tr => {
                   tr.remove()
             })
 
             res.data.forEach((user) => {
-                  const usableTableTemplate = tableTemplate.cloneNode(true).content.children[0]
-                  const itemTemplate = usableTableTemplate.querySelector("template")
+                  const usableTableBodyTemplate = tableBodyTemplate.cloneNode(true).content.children[0]
+                  const itemTemplate = usableTableBodyTemplate.querySelector("template")
 
-                  usableTableTemplate.querySelector("a[admins-table__tamplate__update-link]").setAttribute("href", `/system/administracao/dashboard/update/admin?id=${user.id}`)
+                  usableTableBodyTemplate.querySelector("a").setAttribute("href", `${updateAction}?id=${user.id}`)
 
                   Object.keys(user).forEach((key) => {
                         if (key === 'id') {
-                              usableTableTemplate.setAttribute("identifier", user[key])
+                              usableTableBodyTemplate.setAttribute("identifier", user[key])
 
                               return
                         }
 
 
-                        if (!usableTableTemplate.getAttribute('content')) {
-                              usableTableTemplate.setAttribute('content', `${user[key].toLowerCase()}`)
+                        if (!usableTableBodyTemplate.getAttribute('content')) {
+                              usableTableBodyTemplate.setAttribute('content', `${user[key].toLowerCase()}`)
                         } else {
-                              const rowContent = usableTableTemplate.getAttribute('content')
-                              usableTableTemplate.setAttribute('content', `${rowContent};; ${user[key].toLowerCase()}`)
+                              const rowContent = usableTableBodyTemplate.getAttribute('content')
+                              usableTableBodyTemplate.setAttribute('content', `${rowContent};; ${user[key].toLowerCase()}`)
                         }
 
                         const usableItemTemplate = itemTemplate.cloneNode(true).content.children[0]
 
                         usableItemTemplate.innerText = user[key]
 
-                        usableTableTemplate.prepend(usableItemTemplate)
+                        usableTableBodyTemplate.prepend(usableItemTemplate)
                   })
 
-                  tableTemplate.parentElement.append(usableTableTemplate)
+                  tableBodyTemplate.parentElement.append(usableTableBodyTemplate)
             })
       }
 }
