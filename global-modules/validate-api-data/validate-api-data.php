@@ -61,6 +61,152 @@ class ValidateApiData
       }
 }
 
+class ValidateMotoristaData
+{
+      private $requestHandler;
+
+      public function __construct()
+      {
+            $this->requestHandler = new RequestHandler();
+      }
+
+      public function validateId($id)
+      {
+            if (!isset($id) || strlen($id) === 0) {
+                  $this->requestHandler->throwReqFormException(400, 'id', 'Por favor, forneça um id válido.');
+            }
+
+            if (!is_numeric($id)) {
+                  $this->requestHandler->throwReqFormException(400, 'id', 'Por favor, forneça um id válido.');
+            }
+      }
+
+      public function validateNome($nome)
+      {
+            if (!isset($nome) || strlen($nome) === 0) {
+                  $this->requestHandler->throwReqFormException(400, 'nome', 'Por favor, forneça um nome válido.');
+            }
+
+            if (strlen($nome) < 5) {
+                  $this->requestHandler->throwReqFormException(400, 'nome', 'Por favor, forneça um nome com mais caracteres.');
+            }
+
+            if (strlen($nome) > 100) {
+                  $this->requestHandler->throwReqFormException(400, 'nome', 'Por favor, forneça um nome com menos caracteres.');
+            }
+
+            if (!preg_match('/^[a-zA-Z\s]+$/', $nome)) {
+                  $this->requestHandler->throwReqFormException(400, 'nome', 'Por favor, utilize apenas letras.');
+            }
+      }
+
+      public function validateCelular($celular)
+      {
+            if (!isset($celular) || strlen($celular) === 0) {
+                  $this->requestHandler->throwReqFormException(400, 'celular', 'Por favor, forneça um celular válido.');
+            }
+
+            $celular = preg_replace('/[^0-9]/', '', (string) $celular);
+
+            if (!is_numeric($celular)) {
+                  $this->requestHandler->throwReqFormException(400, 'celular', 'Por favor, forneça um celular válido.');
+            }
+
+            if (strlen($celular) !== 13) {
+                  $this->requestHandler->throwReqFormException(400, 'celular', 'Por favor, forneça um celular válido.');
+            }
+      }
+
+      public function validateRG($rg)
+      {
+            if (!isset($rg) || strlen($rg) === 0) {
+                  $this->requestHandler->throwReqFormException(400, 'rg', 'Por favor, forneça um rg válido.');
+            }
+
+            $pattern = '/^\d{2}\.\d{3}\.\d{3}-\d{1}$/';
+            if (!preg_match($pattern, $rg)) {
+                  $this->requestHandler->throwReqFormException(400, 'rg', 'Por favor, forneça um rg válido.');
+            }
+
+            $rgNumbers = explode('-', $rg);
+            $firstPart = $rgNumbers[0];
+            $secondPart = $rgNumbers[1];
+
+            $sum = 0;
+            for ($i = 0; $i < 9; $i++) {
+                  $digit = $firstPart[$i];
+                  $weight = ($i + 2) % 10;
+                  $sum += $digit * $weight;
+            }
+
+            $remainder = $sum % 11;
+            $digit = ($remainder < 2) ? 0 : 11 - $remainder;
+
+            if ($digit != $secondPart) {
+                  $this->requestHandler->throwReqFormException(400, 'rg', 'Por favor, forneça um rg válido.');
+            }
+      }
+
+      public function validateCPF($cpf)
+      {
+            if (!isset($cpf) || strlen($cpf) === 0) {
+                  $this->requestHandler->throwReqFormException(400, 'cpf', 'Por favor, forneça um cpf válido.');
+            }
+
+            $pattern = '/^\d{3}\.\d{3}\.\d{3}-\d{2}$/';
+            if (!preg_match($pattern, $cpf)) {
+                  $this->requestHandler->throwReqFormException(400, 'cpf', 'Por favor, forneça um cpf válido.');
+            }
+
+            $cpfNumbers = explode('-', $cpf);
+            $firstPart = $cpfNumbers[0];
+            $secondPart = $cpfNumbers[1];
+
+            $sum = 0;
+            for ($i = 0; $i < 9; $i++) {
+                  $digit = $firstPart[$i];
+                  $weight = ($i + 2) % 10;
+                  $sum += $digit * $weight;
+            }
+
+            $remainder = $sum % 11;
+            $digit = ($remainder < 2) ? 0 : 11 - $remainder;
+
+            if ($digit != $firstPart[9]) {
+                  $this->requestHandler->throwReqFormException(400, 'cpf', 'Por favor, forneça um cpf válido.');
+            }
+
+            $sum = 0;
+            for ($i = 0; $i < 10; $i++) {
+                  $digit = $firstPart[$i];
+                  $weight = (2 * ($i + 1)) % 11;
+                  $sum += $digit * $weight;
+            }
+
+            $remainder = $sum % 11;
+            $digit = ($remainder < 2) ? 0 : 11 - $remainder;
+
+            if ($digit != $secondPart) {
+                  $this->requestHandler->throwReqFormException(400, 'cpf', 'Por favor, forneça um cpf válido.');
+            }
+      }
+
+      public function validateEmail($email)
+      {
+            if (!isset($email) || strlen($email) === 0) {
+                  $this->requestHandler->throwReqFormException(400, 'email', 'Por favor, forneça um email válido.');
+            }
+
+            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                  $this->requestHandler->throwReqFormException(400, 'email', 'Por favor, forneça um email válido.');
+            }
+
+            if (strlen($email) > 50) {
+                  $this->requestHandler->throwReqFormException(400, 'email', 'Por favor, forneça um email com menos caracteres.');
+            }
+      }
+}
+
 class ValidateClienteData
 {
       private $requestHandler;
@@ -294,8 +440,8 @@ class ValidateAdminData
                   $this->requestHandler->throwReqFormException(400, 'nome', 'Por favor, forneça um nome com menos caracteres.');
             }
 
-            if (!preg_match('/^[A-Za-z0-9\s]+$/', $nome)) {
-                  $this->requestHandler->throwReqFormException(400, 'nome', 'Por favor, utlize apenas números ou letras.');
+            if (!preg_match('/^[a-zA-Z\s]+$/', $nome)) {
+                  $this->requestHandler->throwReqFormException(400, 'nome', 'Por favor, utilize apenas letras.');
             }
       }
 

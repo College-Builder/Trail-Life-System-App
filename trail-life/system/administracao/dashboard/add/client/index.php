@@ -102,10 +102,10 @@
                                                 </div>
                                           </div>
                                           <div class="default-form__input-container">
-                                                <label for="cnpj">Cnpj:</label>
+                                                <label for="cnpj">CNPJ:</label>
                                                 <div>
                                                       <div>
-                                                            <input id="cnpj" name="cnpj" type="text" pseudo-type="cnpj" placeholder="Cnpj">
+                                                            <input id="cnpj" name="cnpj" type="text" pseudo-type="cnpj" placeholder="CNPJ">
                                                       </div>
                                                       <span>
                                                             <i class="bi bi-exclamation-octagon"></i>
