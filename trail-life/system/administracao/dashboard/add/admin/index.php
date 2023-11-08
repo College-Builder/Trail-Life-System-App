@@ -44,7 +44,7 @@
       <link rel="stylesheet" href="/system/administracao/dashboard/styles/interact-form/interact-form.css">
       <!---->
       <!---->
-      <script defer src="/system/administracao/dashboard/scripts/action-form-auto-apply.js"></script>
+      <script defer src="/system/administracao/dashboard/scripts/action-form.js"></script>
 </head>
 
 <body>
@@ -164,17 +164,17 @@
                                                                   <div>
                                                                         <option
                                                                               class="default-form__input-container__pseudo-select__pseudo_option"
-                                                                              value="read">
+                                                                              value="ler">
                                                                               Ler
                                                                         </option>
                                                                         <option
                                                                               class="default-form__input-container__pseudo-select__pseudo_option"
-                                                                              value="write">
+                                                                              value="escrever">
                                                                               Escrever
                                                                         </option>
                                                                         <option
                                                                               class="default-form__input-container__pseudo-select__pseudo_option"
-                                                                              value="sudo">
+                                                                              value="todas">
                                                                               Todas
                                                                         </option>
                                                                   </div>

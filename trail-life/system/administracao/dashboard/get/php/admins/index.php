@@ -10,7 +10,7 @@ try {
 
       if (
             !(isset($authorizationHeader)) ||
-            !$validateApiDate->validateUserPermission('usuarios_adm_session', 'usuarios_adm', $authorizationHeader, array('read', 'write', 'sudo'))
+            !$validateApiDate->validateUserPermission('usuarios_adm_session', 'usuarios_adm', $authorizationHeader, array('ler', 'escrever', 'todas'))
       ) {
             $requestHandler::throwReqException(403, 'Proibido. Você não tem permissão para acessar este recurso.');
       }

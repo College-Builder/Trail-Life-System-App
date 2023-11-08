@@ -10,7 +10,7 @@ try {
 
       if (
             !(isset($authorizationHeader)) ||
-            !$validateApiDate->validateUserPermission('usuarios_adm_session', 'usuarios_adm', $authorizationHeader, array('sudo'))
+            !$validateApiDate->validateUserPermission('usuarios_adm_session', 'usuarios_adm', $authorizationHeader, array('todas'))
       ) {
             $requestHandler::throwReqException(403, 'Proibido. Você não tem permissão para acessar este recurso.');
       }
@@ -75,12 +75,8 @@ try {
             )
       );
 
-      $h_usuario = Cypher::encryptStringUsingSHA512($usuario);
-      $h_email = Cypher::encryptStringUsingAES256($email, $_ENV["USUARIOS_ADM_EMAIL_CYPHER_KEY"]);
-      $h_senha = Cypher::encryptStringUsingSHA512($senha);
-
       foreach ($mask as $field => $rules) {
-            if (!isset($_POST[$field]) || strlen($_POST[$field]) === 0) {
+            if ($rules['undefined'] === false && !isset($_POST[$field]) || strlen($_POST[$field]) === 0) {
                   $status = 400;
                   $label = $field;
                   $message = $rules['errorMessage']['undefined'];
@@ -129,6 +125,8 @@ try {
             }
 
             if ($field === 'usuario') {
+                  $h_usuario = Cypher::encryptStringUsingSHA512($usuario);
+
                   $mysql = new Mysql($host, $user, $password, $database);
                   $sql = 'SELECT id FROM usuarios_adm WHERE usuario = ?;';
                   $params = array($h_usuario);
@@ -151,7 +149,7 @@ try {
                   $requestHandler::throwReqFormException($status, $label, $message);
             }
 
-            if ($field === 'permissao' && ($permissao !== 'read' and $permissao !== 'write' and $permissao !== 'sudo')) {
+            if ($field === 'permissao' && ($permissao !== 'ler' and $permissao !== 'escrever' and $permissao !== 'todas')) {
                   $status = 400;
                   $label = 'permissao';
                   $message = 'Por favor, forneça uma permissão válida.';
@@ -159,6 +157,9 @@ try {
                   $requestHandler::throwReqFormException($status, $label, $message);
             }
       }
+
+      $h_email = Cypher::encryptStringUsingAES256($email, $_ENV["USUARIOS_ADM_EMAIL_CYPHER_KEY"]);
+      $h_senha = Cypher::encryptStringUsingSHA512($senha);
 
       $sql = 'INSERT INTO usuarios_adm (email, nome, usuario, senha, permissao) values (?, ?, ?, ?, ?);';
       $params = array($h_email, $nome, $h_usuario, $h_senha, $permissao);

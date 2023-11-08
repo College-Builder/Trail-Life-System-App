@@ -12,6 +12,13 @@ form.addEventListener("submit", async (e) => {
 
       const body = new FormData()
 
+      const urlSearchParams = new URLSearchParams(window.location.search);
+      const id = urlSearchParams.get('id');
+
+      if (id) {
+            body.append("id", id)
+      }
+
       form.querySelectorAll("input").forEach((input) => {
             const name = input.getAttribute("name")
             const value = input.value

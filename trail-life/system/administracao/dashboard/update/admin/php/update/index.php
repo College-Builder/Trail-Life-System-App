@@ -12,81 +12,80 @@ try {
 
       if (
             !(isset($authorizationHeader)) ||
-            !$validateApiDate->validateUserPermission('usuarios_adm_session', 'usuarios_adm', $authorizationHeader, array('sudo'))
+            !$validateApiDate->validateUserPermission('usuarios_adm_session', 'usuarios_adm', $authorizationHeader, array('todas'))
       ) {
             $requestHandler::throwReqException(403, 'Proibido. Você não tem permissão para acessar este recurso.');
       }
 
-      /*
+      $id = isset($_POST['id']) ? trim($_POST['id']) : null;
       $email = isset($_POST['email']) ? trim($_POST['email']) : null;
       $nome = isset($_POST['nome']) ? trim($_POST['nome']) : null;
-      $usuario = isset($_POST['usuario']) ? trim($_POST['usuario']) : null;
-      $senha = isset($_POST['senha']) ? trim($_POST['senha']) : null;
-      $confirmeSenha = isset($_POST['confirme-senha']) ? trim($_POST['confirme-senha']) : null;
       $permissao = isset($_POST['permissao']) ? trim($_POST['permissao']) : null;
 
       $mask = array(
+            'id' => array(
+                  'undefined' => false,
+                  'number' => true,
+                  'maxLength' => null,
+                  'minLength' => null,
+                  'errorMessage' => array(
+                        'undefined' => 'Por favor, forneça um id válido.',
+                        'number' => 'Por favor, forneça um id válido.',
+                        'maxLength' => null,
+                        'minLength' => null,
+                  )
+            ),
             'email' => array(
                   'undefined' => false,
+                  'number' => null,
                   'maxLength' => 50,
                   'minLength' => 5,
                   'errorMessage' => array(
                         'undefined' => 'Por favor, forneça um email válido.',
+                        'number' => null,
                         'maxLength' => 'Por favor, forneça um email com menos carácteres.',
                         'minLength' => 'Por favor, forneça um email com mais carácteres.',
                   )
             ),
             'nome' => array(
                   'undefined' => false,
+                  'number' => null,
                   'maxLength' => 50,
                   'minLength' => 5,
                   'errorMessage' => array(
                         'undefined' => 'Por favor, forneça um nome válido.',
+                        'number' => null,
                         'maxLength' => 'Por favor, forneça um nome com menos carácteres.',
                         'minLength' => 'Por favor, forneça um nome com mais carácteres.',
                   )
             ),
-            'usuario' => array(
-                  'undefined' => false,
-                  'maxLength' => 50,
-                  'minLength' => 5,
-                  'errorMessage' => array(
-                        'undefined' => 'Por favor, forneça um usuário válido.',
-                        'maxLength' => 'Por favor, forneça um usuário com menos carácteres.',
-                        'minLength' => 'Por favor, forneça um usuário com mais carácteres.',
-                  )
-            ),
-            'senha' => array(
-                  'undefined' => false,
-                  'maxLength' => 50,
-                  'minLength' => 5,
-                  'errorMessage' => array(
-                        'undefined' => 'Por favor, forneça uma senha válida.',
-                        'maxLength' => 'Por favor, forneça uma senha com menos carácteres.',
-                        'minLength' => 'Por favor, forneça uma senha com mais carácteres.',
-                  )
-            ),
             'permissao' => array(
                   'undefined' => false,
+                  'number' => null,
                   'maxLength' => null,
                   'minLength' => null,
                   'errorMessage' => array(
                         'undefined' => 'Por favor, forneça uma permissão válida.',
+                        'number' => null,
                         'maxLength' => null,
                         'minLength' => null,
                   )
             )
       );
 
-      $h_usuario = Cypher::encryptStringUsingSHA512($usuario);
-      $h_email = Cypher::encryptStringUsingAES256($email, $_ENV["USUARIOS_ADM_EMAIL_CYPHER_KEY"]);
-      $h_senha = Cypher::encryptStringUsingSHA512($senha);
-
       foreach ($mask as $field => $rules) {
-            if (!isset($_POST[$field]) || strlen($_POST[$field]) === 0) {
+            if ($rules['undefined'] === false && !isset($_POST[$field]) || strlen($_POST[$field]) === 0) {
                   $status = 400;
                   $label = $field;
                   $message = $rules['errorMessage']['undefined'];
+
+                  $requestHandler::throwReqFormException($status, $label, $message);
+            }
+
+            if ($rules['number'] !== null && !is_numeric($_POST[$field])) {
+                  $status = 400;
+                  $label = $field;
+                  $message = $rules['errorMessage']['number'];
 
                   $requestHandler::throwReqFormException($status, $label, $message);
             }
@@ -123,38 +122,7 @@ try {
                   $requestHandler::throwReqFormException($status, $label, $message);
             }
 
-            if ($field === 'usuario' && !$validateApiDate->validateInputString($usuario)) {
-                  $status = 400;
-                  $label = "usuario";
-                  $message = 'Por favor, utilize apenas letras e números.';
-
-                  $requestHandler::throwReqFormException($status, $label, $message);
-            }
-
-            if ($field === 'usuario') {
-                  $mysql = new Mysql($host, $user, $password, $database);
-                  $sql = 'SELECT id FROM usuarios_adm WHERE usuario = ?;';
-                  $params = array($h_usuario);
-                  $result = $mysql->query($sql, $params);
-
-                  if ($result->num_rows !== 0) {
-                        $status = 400;
-                        $label = 'usuario';
-                        $message = 'Usuário já existe. Por favor, tente utilizar outro nome de usuário.';
-
-                        $requestHandler::throwReqFormException($status, $label, $message);
-                  }
-            }
-
-            if ($field === 'senha' && $senha !== $confirmeSenha) {
-                  $status = 400;
-                  $label = 'confirme-senha';
-                  $message = 'As senhas não conferem. Por favor, verifique se as duas senhas são iguais.';
-
-                  $requestHandler::throwReqFormException($status, $label, $message);
-            }
-
-            if ($field === 'permissao' && ($permissao !== 'read' and $permissao !== 'write' and $permissao !== 'sudo')) {
+            if ($field === 'permissao' && ($permissao !== 'ler' and $permissao !== 'escrever' and $permissao !== 'todas')) {
                   $status = 400;
                   $label = 'permissao';
                   $message = 'Por favor, forneça uma permissão válida.';
@@ -163,12 +131,11 @@ try {
             }
       }
 
-      $sql = 'INSERT INTO usuarios_adm (email, nome, usuario, senha, permissao) values (?, ?, ?, ?, ?);';
-      $params = array($h_email, $nome, $h_usuario, $h_senha, $permissao);
-      $result = $mysql->query($sql, $params);
+      $h_email = Cypher::encryptStringUsingAES256($email, $_ENV["USUARIOS_ADM_EMAIL_CYPHER_KEY"]);
 
-      $requestHandler::return200();
-      */
+      $sql = 'UPDATE usuarios_adm SET email = ?, nome = ?, permissao = ? WHERE id = ?;';
+      $params = array($h_email, $nome, $permissao, $id);
+      $result = $mysql->query($sql, $params);
 } catch (ReqException $e) {
       $requestHandler::handleCustomException($e);
 } catch (ReqFormException $e) {
