@@ -29,37 +29,6 @@ class ValidateApiData extends MySqlConn
 
       public function validateUserPermission($sessionTable, $userTable, $token, $requiredPermission)
       {
-            /*
-            if (!(isset($token))) {
-                  $this->requestHandler::throwReqException(403, 'Proibido. Você não tem permissão para acessar este recurso.');
-            }
-
-            $sql = 'SELECT id FROM ' . $sessionTable . ' WHERE token = ?;';
-            $params = array($token);
-            $result = $this->mysql->query($sql, $params);
-
-            if ($result->num_rows == 0) {
-                  $this->requestHandler::throwReqException(403, 'Proibido. Você não tem permissão para acessar este recurso.');
-            }
-      
-            $row = mysqli_fetch_assoc($result);
-
-            $id = $row['id'];
-
-            $sql = 'SELECT id, permissao FROM ' . $userTable . ' WHERE id = ?;';
-            $params = array($id);
-            $result = $this->mysql->query($sql, $params);
-
-            $row = mysqli_fetch_assoc($result);
-
-            $permissao = $row['permissao'];
-
-            if (!in_array($permissao, $requiredPermission)) {
-                  $this->requestHandler::throwReqException(403, 'Proibido. Você não tem permissão para acessar este recurso.');
-            }
-
-            return $row['id'];
-            */
             if (isset($token)) {
                   $id = explode('-', $token)[0];
                   $token = explode('-', $token)[1];
