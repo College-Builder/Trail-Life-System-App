@@ -10,7 +10,7 @@ try {
 
       if (
             !(isset($authorizationHeader)) ||
-            !$validateApiDate->validateUserPermission('usuarios_adm_session', 'usuarios_adm', $authorizationHeader, array('todas', 'escrever'))
+            !$validateApiDate->validateUserPermission('usuarios_adm_session', 'usuarios_adm', $authorizationHeader, array('escrever', 'todas'))
       ) {
             $requestHandler::throwReqException(403, 'Proibido. Você não tem permissão para acessar este recurso.');
       }
@@ -31,18 +31,28 @@ try {
             $requestHandler::throwReqFormException(400, 'ids', 'Por favor, forneça menos itens por vez para deletar.');
       }
 
-      foreach($ids as $id){
+      foreach ($ids as $id) {
             if (!is_numeric($id)) {
                   $requestHandler::throwReqFormException(400, 'ids', 'Por favor, forneça ids válidos.');
             }
-      }
 
-      foreach($ids as $id){
-            $sql = 'DELETE FROM clientes WHERE id = ?;';
+            $sql = 'SELECT id FROM cargas WHERE motorista = ?;';
             $params = array($id);
             $result = $mysql->query($sql, $params);
 
-            $sql = 'DELETE FROM usuarios_adm WHERE id = ?;';
+            if ($result->num_rows !== 0) {
+                  $sql = 'SELECT nome FROM motorista WHERE id = ?;';
+                  $params = array($id);
+                  $result = $mysql->query($sql, $params);
+
+                  $row = mysqli_fetch_assoc($result);
+
+                  $requestHandler::throwReqFormException(400, 'ids', 'O motorista ' . $row['nome'] . ' não pode ser removido, pois atualmente está associado a uma carga.');
+            }
+      }
+
+      foreach ($ids as $id) {
+            $sql = 'DELETE FROM motoristas WHERE id = ?;';
             $params = array($id);
             $result = $mysql->query($sql, $params);
       }

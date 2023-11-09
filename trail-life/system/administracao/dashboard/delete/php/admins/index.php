@@ -35,7 +35,9 @@ try {
             if (!is_numeric($id)) {
                   $requestHandler::throwReqFormException(400, 'ids', 'Por favor, forneça ids válidos.');
             }
+      }
 
+      foreach($ids as $id){
             $sql = 'DELETE FROM usuarios_adm_session WHERE id = ?;';
             $params = array($id);
             $result = $mysql->query($sql, $params);

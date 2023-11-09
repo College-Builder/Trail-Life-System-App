@@ -15,7 +15,7 @@ try {
             $requestHandler::throwReqException(403, 'Proibido. Você não tem permissão para acessar este recurso.');
       }
 
-      $sql = 'SELECT nome, celular, status FROM motoristas;';
+      $sql = 'SELECT id, nome, celular, status FROM motoristas;';
       $params = array();
       $result = $mysql->query($sql, $params);
 

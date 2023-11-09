@@ -83,26 +83,27 @@ window.document
       }
 })();
 
-
 (async () => {
       const titles = ['motoristas', 'clientes', 'admins']
-      const authToken = document.cookie.split('; ').find(cookie => cookie.startsWith('a_auth=')).split('=')[1];
 
       titles.forEach((title) => {
-            const getAction = `/system/administracao/dashboard/get/php/${title}/index.php`
-            const updateAction = `/system/administracao/dashboard/update/${title.substring(0, title.length - 1)}`
-            const delAction = `/system/administracao/dashboard/delete/php/${title}/index.php`
-            const searchInput = window.document.querySelector(`input[${title}-table-search-input]`)
-            const table = window.document.querySelector(`table[${title}-table]`)
-            const downloadTableButton = window.document.querySelector(`button[download-${title}-table-button]`)
-
-            setTableAttributes(authToken, getAction, updateAction, delAction, searchInput, table, downloadTableButton)
+            setTableAttributes(title)
       })
 })();
 
-async function setTableAttributes(authToken, getAction, updateAction, delAction, searchInput, table, downloadTableButton) {
+async function setTableAttributes(title) {
+      const authToken = document.cookie.split('; ').find(cookie => cookie.startsWith('a_auth=')).split('=')[1];
+
+      const table = window.document.querySelector(`table[${title}-table]`)
       const thead = table.querySelector('thead')
       const tbody = table.querySelector('tbody')
+
+      const getAction = `/system/administracao/dashboard/get/php/${title}/index.php`
+      const updateAction = `/system/administracao/dashboard/update/${title.substring(0, title.length - 1)}`
+      const delAction = `/system/administracao/dashboard/delete/php/${title}/index.php`
+
+      const searchInput = window.document.querySelector(`input[${title}-table-search-input]`)
+      const downloadTableButton = window.document.querySelector(`button[download-${title}-table-button]`)
 
       await renderTable()
 
@@ -200,6 +201,27 @@ async function setTableAttributes(authToken, getAction, updateAction, delAction,
             })
       })
 
+      downloadTableButton.addEventListener("click", () => {
+            const columns = []
+            const csv = []
+
+            thead.querySelectorAll("th[value]").forEach((th) => {
+                  columns.push(th.getAttribute('value'))
+            })
+
+            tbody.querySelectorAll("tr").forEach(tr => {
+                  const row = {}
+
+                  tr.querySelectorAll("td[value]").forEach((td, index) => {
+                        row[columns[index]] = td.getAttribute('value')
+                  })
+
+                  csv.push(row)
+            })
+
+            convertJsonToCsv(csv, `${title}-table`)
+      })
+
       async function renderTable() {
             const req = await fetch(getAction, {
                   headers: {
@@ -251,7 +273,10 @@ async function setTableAttributes(authToken, getAction, updateAction, delAction,
                         }
 
                         const usableTableHeadTemplate = tableHeadTemplate.cloneNode(true).content.children[0]
+
                         usableTableHeadTemplate.innerText = key
+                        usableTableHeadTemplate.setAttribute("value", key)
+
                         tableHeadTemplate.parentElement.prepend(usableTableHeadTemplate)
                   })
             } 
@@ -286,11 +311,36 @@ async function setTableAttributes(authToken, getAction, updateAction, delAction,
                         const usableItemTemplate = itemTemplate.cloneNode(true).content.children[0]
 
                         usableItemTemplate.innerText = user[key]
+                        usableItemTemplate.setAttribute("value", user[key])
 
                         usableTableBodyTemplate.prepend(usableItemTemplate)
                   })
 
                   tableBodyTemplate.parentElement.append(usableTableBodyTemplate)
             })
+      }
+
+      function convertJsonToCsv(jsonData, fileName) {
+            const csvData = [];
+            
+            const headers = Object.keys(jsonData[0]);
+            csvData.push(headers.join(','));
+
+            jsonData.forEach(item => {
+                  const values = headers.map(header => item[header]);
+                  csvData.push(values.join(','));
+            });
+
+            const csvString = csvData.join('\n');
+
+            const blob = new Blob([csvString], { type: 'text/csv' });
+
+            const link = document.createElement('a');
+            link.href = window.URL.createObjectURL(blob);
+            link.download = fileName + '.csv';
+
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
       }
 }

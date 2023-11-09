@@ -1,4 +1,29 @@
 <?php include './util.php' ?>
+<?php
+$id = $_GET['id'];
+
+if (!isset($id) || !is_numeric($id)) {
+      header("Location: /system/administracao/dashboard");
+      exit();
+}
+
+$sql = 'SELECT nome, celular, nome_emergencia, celular_emergencia, email_emergencia FROM motoristas WHERE id = ?;';
+$params = array($id);
+$result = $mysql->query($sql, $params);
+
+if ($result->num_rows !== 1) {
+      header("Location: /system/administracao/dashboard");
+      exit();
+}
+
+$row = mysqli_fetch_assoc($result);
+
+$nome = $row['nome'];
+$celular = Cypher::decryptStringUsingAES256($row['celular'], $_ENV["MOTORISTAS_CELULAR_CYPHER_KEY"]);
+$nome_emergencia = Cypher::decryptStringUsingAES256($row['nome_emergencia'], $_ENV["MOTORISTAS_NOME_EMERGENCIA_CYPHER_KEY"]);
+$celular_emergencia = Cypher::decryptStringUsingAES256($row['celular_emergencia'], $_ENV["MOTORISTAS_CELULAR_EMERGENCIA_CYPHER_KEY"]);
+$email_emergencia = Cypher::decryptStringUsingAES256($row['email_emergencia'], $_ENV["MOTORISTAS_EMAIL_EMERGENCIA_CYPHER_KEY"]);
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -38,7 +63,7 @@
       <!--
       Custom head tags
       -->
-      <title>Add Motorista | Administração</title>
+      <title>Modificar Motorista | Administração</title>
       <!---->
       <!---->
       <link rel="stylesheet" href="/system/administracao/dashboard/styles/interact-form/interact-form.css">
@@ -71,13 +96,16 @@
                   <div class="default-hrz-padding interact-form-container__header-container">
                         <h1>
                               <i class="bi bi-box-seam"></i>
-                              Novo Motorista
+                              Modificar
+                              <?php
+                              echo $nome;
+                              ?>
                         </h1>
                   </div>
                   <div class="default-hrz-padding interact-form-container__main-container">
                         <form class="default-form" method="POST"
-                              action="/system/administracao/dashboard/add/motorista/php/add/index.php"
-                              sucess-message="Novo Motorista criado com successo.">
+                              action="/system/administracao/dashboard/update/motorista/php/update/index.php"
+                              sucess-message="<?php echo $nome ?> modificado com successo.">
                               <div>
                                     <div class="default-form__make-row">
                                           <div class="default-form__input-container">
@@ -85,7 +113,7 @@
                                                 <div>
                                                       <div>
                                                             <input id="nome" name="nome" type="text"
-                                                                  placeholder="Nome Completo">
+                                                                  placeholder="Nome Completo" value="<?php echo $nome ?>">
                                                       </div>
                                                       <span>
                                                             <i class="bi bi-exclamation-octagon"></i>
@@ -94,43 +122,17 @@
                                                 </div>
                                           </div>
                                           <div class="default-form__input-container">
-                                                <label for="rg">RG:</label>
+                                                <label for="celular">Celular para Contato:</label>
                                                 <div>
                                                       <div>
-                                                            <input id="rg" name="rg" type="text" pseudo-type="rg"
-                                                                  placeholder="RG">
+                                                            <input id="celular" name="celular" type="text"
+                                                                  pseudo-type="phone" placeholder="Celular" value="<?php echo $celular ?>">
                                                       </div>
                                                       <span>
                                                             <i class="bi bi-exclamation-octagon"></i>
                                                             <i error-message></i>
                                                       </span>
                                                 </div>
-                                          </div>
-                                          <div class="default-form__input-container">
-                                                <label for="usuario">CPF:</label>
-                                                <div>
-                                                      <div>
-                                                            <input id="cpf" name="cpf" type="text" pseudo-type="cpf"
-                                                                  placeholder="CPF">
-                                                      </div>
-                                                      <span>
-                                                            <i class="bi bi-exclamation-octagon"></i>
-                                                            <i error-message></i>
-                                                      </span>
-                                                </div>
-                                          </div>
-                                    </div>
-                                    <div class="default-form__input-container">
-                                          <label for="celular">Celular para Contato:</label>
-                                          <div>
-                                                <div>
-                                                      <input id="celular" name="celular" type="text" pseudo-type="phone"
-                                                            placeholder="Celular">
-                                                </div>
-                                                <span>
-                                                      <i class="bi bi-exclamation-octagon"></i>
-                                                      <i error-message></i>
-                                                </span>
                                           </div>
                                     </div>
                                     <div class="default-form__make-row">
@@ -138,9 +140,8 @@
                                                 <label for="nome-emergencia">Contato de Emergência:</label>
                                                 <div>
                                                       <div>
-                                                            <input id="nome-emergencia"
-                                                                  name="nome-emergencia" type="text"
-                                                                  placeholder="Nome Completo">
+                                                            <input id="nome-emergencia" name="nome-emergencia"
+                                                                  type="text" placeholder="Nome Completo" value="<?php echo $nome_emergencia ?>">
                                                       </div>
                                                       <span>
                                                             <i class="bi bi-exclamation-octagon"></i>
@@ -152,8 +153,8 @@
                                                 <label for="celular-emergencia">Contato de Emergência:</label>
                                                 <div>
                                                       <div>
-                                                            <input id="celular-emergencia" name="celular-emergencia" type="text"
-                                                                  pseudo-type="phone" placeholder="Celular">
+                                                            <input id="celular-emergencia" name="celular-emergencia"
+                                                                  type="text" pseudo-type="phone" placeholder="Celular" value="<?php echo $celular_emergencia ?>">
                                                       </div>
                                                       <span>
                                                             <i class="bi bi-exclamation-octagon"></i>
@@ -165,9 +166,8 @@
                                                 <label for="email-emergencia">Contato de Emergência:</label>
                                                 <div>
                                                       <div>
-                                                            <input id="email-emergencia"
-                                                                  name="email-emergencia" type="text"
-                                                                  placeholder="Email">
+                                                            <input id="email-emergencia" name="email-emergencia"
+                                                                  type="text" placeholder="Email" value="<?php echo $email_emergencia ?>">
                                                       </div>
                                                       <span>
                                                             <i class="bi bi-exclamation-octagon"></i>
@@ -183,7 +183,7 @@
                                                 <span class="default-button__loading">
                                                       <i class="bi bi-arrow-repeat"></i>
                                                 </span>
-                                                Adicionar
+                                                Modificar
                                           </button>
                                     </div>
                               </div>
