@@ -8,12 +8,8 @@ try {
       $headers = getallheaders();
       $authorizationHeader = $headers['Authorization'];
 
-      if (
-            !(isset($authorizationHeader)) ||
-            !$validateApiDate->validateUserPermission('usuarios_adm_session', 'usuarios_adm', $authorizationHeader, array('ler', 'escrever', 'todas'))
-      ) {
-            $requestHandler::throwReqException(403, 'Proibido. Você não tem permissão para acessar este recurso.');
-      }
+      $usePermission = array('ler', 'escrever', 'todas');
+      $user = $validateApiDate->validateUserPermission('usuarios_adm_session', 'usuarios_adm', $authorizationHeader, $usePermission);
 
       $sql = 'SELECT id, nome, celular, status FROM motoristas;';
       $params = array();
@@ -24,9 +20,9 @@ try {
       while ($row = $result->fetch_assoc()) {
             $data[] = array(
                   'id' => $row['id'],
-                  'nome' => $row['nome'],
+                  'status' => $row['status'],
                   'celular' => Cypher::decryptStringUsingAES256($row['celular'], $_ENV["MOTORISTAS_CELULAR_CYPHER_KEY"]),
-                  'status' => $row['status']
+                  'nome' => $row['nome'],
             );
       }
 

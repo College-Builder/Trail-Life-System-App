@@ -84,7 +84,7 @@ window.document
 })();
 
 (async () => {
-      const titles = ['motoristas', 'clientes', 'admins']
+      const titles = ['cargas', 'motoristas', 'clientes', 'admins']
 
       titles.forEach((title) => {
             setTableAttributes(title)
@@ -98,12 +98,17 @@ async function setTableAttributes(title) {
       const thead = table.querySelector('thead')
       const tbody = table.querySelector('tbody')
 
+      const addAction = `/system/administracao/dashboard/add/${title.substring(0, title.length - 1)}`
       const getAction = `/system/administracao/dashboard/get/php/${title}/index.php`
       const updateAction = `/system/administracao/dashboard/update/${title.substring(0, title.length - 1)}`
       const delAction = `/system/administracao/dashboard/delete/php/${title}/index.php`
 
       const searchInput = window.document.querySelector(`input[${title}-table-search-input]`)
       const downloadTableButton = window.document.querySelector(`button[download-${title}-table-button]`)
+
+      const addLink = window.document.querySelector(`a[add-${title.substring(0, title.length - 1)}-link]`)
+      addLink.setAttribute("href", addAction)
+      addLink.innerText = `+ ${title.substring(0, 1).toUpperCase()}${title.substring(1, title.length - 1)}` 
 
       await renderTable()
 

@@ -43,13 +43,32 @@ function setPasswordButtonProperties(input) {
 }
 
 function setPseudoSelectProperties(button) {
-	const options = button.querySelectorAll('option');
 	const optionsContainer = button.querySelector(
 		'div[pseudo-select__options-container]',
 	);
+	const options = optionsContainer.querySelectorAll('option');
 
 	const selectValue = button.getAttribute("select-value")
-	let selectOption = options[0]
+	let selectOption
+
+	for (let c = 0; c < options.length; c++) {
+		if (options[c].hasAttribute('unselectable')) {
+			continue
+		} else {
+			selectOption = options[c]
+
+			break
+		}
+	}
+
+	optionsContainer.querySelectorAll("option[unselectable").forEach(option => {
+		option.classList.add("--unselectable")
+	})
+
+
+	if (!selectOption) {
+		selectOption = options[0]
+	}
 
 	if (selectValue) {
 		selectOption = button.querySelector(`option[value="${selectValue}"]`)

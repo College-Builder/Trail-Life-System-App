@@ -107,7 +107,7 @@
                                                 </div>
                                           </div>
                                           <div class="default-form__input-container">
-                                                <label for="usuario">CPF:</label>
+                                                <label for="cpf">CPF:</label>
                                                 <div>
                                                       <div>
                                                             <input id="cpf" name="cpf" type="text" pseudo-type="cpf"

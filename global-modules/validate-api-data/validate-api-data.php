@@ -3,81 +3,106 @@ require_once BASE_DIR . "global-modules/mysql/mysql.php";
 require_once BASE_DIR . "global-modules/cypher/cypher.php";
 require_once BASE_DIR . "global-modules/request-handler/request-handler.php";
 
-class ValidateApiData
+class MySqlConn
 {
-      private $host;
-      private $user;
-      private $password;
-      private $database;
-      private $mysql;
+      protected $mysql;
 
       public function __construct()
       {
-            $this->host = $_ENV["SQL_HOST_GLOBAL_VALIDATE_API_DATA"];
-            $this->user = $_ENV["SQL_USER_GLOBAL_VALIDATE_API_DATA"];
-            $this->password = $_ENV["SQL_PASSWORD_GLOBAL_VALIDATE_API_DATA"];
-            $this->database = $_ENV["SQL_DATABASE_GLOBAL_VALIDATE_API_DATA"];
-            $this->mysql = new Mysql($this->host, $this->user, $this->password, $this->database);
-      }
-
-      public function validateUserPermission($sessionTable, $userTable, $token, $requiredPermission)
-      {
-            $sql = 'SELECT id FROM ' . $sessionTable . ' WHERE token = ?;';
-            $params = array($token);
-            $result = $this->mysql->query($sql, $params);
-
-            if ($result->num_rows == 0) {
-                  return false;
-            }
-
-            $id = ($row = mysqli_fetch_assoc($result)) ? $row['id'] : "";
-
-            $sql = 'SELECT id, permissao FROM ' . $userTable . ' WHERE id = ?;';
-            $params = array($id);
-            $result = $this->mysql->query($sql, $params);
-
-            $permissao = ($row = mysqli_fetch_assoc($result)) ? $row['permissao'] : "";
-
-            if (!in_array($permissao, $requiredPermission)) {
-                  return false;
-            }
-
-            return true;
-      }
-
-      public function doesUsuarioADMExists($usuario)
-      {
-            $h_usuario = Cypher::encryptStringUsingSHA512($usuario);
-
-            $sql = 'SELECT id FROM usuarios_adm WHERE usuario = ?;';
-            $params = array($h_usuario);
-            $result = $this->mysql->query($sql, $params);
-
-            if ($result->num_rows === 0) {
-                  return false;
-            }
-
-            return true;
+            $host = $_ENV["SQL_HOST_GLOBAL_VALIDATE_API_DATA"];
+            $user = $_ENV["SQL_USER_GLOBAL_VALIDATE_API_DATA"];
+            $password = $_ENV["SQL_PASSWORD_GLOBAL_VALIDATE_API_DATA"];
+            $database = $_ENV["SQL_DATABASE_GLOBAL_VALIDATE_API_DATA"];
+            $this->mysql = new Mysql($host, $user, $password, $database);
       }
 }
 
-class BaseValidators
+class ValidateApiData extends MySqlConn
 {
       protected $requestHandler;
 
       public function __construct()
       {
+            parent::__construct();
             $this->requestHandler = new RequestHandler();
       }
 
-      public function validateId($id)
+      public function validateUserPermission($sessionTable, $userTable, $token, $requiredPermission)
+      {
+            /*
+            if (!(isset($token))) {
+                  $this->requestHandler::throwReqException(403, 'Proibido. Você não tem permissão para acessar este recurso.');
+            }
+
+            $sql = 'SELECT id FROM ' . $sessionTable . ' WHERE token = ?;';
+            $params = array($token);
+            $result = $this->mysql->query($sql, $params);
+
+            if ($result->num_rows == 0) {
+                  $this->requestHandler::throwReqException(403, 'Proibido. Você não tem permissão para acessar este recurso.');
+            }
+      
+            $row = mysqli_fetch_assoc($result);
+
+            $id = $row['id'];
+
+            $sql = 'SELECT id, permissao FROM ' . $userTable . ' WHERE id = ?;';
+            $params = array($id);
+            $result = $this->mysql->query($sql, $params);
+
+            $row = mysqli_fetch_assoc($result);
+
+            $permissao = $row['permissao'];
+
+            if (!in_array($permissao, $requiredPermission)) {
+                  $this->requestHandler::throwReqException(403, 'Proibido. Você não tem permissão para acessar este recurso.');
+            }
+
+            return $row['id'];
+            */
+            if (isset($token)) {
+                  $id = explode('-', $token)[0];
+                  $token = explode('-', $token)[1];
+
+                  $sql = 'SELECT id, token FROM ' . $sessionTable . ' WHERE id = ?;';
+                  $params = array($id);
+                  $result = $this->mysql->query($sql, $params);
+
+                  while ($row = $result->fetch_assoc()) {
+                        $sqlId = $row['id'];
+                        $sqlToken = Cypher::decryptStringUsingAES256($row['token'], $_ENV["USUARIOS_ADM_SESSION_TOKEN_CYPHER_KEY"]);
+
+                        if ($sqlToken === $_COOKIE['a_auth']) {
+                              $sql = 'SELECT id, permissao FROM ' . $userTable . ' WHERE id = ?;';
+                              $params = array($sqlId);
+                              $result = $this->mysql->query($sql, $params);
+
+                              $row = mysqli_fetch_assoc($result);
+
+                              $permissao = $row['permissao'];
+
+                              if (!in_array($permissao, $requiredPermission)) {
+                                    $this->requestHandler::throwReqException(403, 'Proibido. Você não tem permissão para acessar este recurso.');
+                              }
+
+                              return $row['id'];
+                        }
+                  }
+
+                  $this->requestHandler::throwReqException(403, 'Proibido. Você não tem permissão para acessar este recurso.');
+            } else {
+                  $this->requestHandler::throwReqException(403, 'Proibido. Você não tem permissão para acessar este recurso.');
+            }
+      }
+
+      public function validateId($id, ?string $label = null)
       {
             if (!isset($id) || strlen($id) === 0) {
-                  $this->requestHandler->throwReqFormException(400, 'id', 'Por favor, forneça um id válido.');
+                  $this->requestHandler->throwReqFormException(400, isset($label) ? $label : 'id', 'Por favor, forneça um id válido.');
             }
 
             if (!is_numeric($id)) {
-                  $this->requestHandler->throwReqFormException(400, 'id', 'Por favor, forneça um id válido.');
+                  $this->requestHandler->throwReqFormException(400, isset($label) ? $label : 'id', 'Por favor, forneça um id válido.');
             }
       }
 
@@ -133,7 +158,81 @@ class BaseValidators
       }
 }
 
-class ValidateMotoristaData extends BaseValidators
+class ValidateCargaData extends ValidateApiData
+{
+      public function __construct()
+      {
+            parent::__construct();
+      }
+
+      public function validateCliente($cliente)
+      {
+            if (!isset($cliente) || strlen($cliente) === 0) {
+                  $this->requestHandler->throwReqFormException(400, 'cliente', 'Por favor, forneça um cliente válido.');
+            }
+
+            $sql = 'SELECT id FROM clientes WHERE id = ?;';
+            $params = array($cliente);
+            $result = $this->mysql->query($sql, $params);
+
+            if ($result->num_rows !== 1) {
+                  $this->requestHandler->throwReqFormException(400, 'cliente', 'Por favor, forneça um cliente válido.');
+            }
+      }
+
+      public function validateFilial($filial)
+      {
+            if (!isset($filial) || strlen($filial) === 0) {
+                  $this->requestHandler->throwReqFormException(400, 'filial', 'Por favor, forneça uma filial válida.');
+            }
+
+            $sql = 'SELECT id FROM filiais WHERE id = ?;';
+            $params = array($filial);
+            $result = $this->mysql->query($sql, $params);
+
+            if ($result->num_rows !== 1) {
+                  $this->requestHandler->throwReqFormException(400, 'filial', 'Por favor, forneça uma filial válida.');
+            }
+      }
+
+      public function validateCarga($carga)
+      {
+            if (!isset($carga) || strlen($carga) === 0) {
+                  $this->requestHandler->throwReqFormException(400, 'carga', 'Por favor, forneça um tipo de carga válida.');
+            }
+
+            $result = $this->mysql->query("SHOW COLUMNS FROM cargas WHERE Field = 'tipo_carga';");
+            $row = $result->fetch_assoc();
+            $enum_values = explode("','", substr($row['Type'], 6, -2));
+
+            if (!in_array($carga, $enum_values)) {
+                  $this->requestHandler->throwReqFormException(400, 'carga', 'Por favor, forneça um tipo de carga válida.');
+            }
+      }
+
+      public function validateMotorista($motorista)
+      {
+            if (!isset($motorista) || strlen($motorista) === 0) {
+                  $this->requestHandler->throwReqFormException(400, 'motorista', 'Por favor, forneça um motorista válido.');
+            }
+
+            $sql = 'SELECT id, status FROM motoristas WHERE id = ?;';
+            $params = array($motorista);
+            $result = $this->mysql->query($sql, $params);
+
+            if ($result->num_rows !== 1) {
+                  $this->requestHandler->throwReqFormException(400, 'motorista', 'Por favor, forneça um motorista válido.');
+            }
+
+            $row = mysqli_fetch_assoc($result);
+
+            if ($row['status'] !== 'livre') {
+                  $this->requestHandler->throwReqFormException(400, 'motorista', 'Por favor, forneça um motorista livre.');
+            }
+      }
+}
+
+class ValidateMotoristaData extends ValidateApiData
 {
       public function __construct()
       {
@@ -181,7 +280,7 @@ class ValidateMotoristaData extends BaseValidators
       }
 }
 
-class ValidateClienteData extends BaseValidators
+class ValidateClienteData extends ValidateApiData
 {
       public function __construct()
       {
@@ -318,14 +417,11 @@ class ValidateClienteData extends BaseValidators
       }
 }
 
-class ValidateAdminData extends BaseValidators
+class ValidateAdminData extends ValidateApiData
 {
-      private $validateApiDate;
-
       public function __construct()
       {
             parent::__construct();
-            $this->validateApiDate = new ValidateApiData();
       }
 
       public function validateUsuario($usuario)
@@ -346,7 +442,13 @@ class ValidateAdminData extends BaseValidators
                   $this->requestHandler->throwReqFormException(400, 'usuario', 'Por favor, utlize apenas números ou letras.');
             }
 
-            if ($this->validateApiDate->doesUsuarioADMExists($usuario)) {
+            $h_usuario = Cypher::encryptStringUsingSHA512($usuario);
+
+            $sql = 'SELECT id FROM usuarios_adm WHERE usuario = ?;';
+            $params = array($h_usuario);
+            $result = $this->mysql->query($sql, $params);
+
+            if ($result->num_rows !== 0) {
                   $this->requestHandler->throwReqFormException(400, 'usuario', 'Usuário já existe. Por favor, tente utilizar outro nome de usuário.');
             }
       }

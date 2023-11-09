@@ -1,5 +1,6 @@
 <?php
 require_once BASE_DIR . "global-modules/mysql/mysql.php";
+require_once BASE_DIR . "global-modules/cypher/cypher.php";
 
 class ValidatePageData
 {
@@ -20,15 +21,26 @@ class ValidatePageData
 
       public function validatePageAuth()
       {
-            if (isset($_COOKIE['a_auth'])) {
-                  $sql = 'SELECT id, token FROM usuarios_adm_session WHERE token = ?;';
-                  $params = array($_COOKIE['a_auth']);
+            $token = $_COOKIE['a_auth'];
+
+            if (isset($token)) {
+                  $id = explode('-', $token)[0];
+                  $token = explode('-', $token)[1];
+
+                  $sql = 'SELECT id, token FROM usuarios_adm_session WHERE id = ?;';
+                  $params = array($id);
                   $result = $this->mysql->query($sql, $params);
 
-                  if ($result->num_rows == 0) {
-                        header("Location: /system/administracao/login/");
-                        exit();
+                  while ($row = $result->fetch_assoc()) {
+                        $sqlToken = Cypher::decryptStringUsingAES256($row['token'], $_ENV["USUARIOS_ADM_SESSION_TOKEN_CYPHER_KEY"]);
+
+                        if ($sqlToken === $_COOKIE['a_auth']) {
+                              return;
+                        }
                   }
+
+                  header("Location: /system/administracao/login/");
+                  exit();
             } else {
                   header("Location: /system/administracao/login/");
                   exit();

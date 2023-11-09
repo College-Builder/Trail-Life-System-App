@@ -291,6 +291,11 @@ div.default-form__input-container {
 				}
 
 				option.default-form__input-container__pseudo-select__pseudo_option {
+					&.--unselectable {
+						pointer-events: none;
+						color: var(--gray);
+					}
+
 					padding: 16px;
 					background-color: transparent;
 					overflow: hidden;
@@ -340,6 +345,10 @@ div.default-form__input-container {
 				i {
 					font-size: 20px;
 				}
+			}
+
+			span {
+				pointer-events: none;
 			}
 
 			button:not(button.default-form__input-container__pseudo-select) {

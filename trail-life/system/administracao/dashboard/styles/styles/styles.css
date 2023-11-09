@@ -297,6 +297,10 @@ div.default-form__input-container > div > div button.default-form__input-contain
   overflow: hidden;
   text-overflow: ellipsis;
 }
+div.default-form__input-container > div > div button.default-form__input-container__pseudo-select option.default-form__input-container__pseudo-select__pseudo_option.--unselectable {
+  pointer-events: none;
+  color: var(--gray);
+}
 div.default-form__input-container > div > div button.default-form__input-container__pseudo-select > div:last-of-type {
   z-index: 2;
   width: 100%;
@@ -333,6 +337,9 @@ div.default-form__input-container > div > div button:not(button.default-form__in
 div.default-form__input-container > div > div span i,
 div.default-form__input-container > div > div button:not(button.default-form__input-container__pseudo-select) i {
   font-size: 20px;
+}
+div.default-form__input-container > div > div span {
+  pointer-events: none;
 }
 div.default-form__input-container > div > div button:not(button.default-form__input-container__pseudo-select) i {
   color: var(--gray);

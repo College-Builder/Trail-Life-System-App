@@ -61,7 +61,7 @@ $name = ($row = mysqli_fetch_assoc($result)) ? $row['nome'] : "";
   <title>Dashboard | Administração</title>
   <!---->
   <!---->
-  <link rel="stylesheet" href="./styles/main/main.css" type="text/css" media="screen" title="no title"
+  <link rel="stylesheet" href="./styles/main/main.css?v=<?php echo time(); ?>" type="text/css" media="screen" title="no title"
     charset="utf-8" />
   <link rel="stylesheet" href="./styles/aside/aside.css" type="text/css" media="all" />
   <link rel="stylesheet" href="./styles/header/header.css" type="text/css" media="all" />

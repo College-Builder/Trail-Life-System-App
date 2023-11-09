@@ -8,23 +8,17 @@ try {
       $headers = getallheaders();
       $authorizationHeader = $headers['Authorization'];
 
-      $usePermission = array('todas');
+      $usePermission = array('escrever', 'todas');
       $user = $validateApiDate->validateUserPermission('usuarios_adm_session', 'usuarios_adm', $authorizationHeader, $usePermission);
 
       $id = isset($_POST['id']) ? trim($_POST['id']) : null;
-      $email = isset($_POST['email']) ? trim($_POST['email']) : null;
-      $nome = isset($_POST['nome']) ? trim($_POST['nome']) : null;
-      $permissao = isset($_POST['permissao']) ? trim($_POST['permissao']) : null;
+      $cliente = isset($_POST['cliente']) ? trim($_POST['cliente']) : null;
 
-      $validateAdminData->validateId($id);
-      $validateAdminData->validateEmail($email);
-      $validateAdminData->validateNome($nome);
-      $validateAdminData->validatePermissao($permissao);
+      $validateCargaData->validateId($cliente, 'cliente');
+      $validateCargaData->validateCliente($cliente);
 
-      $h_email = Cypher::encryptStringUsingAES256($email, $_ENV["USUARIOS_ADM_EMAIL_CYPHER_KEY"]);
-
-      $sql = 'UPDATE usuarios_adm SET email = ?, nome = ?, permissao = ? WHERE id = ?;';
-      $params = array($h_email, $nome, $permissao, $id);
+      $sql = 'UPDATE cargas SET cliente = ? WHERE id = ?;';
+      $params = array($cliente, $id);
       $result = $mysql->query($sql, $params);
 } catch (ReqException $e) {
       $requestHandler::handleCustomException($e);

@@ -2,14 +2,24 @@
 include './util.php';
 ?>
 <?php
-if (isset($_COOKIE['a_auth'])) {
-  $sql = 'SELECT id, token FROM usuarios_adm_session WHERE token = ?;';
-  $params = array($_COOKIE['a_auth']);
+$token = $_COOKIE['a_auth'];
+
+if (isset($token)) {
+  $id = explode('-', $token)[0];
+  $token = explode('-', $token)[1];
+
+  $sql = 'SELECT id, token FROM usuarios_adm_session WHERE id = ?;';
+  $params = array($id);
   $result = $mysql->query($sql, $params);
 
-  if ($result->num_rows != 0) {
-    header("Location: /system/administracao/dashboard/");
-    exit();
+  while ($row = $result->fetch_assoc()) {
+    $sqlId = $row['id'];
+    $sqlToken = Cypher::decryptStringUsingAES256($row['token'], $_ENV["USUARIOS_ADM_SESSION_TOKEN_CYPHER_KEY"]);
+
+    if ($sqlToken === $_COOKIE['a_auth']) {
+      header("Location: /system/administracao/dashboard/");
+      exit();
+    }
   }
 }
 ?>

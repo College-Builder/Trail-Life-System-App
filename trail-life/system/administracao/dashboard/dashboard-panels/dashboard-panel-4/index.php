@@ -6,9 +6,7 @@
             <div class="dashboard-panel-2-content-container">
                   <div apply-hrz-padding class="default-panel-container__table-actions-container">
                         <div class="pill-button-container">
-                              <a class="--red-button" href="/system/administracao/dashboard/add/client/">
-                                    + Cliente
-                              </a>
+                              <a add-cliente-link class="--red-button"></a>
                         </div>
                         <div class="default-panel-container__table-actions-container__inputs-container">
                               <input clientes-table-search-input class="pill-input" type="text" placeholder="Procurar">

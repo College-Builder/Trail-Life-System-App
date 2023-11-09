@@ -84,7 +84,7 @@
                   </div>
                   <div class="default-hrz-padding interact-form-container__main-container">
                         <form class="default-form" method="POST"
-                              action="/system/administracao/dashboard/add/client/php/add/index.php"
+                              action="/system/administracao/dashboard/add/cliente/php/add/index.php"
                               sucess-message="Novo Cliente criado com successo.">
                               <div>
                                     <div class="default-form__make-row">
@@ -264,10 +264,10 @@
                                     </div>
                                     <div class="default-form__make-row">
                                           <div class="default-form__input-container">
-                                                <label for="Telefone">Celular</label>
+                                                <label for="celular">Celular</label>
                                                 <div>
                                                       <div>
-                                                            <input id="Celular" name="celular" type="text" pseudo-type="phone"
+                                                            <input id="celular" name="celular" type="text" pseudo-type="phone"
                                                                   placeholder="celular">
                                                       </div>
                                                       <span>

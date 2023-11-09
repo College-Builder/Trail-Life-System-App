@@ -27,18 +27,14 @@ try {
             $requestHandler::throwReqFormException(400, 'ids', 'Por favor, forneça menos itens por vez para deletar.');
       }
 
-      foreach($ids as $id){
+      foreach ($ids as $id) {
             if (!is_numeric($id)) {
                   $requestHandler::throwReqFormException(400, 'ids', 'Por favor, forneça ids válidos.');
             }
       }
 
-      foreach($ids as $id){
-            $sql = 'DELETE FROM clientes WHERE id = ?;';
-            $params = array($id);
-            $result = $mysql->query($sql, $params);
-
-            $sql = 'DELETE FROM usuarios_adm WHERE id = ?;';
+      foreach ($ids as $id) {
+            $sql = 'DELETE FROM cargas WHERE id = ?;';
             $params = array($id);
             $result = $mysql->query($sql, $params);
       }

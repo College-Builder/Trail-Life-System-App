@@ -5,44 +5,23 @@
       <div>
             <div class="dashboard-panel-2-content-container">
                   <div apply-hrz-padding class="default-panel-container__table-actions-container">
-                        <div class="pill-icon-button-container">
-                              <a href="/system/administracao/dashboard/add/carga/">
-                                    + Carga
-                              </a>
+                        <div class="pill-button-container">
+                              <a add-carga-link class="--red-button"></a>
                         </div>
                         <div class="default-panel-container__table-actions-container__inputs-container">
-                              <div>
-                                    <input class="pill-input" type="text" placeholder="Procurar">
-                                    <input class="pill-input" type="text" placeholder="Solicitante">
-                              </div>
-                              <input class="pill-input" type="text" placeholder="Destino">
+                              <input cargas-table-search-input class="pill-input" type="text" placeholder="Procurar">
                         </div>
                   </div>
                   <!---->
                   <!---->
                   <div click-scroll class="default-panel-container__table-container">
                         <div apply-hrz-padding>
-                              <table>
+                              <table cargas-table>
                                     <thead>
                                           <tr>
-                                                <th>
-                                                      Cod Pedido
-                                                </th>
-                                                <th>
-                                                      Cod Pedido
-                                                </th>
-                                                <th>
-                                                      Cod Pedido
-                                                </th>
-                                                <th>
-                                                      Cod Pedido
-                                                </th>
-                                                <th>
-                                                      Cod Pedido
-                                                </th>
-                                                <th>
-                                                      Cod Pedido
-                                                </th>
+                                                <template>
+                                                      <th></th>
+                                                </template>
                                                 <th>
                                                       <button>
                                                             <i class="bi bi-trash"></i>
@@ -51,62 +30,21 @@
                                           </tr>
                                     </thead>
                                     <tbody>
-                                          <tr>
-                                                <td>
-                                                      Cod Pedido
-                                                </td>
-                                                <td>
-                                                      Cod Pedidos sadjasid
-                                                </td>
-                                                <td>
-                                                      Cod Pedido
-                                                </td>
-                                                <td>
-                                                      Cod Pedido
-                                                </td>
-                                                <td>
-                                                      Cod Pedido
-                                                </td>
-                                                <td>
-                                                      Cod Pedido
-                                                </td>
-                                                <td>
-                                                      <div>
-                                                            <a href="" target="_blank">
-                                                                  <i class="bi bi-pencil-square"></i>
-                                                            </a>
-                                                            <input type="checkbox">
-                                                      </div>
-                                                </td>
-                                          </tr>
-                                          <tr>
-                                                <td>
-                                                      Cod Pedido
-                                                </td>
-                                                <td>
-                                                      Cod Pedidos sadjasid
-                                                </td>
-                                                <td>
-                                                      Cod Pedido
-                                                </td>
-                                                <td>
-                                                      Cod Pedido
-                                                </td>
-                                                <td>
-                                                      Cod Pedido
-                                                </td>
-                                                <td>
-                                                      Cod Pedido
-                                                </td>
-                                                <td>
-                                                      <div>
-                                                            <a href="" target="_blank">
-                                                                  <i class="bi bi-pencil-square"></i>
-                                                            </a>
-                                                            <input type="checkbox">
-                                                      </div>
-                                                </td>
-                                          </tr>
+                                          <template>
+                                                <tr>
+                                                      <template>
+                                                            <td></td>
+                                                      </template>
+                                                      <td>
+                                                            <div>
+                                                                  <a>
+                                                                        <i class="bi bi-pencil-square"></i>
+                                                                  </a>
+                                                                  <input type="checkbox">
+                                                            </div>
+                                                      </td>
+                                                </tr>
+                                          </template>
                                     </tbody>
                               </table>
                         </div>
@@ -114,7 +52,7 @@
                   <!---->
                   <!---->
                   <div apply-hrz-padding class="download-csv-button-container">
-                        <button class="default-icon-button">
+                        <button download-cargas-table-button class="default-icon-button">
                               <i class="bi bi-download"></i>
                               Download .csv
                         </button>

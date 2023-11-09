@@ -1,14 +1,12 @@
 <div class="default-panel-container">
       <div apply-hrz-padding>
-            <h1>Controle de Clientes</h1>
+            <h1>Controle de Motoristas</h1>
       </div>
       <div>
             <div class="dashboard-panel-2-content-container">
                   <div apply-hrz-padding class="default-panel-container__table-actions-container">
                         <div class="pill-button-container">
-                              <a class="--red-button" href="/system/administracao/dashboard/add/motorista/">
-                                    + Motorista
-                              </a>
+                              <a add-motorista-link class="--red-button"></a>
                         </div>
                         <div class="default-panel-container__table-actions-container__inputs-container">
                               <input motoristas-table-search-input class="pill-input" type="text" placeholder="Procurar">

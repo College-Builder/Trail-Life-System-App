@@ -1,6 +1,6 @@
 <?php
-  include("./util.php")
-?>
+include("./util.php")
+  ?>
 <?php
 try {
   if (!($_SERVER["REQUEST_METHOD"] == "POST")) {
@@ -41,12 +41,14 @@ try {
     $requestHandler::throwReqFormException($status, $label, $message);
   }
 
-  $id = ($row = mysqli_fetch_assoc($result)) ? $row['id'] : "";
+  $row = mysqli_fetch_assoc($result);
+  $id = $row['id'];
 
-  $a_token = bin2hex(random_bytes(20));
+  $a_token = $id . '-' . bin2hex(random_bytes(20));
+  $h_a_token = Cypher::encryptStringUsingAES256($a_token, $_ENV["USUARIOS_ADM_SESSION_TOKEN_CYPHER_KEY"]);
 
   $sql = 'INSERT INTO usuarios_adm_session (id, token) VALUES (?, ?);';
-  $params = array($id, $a_token);
+  $params = array($id, $h_a_token);
   $result = $mysql->query($sql, $params);
 
   setcookie('a_auth', $a_token, time() + 604800, "/");

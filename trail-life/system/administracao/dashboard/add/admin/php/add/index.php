@@ -8,12 +8,8 @@ try {
       $headers = getallheaders();
       $authorizationHeader = $headers['Authorization'];
 
-      if (
-            !(isset($authorizationHeader)) ||
-            !$validateApiDate->validateUserPermission('usuarios_adm_session', 'usuarios_adm', $authorizationHeader, array('todas'))
-      ) {
-            $requestHandler::throwReqException(403, 'Proibido. Você não tem permissão para acessar este recurso.');
-      }
+      $usePermission = array('todas');
+      $user = $validateApiDate->validateUserPermission('usuarios_adm_session', 'usuarios_adm', $authorizationHeader, $usePermission);
 
       $email = isset($_POST['email']) ? trim($_POST['email']) : null;
       $nome = isset($_POST['nome']) ? trim($_POST['nome']) : null;
