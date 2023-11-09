@@ -210,6 +210,10 @@ async function setTableAttributes(title) {
             })
 
             tbody.querySelectorAll("tr").forEach(tr => {
+                  if (tr.style.display === 'none') {
+                        return
+                  }
+
                   const row = {}
 
                   tr.querySelectorAll("td[value]").forEach((td, index) => {
