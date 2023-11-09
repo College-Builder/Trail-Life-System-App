@@ -51,10 +51,12 @@
     handleButtonLoading(false, button);
 
     if (req.status === 200) {
-      const url = new URL('http://localhost/system/administracao/dashboard');
+      const currentDomain = window.location.origin;
+      const url = new URL('/system/administracao/dashboard', currentDomain);
+      const timestamp = new Date();
 
-      url.searchParams.append('alert', successMessage.replace(/ /g, '%20'));
-      url.searchParams.append('timestamp', new Date());
+      url.searchParams.append('alert', encodeURIComponent(successMessage));
+      url.searchParams.append('timestamp', timestamp.toISOString());
 
       window.location.href = url;
     } else if (req.status === 400) {

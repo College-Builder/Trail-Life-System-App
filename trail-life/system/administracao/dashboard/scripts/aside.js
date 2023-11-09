@@ -1,10 +1,4 @@
 (() => {
-	window.document.querySelectorAll('aside[aside-menu]').forEach((aside) => {
-		aside.style.height = `${window.innerHeight}px`;
-	});
-})();
-
-(() => {
 	const asideMenuContainer = window.document.querySelector(
 		'div[aside-menu-container]',
 	);
