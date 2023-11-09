@@ -238,12 +238,12 @@ div.default-form__input-container {
 			}
 
 			input::-webkit-outer-spin-button,
-				input::-webkit-inner-spin-button {
+			input::-webkit-inner-spin-button {
 				-webkit-appearance: none;
 				margin: 0;
 			}
 
-			input[type=number] {
+			input[type='number'] {
 				-moz-appearance: textfield;
 			}
 
@@ -496,7 +496,7 @@ div.default-confirm-container {
 	min-width: 300px;
 	height: 100vh;
 	min-height: 600px;
-      overflow-y: scroll;
+	overflow-y: scroll;
 	transition: ease-in-out 0.48s;
 	background-color: rgba(0, 0, 0, 0.4);
 	filter: opacity(0%);
@@ -525,9 +525,9 @@ div.default-confirm-container {
 					color: var(--red);
 				}
 
-                        i {
-                              font-style: normal;
-                        }
+				i {
+					font-style: normal;
+				}
 			}
 		}
 
@@ -541,7 +541,6 @@ div.default-confirm-container {
 			flex-direction: column;
 			gap: 12px;
 		}
-
 	}
 }
 
@@ -571,7 +570,6 @@ div.default-confirm-container {
 			& > div:last-of-type {
 				flex-direction: row;
 			}
-
 		}
 	}
 }

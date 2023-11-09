@@ -1,6 +1,4 @@
-<?php
-include './util.php';
-?>
+<?php include './util.php' ?>
 <?php
 $token = $_COOKIE['a_auth'];
 

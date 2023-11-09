@@ -1,73 +1,75 @@
 (() => {
-const form = window.document.querySelector('form')
-const successMessage = form.getAttribute("sucess-message")
-const method = form.getAttribute("method")
-const action = form.getAttribute("action")
-const button = form.querySelector('button[type="submit"')
+  const form = window.document.querySelector('form');
+  const successMessage = form.getAttribute('sucess-message');
+  const method = form.getAttribute('method');
+  const action = form.getAttribute('action');
+  const button = form.querySelector('button[type="submit"');
 
-form.addEventListener("submit", async (e) => {
-      e.preventDefault()
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
 
-      handleButtonLoading(true, button);
+    handleButtonLoading(true, button);
 
-      const body = new FormData()
+    const body = new FormData();
 
-      const urlSearchParams = new URLSearchParams(window.location.search);
-      const id = urlSearchParams.get('id');
+    const urlSearchParams = new URLSearchParams(window.location.search);
+    const id = urlSearchParams.get('id');
 
-      if (id) {
-            body.append("id", id)
-      }
+    if (id) {
+      body.append('id', id);
+    }
 
-      form.querySelectorAll("input").forEach((input) => {
-            const name = input.getAttribute("name")
-            const value = input.value
+    form.querySelectorAll('input').forEach((input) => {
+      const name = input.getAttribute('name');
+      const value = input.value;
 
-            body.append(name, value)
-      })
+      body.append(name, value);
+    });
 
-      form.querySelectorAll("button[pseudo-select]").forEach((button) => {
-            const name = button.getAttribute("name")
-            const value = button.querySelector('option[selected]').getAttribute('value')
-            
-            body.append(name, value)
-      })
+    form.querySelectorAll('button[pseudo-select]').forEach((button) => {
+      const name = button.getAttribute('name');
+      const value = button
+        .querySelector('option[selected]')
+        .getAttribute('value');
 
-      const a_auth = document.cookie.split('; ').find(cookie => cookie.startsWith('a_auth=')).split('=')[1];
+      body.append(name, value);
+    });
 
-      const req = await fetch(action, {
-            method,
-            headers: {
-                  Authorization: `${a_auth}`
-            },
-            body,
-      })
+    const a_auth = document.cookie
+      .split('; ')
+      .find((cookie) => cookie.startsWith('a_auth='))
+      .split('=')[1];
 
-      handleButtonLoading(false, button);
+    const req = await fetch(action, {
+      method,
+      headers: {
+        Authorization: `${a_auth}`,
+      },
+      body,
+    });
 
-      if (req.status === 200) {
-            const url = new URL("http://localhost/system/administracao/dashboard")
+    handleButtonLoading(false, button);
 
-            url.searchParams.append('alert', successMessage.replace(/ /g, "%20"))
-            url.searchParams.append("timestamp", new Date())
+    if (req.status === 200) {
+      const url = new URL('http://localhost/system/administracao/dashboard');
 
-            window.location.href = url
-      } else if (req.status === 400) {
-            const {label, message} = await req.json()
+      url.searchParams.append('alert', successMessage.replace(/ /g, '%20'));
+      url.searchParams.append('timestamp', new Date());
 
-            handleFormErrorMessageResponse(label, message);
-      } else if (req.status === 403) {
-            const res = await req.json()
+      window.location.href = url;
+    } else if (req.status === 400) {
+      const { label, message } = await req.json();
 
-            spawnAlert(
-                  'warning',
-                  res['message']
-            );
-      } else {
-            spawnAlert(
-                  'warning',
-                  'Oops, algo deu errado. Por favor, tente novamente mais tarde.',
-            );
-      }
-})
-})()
+      handleFormErrorMessageResponse(label, message);
+    } else if (req.status === 403) {
+      const res = await req.json();
+
+      spawnAlert('warning', res['message']);
+    } else {
+      spawnAlert(
+        'warning',
+        'Oops, algo deu errado. Por favor, tente novamente mais tarde.',
+      );
+    }
+  });
+})();

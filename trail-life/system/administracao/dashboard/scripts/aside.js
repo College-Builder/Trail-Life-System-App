@@ -1,7 +1,7 @@
 (() => {
 	window.document.querySelectorAll('aside[aside-menu]').forEach((aside) => {
-		aside.style.height = `${window.innerHeight}px`
-	})
+		aside.style.height = `${window.innerHeight}px`;
+	});
 })();
 
 (() => {
@@ -43,10 +43,10 @@
 
 (() => {
 	if (!localStorage.getItem('initialActive')) {
-		localStorage.setItem('initialActive', '1')
+		localStorage.setItem('initialActive', '1');
 	}
 
-	const initialActive = localStorage.getItem('initialActive')
+	const initialActive = localStorage.getItem('initialActive');
 
 	let currentActiveButton = window.document.querySelectorAll(
 		`button[for-dashboard-panel="${initialActive}"]`,
@@ -60,7 +60,7 @@
 		`div[dashboard-panel-id="${initialActive}"]`,
 	);
 
-	currentActivePanel.classList.add('--on')
+	currentActivePanel.classList.add('--on');
 
 	window.document
 		.querySelectorAll('button[aside-menu-container__option]')
@@ -74,7 +74,7 @@
 
 				const forDashboard = button.getAttribute('for-dashboard-panel');
 
-				localStorage.setItem('initialActive', forDashboard)
+				localStorage.setItem('initialActive', forDashboard);
 
 				const newCurrentActivePanel = window.document.querySelector(
 					`div[dashboard-panel-id="${forDashboard}"]`,
@@ -101,19 +101,22 @@
 	window.document
 		.querySelectorAll('button[logout-button]')
 		.forEach((button) => {
-			button.addEventListener("click", () => {
-				const content = window.document.createElement("p")
+			button.addEventListener('click', () => {
+				const content = window.document.createElement('p');
 
-				content.innerText = 'Tem certeza que deseja sair?'
-				content.style.fontSize = "20px"
+				content.innerText = 'Tem certeza que deseja sair?';
+				content.style.fontSize = '20px';
 
 				spawnConfirm(content, {
 					title: 'Sair',
-					iconClass: "bi-arrow-bar-left",
+					iconClass: 'bi-arrow-bar-left',
 					callback: async (closeConfirmContainer) => {
-						const req = await fetch ("/system/administracao/dashboard/php/logout/index.php", {
-							method: "POST"
-						})
+						const req = await fetch(
+							'/system/administracao/dashboard/php/logout/index.php',
+							{
+								method: 'POST',
+							},
+						);
 
 						if (req.status === 200) {
 							location.reload();
@@ -123,8 +126,8 @@
 								'Oops, algo deu errado. Por favor, tente novamente mais tarde.',
 							);
 						}
-					}
-				})
-			})
+					},
+				});
+			});
 		});
 })();

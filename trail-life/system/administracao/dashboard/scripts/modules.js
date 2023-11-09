@@ -19,7 +19,9 @@ function handleFormErrorMessageResponse(label, message) {
 		div.classList.remove('--show-error');
 	});
 
-	const input = window.document.querySelector(`input[name='${label}']`) || window.document.querySelector(`button[name='${label}']`)
+	const input =
+		window.document.querySelector(`input[name='${label}']`) ||
+		window.document.querySelector(`button[name='${label}']`);
 
 	const container = input.parentElement.parentElement;
 
@@ -48,33 +50,32 @@ function setPseudoSelectProperties(button) {
 	);
 	const options = optionsContainer.querySelectorAll('option');
 
-	const selectValue = button.getAttribute("select-value")
-	let selectOption
+	const selectValue = button.getAttribute('select-value');
+	let selectOption;
 
 	for (let c = 0; c < options.length; c++) {
 		if (options[c].hasAttribute('unselectable')) {
-			continue
+			continue;
 		} else {
-			selectOption = options[c]
+			selectOption = options[c];
 
-			break
+			break;
 		}
 	}
 
-	optionsContainer.querySelectorAll("option[unselectable").forEach(option => {
-		option.classList.add("--unselectable")
-	})
-
+	optionsContainer.querySelectorAll('option[unselectable').forEach((option) => {
+		option.classList.add('--unselectable');
+	});
 
 	if (!selectOption) {
-		selectOption = options[0]
+		selectOption = options[0];
 	}
 
 	if (selectValue) {
-		selectOption = button.querySelector(`option[value="${selectValue}"]`)
+		selectOption = button.querySelector(`option[value="${selectValue}"]`);
 	}
 
-	selectOption.setAttribute('selected', '')
+	selectOption.setAttribute('selected', '');
 	button.prepend(selectOption);
 
 	const originalOptionsContainerHeight =
@@ -186,18 +187,18 @@ function setCnpjInputProperties(input) {
 			input.value = `${value.slice(0, 2)}.${value.slice(2, value.length)}`;
 		} else if (value.length <= 8) {
 			input.value = `${value.slice(0, 2)}.${value.slice(2, 5)}.${value.slice(
-			5,
-			8,
+				5,
+				8,
 			)}`;
 		} else if (value.length <= 12) {
 			input.value = `${value.slice(0, 2)}.${value.slice(2, 5)}.${value.slice(
-			5,
-			8,
+				5,
+				8,
 			)}/${value.slice(8, 12)}`;
 		} else {
 			input.value = `${value.slice(0, 2)}.${value.slice(2, 5)}.${value.slice(
-			5,
-			8,
+				5,
+				8,
 			)}/${value.slice(8, 12)}-${value.slice(12, 14)}`;
 		}
 	});
@@ -347,43 +348,54 @@ function spawnAlert(type, text) {
 	}, 1000);
 }
 
-spawnConfirmIsFirstTime = true
-function spawnConfirm(content, {title, iconClass, callback}) {
-	const confirmContainer = window.document.querySelector("div[default-confirm-container]")
-	const contentContainer = confirmContainer.querySelector("div[content-container]")
+spawnConfirmIsFirstTime = true;
+function spawnConfirm(content, { title, iconClass, callback }) {
+	const confirmContainer = window.document.querySelector(
+		'div[default-confirm-container]',
+	);
+	const contentContainer = confirmContainer.querySelector(
+		'div[content-container]',
+	);
 
-      confirmContainer.querySelector("i[default-confirm-container__icon]").classList.add(iconClass)
-      confirmContainer.querySelector("i[default-confirm-container__title]").innerText = title
+	confirmContainer
+		.querySelector('i[default-confirm-container__icon]')
+		.classList.add(iconClass);
+	confirmContainer.querySelector(
+		'i[default-confirm-container__title]',
+	).innerText = title;
 
-      while (contentContainer.firstChild) {
-            contentContainer.removeChild(contentContainer.firstChild)
-      }
+	while (contentContainer.firstChild) {
+		contentContainer.removeChild(contentContainer.firstChild);
+	}
 
 	if (content) {
-		contentContainer.append(content)
+		contentContainer.append(content);
 	}
 
-	confirmContainer.classList.add("--on")
+	confirmContainer.classList.add('--on');
 
-
-      const cancelButton = window.document.querySelector("button[default-confirm-container__cancel-button]")
-      const confirmButton = window.document.querySelector("button[default-confirm-container__confirm-button]")
+	const cancelButton = window.document.querySelector(
+		'button[default-confirm-container__cancel-button]',
+	);
+	const confirmButton = window.document.querySelector(
+		'button[default-confirm-container__confirm-button]',
+	);
 
 	if (spawnConfirmIsFirstTime) {
-		spawnConfirmIsFirstTime = false
+		spawnConfirmIsFirstTime = false;
 
-		cancelButton.addEventListener("click", () => closeConfirmContainer())
+		cancelButton.addEventListener('click', () => closeConfirmContainer());
 	}
 
-	confirmButton.removeEventListener("click", null);
+	confirmButton.removeEventListener('click', null);
 
-      confirmButton.addEventListener("click", async () => {
-            handleButtonLoading(true, confirmButton)
-            await callback(() => closeConfirmContainer())
-            handleButtonLoading(false, confirmButton)
-      })
+	confirmButton.addEventListener('click', async () => {
+		handleButtonLoading(true, confirmButton);
+		await callback(() => closeConfirmContainer());
+		handleButtonLoading(false, confirmButton);
+	});
 
-      function closeConfirmContainer() {
-            confirmContainer.classList.remove("--on")
-      }
+	function closeConfirmContainer() {
+		confirmContainer.classList.remove('--on');
+	}
 }

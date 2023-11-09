@@ -96,7 +96,8 @@ div.default-panel-container__table-container > div table {
   width: 100%;
   border-collapse: collapse;
 }
-div.default-panel-container__table-container > div table th, div.default-panel-container__table-container > div table td {
+div.default-panel-container__table-container > div table th,
+div.default-panel-container__table-container > div table td {
   min-width: 180px;
 }
 div.default-panel-container__table-container > div table thead {
