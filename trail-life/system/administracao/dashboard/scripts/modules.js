@@ -50,6 +50,10 @@ function setPseudoSelectProperties(button) {
 	);
 	const options = optionsContainer.querySelectorAll('option');
 
+	if (options.length === 0) {
+		return;
+	}
+
 	const selectValue = button.getAttribute('select-value');
 	let selectOption;
 

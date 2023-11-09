@@ -4,6 +4,21 @@ $sql = 'SELECT id, empresa FROM clientes;';
 $params = array();
 $result = $mysql->query($sql, $params);
 
+if ($result->num_rows === 0) {
+      $timestamp = date('c'); 
+
+      $message = "Por favor adicione pelo menos um cliente antes de adicionar uma carga.";
+      $type = "warning";
+
+      $url = "/system/administracao/dashboard/?" .
+            "alert=" . urlencode($message) .
+            "&timestamp=" . urlencode($timestamp) .
+            "&type=" . urlencode($type);
+
+      header("Location: " . $url);
+      exit();
+}
+
 $clientes = array();
 
 while ($row = $result->fetch_assoc()) {
@@ -46,6 +61,21 @@ $enum_values = explode("','", substr($row['Type'], 6, -2));
 $sql = 'SELECT id, nome, status FROM motoristas;';
 $params = array();
 $result = $mysql->query($sql, $params);
+
+if ($result->num_rows === 0) {
+      $timestamp = date('c'); 
+
+      $message = "Por favor adicione pelo menos um motorista antes de adicionar uma carga.";
+      $type = "warning";
+
+      $url = "/system/administracao/dashboard/?" .
+            "alert=" . urlencode($message) .
+            "&timestamp=" . urlencode($timestamp) .
+            "&type=" . urlencode($type);
+
+      header("Location: " . $url);
+      exit();
+}
 
 $motoristas = array();
 
@@ -195,7 +225,7 @@ while ($row = $result->fetch_assoc()) {
                                                                                           <option
                                                                                                 class='default-form__input-container__pseudo-select__pseudo_option'
                                                                                                 value='" . $value['id'] . "'>
-                                                                                                " . $value['cidade'] . "/" . $value['estado'] . " - " . $value['rua'] .  "
+                                                                                                " . $value['cidade'] . "/" . $value['estado'] . " - " . $value['rua'] . "
                                                                                           </option>
                                                                                     ";
                                                                               }

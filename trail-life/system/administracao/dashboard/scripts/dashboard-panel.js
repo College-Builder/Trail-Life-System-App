@@ -63,6 +63,7 @@ window.document
 
 (() => {
   const urlParams = new URLSearchParams(window.location.search);
+  const alertType = urlParams.get('type');
   const alertMessage = urlParams.get('alert');
   const timestamp = urlParams.get('timestamp');
 
@@ -77,7 +78,7 @@ window.document
   const diferencaEmSegundos = diferencaEmMilissegundos / 1000;
 
   if (diferencaEmSegundos <= 10) {
-    spawnAlert('success', alertMessage.replace(/%20/g, ' '));
+    spawnAlert(alertType ? alertType : 'success', alertMessage.replace(/%20/g, ' '));
   }
 })();
 

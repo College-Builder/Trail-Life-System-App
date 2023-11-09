@@ -1,10 +1,11 @@
 <?php include './util.php' ?>
 <?php
-$sql = 'SELECT id, token FROM usuarios_adm_session WHERE token = ?;';
-$params = array($_COOKIE['a_auth']);
+$sql = 'SELECT id, token FROM usuarios_adm_session WHERE id = ?;';
+$params = array(explode('-', $_COOKIE['a_auth'])[0]);
 $result = $mysql->query($sql, $params);
 
-$id = ($row = mysqli_fetch_assoc($result)) ? $row['id'] : "";
+$row = mysqli_fetch_assoc($result);
+$id = $row['id'];
 
 $sql = 'SELECT nome FROM usuarios_adm WHERE id = ?;';
 $params = array($id);

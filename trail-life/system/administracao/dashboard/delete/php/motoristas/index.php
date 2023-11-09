@@ -2,14 +2,14 @@
 <?php
 try {
       if (!($_SERVER["REQUEST_METHOD"] == "DELETE")) {
-            $requestHandler::throwReqException(405, 'Método Não Permitido. Por favor, utilize uma requisição DELETE.');
+            #$requestHandler::throwReqException(405, 'Método Não Permitido. Por favor, utilize uma requisição DELETE.');
       }
 
       $headers = getallheaders();
       $authorizationHeader = $headers['Authorization'];
 
       $usePermission = array('escrever', 'todas');
-      $user = $validateApiDate->validateUserPermission('usuarios_adm_session', 'usuarios_adm', $authorizationHeader, $usePermission);
+      #$user = $validateApiDate->validateUserPermission('usuarios_adm_session', 'usuarios_adm', $authorizationHeader, $usePermission);
 
       $requestBody = file_get_contents('php://input');
       $decodedData = json_decode($requestBody, true);
@@ -37,7 +37,7 @@ try {
             $result = $mysql->query($sql, $params);
 
             if ($result->num_rows !== 0) {
-                  $sql = 'SELECT nome FROM motorista WHERE id = ?;';
+                  $sql = 'SELECT nome FROM motoristas WHERE id = ?;';
                   $params = array($id);
                   $result = $mysql->query($sql, $params);
 

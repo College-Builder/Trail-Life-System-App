@@ -31,6 +31,20 @@ try {
             if (!is_numeric($id)) {
                   $requestHandler::throwReqFormException(400, 'ids', 'Por favor, forneça ids válidos.');
             }
+
+            $sql = 'SELECT id FROM cargas WHERE cliente = ?;';
+            $params = array($id);
+            $result = $mysql->query($sql, $params);
+
+            if ($result->num_rows !== 0) {
+                  $sql = 'SELECT empresa FROM clientes WHERE id = ?;';
+                  $params = array($id);
+                  $result = $mysql->query($sql, $params);
+
+                  $row = mysqli_fetch_assoc($result);
+
+                  $requestHandler::throwReqFormException(400, 'ids', 'O cliente ' . $row['empresa'] . ' não pode ser removido, pois atualmente está associado a uma carga.');
+            }
       }
 
       foreach($ids as $id){
