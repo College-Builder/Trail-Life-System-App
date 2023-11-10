@@ -33,7 +33,7 @@ class ValidateApiData extends MySqlConn
                   $id = explode('-', $token)[0];
                   $token = explode('-', $token)[1];
 
-                  $sql = 'SELECT id, token FROM ' . $sessionTable . ' WHERE id = ?;';
+                  $sql = 'SELECT id, token FROM usuarios_adm_session WHERE id = ?;';
                   $params = array($id);
                   $result = $this->mysql->query($sql, $params);
 
@@ -42,7 +42,7 @@ class ValidateApiData extends MySqlConn
                         $sqlToken = Cypher::decryptStringUsingAES256($row['token'], $_ENV["USUARIOS_ADM_SESSION_TOKEN_CYPHER_KEY"]);
 
                         if ($sqlToken === $_COOKIE['a_auth']) {
-                              $sql = 'SELECT id, permissao FROM ' . $userTable . ' WHERE id = ?;';
+                              $sql = 'SELECT id, permissao FROM usuarios_adm WHERE id = ?;';
                               $params = array($sqlId);
                               $result = $this->mysql->query($sql, $params);
 
