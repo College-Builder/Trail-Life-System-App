@@ -4,7 +4,7 @@ define('BASE_DIR', '/opt/lampp/htdocs/');
 require BASE_DIR . 'vendor/autoload.php';
 require_once BASE_DIR . "global-modules/cypher/cypher.php";
 require_once BASE_DIR . "global-modules/request-handler/request-handler.php";
-require_once BASE_DIR . "global-modules/validate-api-data/validate-api-data.php";
+require_once BASE_DIR . "global-modules/administracao/validate-api-data/validate-api-data.php";
 
 $dotenv = Dotenv\Dotenv::createImmutable(BASE_DIR);
 $dotenv->load();

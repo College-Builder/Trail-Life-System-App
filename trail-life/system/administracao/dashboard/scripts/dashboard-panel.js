@@ -215,9 +215,16 @@ async function setTableAttributes(title) {
 
         closeConfirmContainer();
 
-        spawnAlert('success', 'Itens deletados com successo.');
+        setTimeout(() => {
+          const currentDomain = window.location.origin;
+          const url = new URL('/system/administracao/dashboard', currentDomain);
+          const timestamp = new Date();
 
-        renderTable();
+          url.searchParams.append('alert', encodeURIComponent('Itens deletados com successo.'));
+          url.searchParams.append('timestamp', timestamp.toISOString());
+
+          window.location.href = url;
+        }, 1200)
       },
     });
   });
