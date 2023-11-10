@@ -9,7 +9,7 @@ try {
       $authorizationHeader = $headers['Authorization'];
 
       $usePermission = array('todas');
-      $user = $validateApiDate->validateUserPermission('usuarios_adm_session', 'usuarios_adm', $authorizationHeader, $usePermission);
+      $user = $validateApiDate->validateUserPermission($authorizationHeader, $usePermission);
 
       $email = isset($_POST['email']) ? trim($_POST['email']) : null;
       $nome = isset($_POST['nome']) ? trim($_POST['nome']) : null;

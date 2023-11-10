@@ -9,7 +9,7 @@ try {
       $authorizationHeader = $headers['Authorization'];
 
       $usePermission = array('escrever', 'todas');
-      $user = $validateApiDate->validateUserPermission('usuarios_adm_session', 'usuarios_adm', $authorizationHeader, $usePermission);
+      $user = $validateApiDate->validateUserPermission($authorizationHeader, $usePermission);
 
       $requestBody = file_get_contents('php://input');
       $decodedData = json_decode($requestBody, true);

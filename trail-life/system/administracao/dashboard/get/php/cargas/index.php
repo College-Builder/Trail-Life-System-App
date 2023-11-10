@@ -9,7 +9,7 @@ try {
       $authorizationHeader = $headers['Authorization'];
 
       $usePermission = array('ler', 'escrever', 'todas');
-      $user = $validateApiDate->validateUserPermission('usuarios_adm_session', 'usuarios_adm', $authorizationHeader, $usePermission);
+      $user = $validateApiDate->validateUserPermission($authorizationHeader, $usePermission);
 
       $sql = 'SELECT id, cliente, filial, rota, tipo_carga, motorista, criador, criado FROM cargas;';
       $params = array();

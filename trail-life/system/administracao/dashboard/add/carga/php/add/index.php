@@ -9,7 +9,7 @@ try {
       $authorizationHeader = $headers['Authorization'];
       
       $usePermission = array('escrever', 'todas');
-      $user = $validateApiDate->validateUserPermission('usuarios_adm_session', 'usuarios_adm', $authorizationHeader, $usePermission);
+      $user = $validateApiDate->validateUserPermission($authorizationHeader, $usePermission);
 
       $cliente = isset($_POST['cliente']) ? trim($_POST['cliente']) : null;
       $filial = isset($_POST['filial']) ? trim($_POST['filial']) : null;
