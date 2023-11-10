@@ -42,11 +42,7 @@ $email = Cypher::decryptStringUsingAES256($row['email'], $_ENV["CLIENTES_EMAIL_C
             type="image/x-icon" />
       <!---->
       <!---->
-      <script defer src="/system/administracao/dashboard/scripts/modules.js"></script>
-      <!--
       <script defer src="https://college-builder.s3.amazonaws.com/trail-life/scripts/modules.js"></script>
-      -->
-
       <script defer src="https://college-builder.s3.amazonaws.com/trail-life/scripts/auto-apply.js"></script>
       <!---->
       <!---->
@@ -288,7 +284,7 @@ $email = Cypher::decryptStringUsingAES256($row['email'], $_ENV["CLIENTES_EMAIL_C
                                     </div>
                                     <div class="default-form__make-row">
                                           <div class="default-form__input-container">
-                                                <label for="Telefone">Celular</label>
+                                                <label for="celular">Celular</label>
                                                 <div>
                                                       <div>
                                                             <input id="Celular" name="celular" type="text"

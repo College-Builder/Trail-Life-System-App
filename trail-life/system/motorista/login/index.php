@@ -1,21 +1,21 @@
 <?php include './util.php' ?>
 <?php
-$token = $_COOKIE['a_auth'];
+$token = $_COOKIE['m_auth'];
 
 if (isset($token)) {
   $id = explode('-', $token)[0];
   $token = explode('-', $token)[1];
 
-  $sql = 'SELECT id, token FROM usuarios_adm_session WHERE id = ?;';
+  $sql = 'SELECT id, token FROM motoristas_session WHERE id = ?;';
   $params = array($id);
   $result = $mysql->query($sql, $params);
 
   while ($row = $result->fetch_assoc()) {
     $sqlId = $row['id'];
-    $sqlToken = Cypher::decryptStringUsingAES256($row['token'], $_ENV["USUARIOS_ADM_SESSION_TOKEN_CYPHER_KEY"]);
+    $sqlToken = Cypher::decryptStringUsingAES256($row['token'], $_ENV["MOTORISTAS_SESSION_TOKEN_CYPHER_KEY"]);
 
-    if ($sqlToken === $_COOKIE['a_auth']) {
-      header("Location: /system/administracao/dashboard/");
+    if ($sqlToken === $_COOKIE['m_auth']) {
+      header("Location: /system/motorista/dashboard/");
       exit();
     }
   }
@@ -92,18 +92,18 @@ if (isset($token)) {
       <div>
         <div>
           <img
-            src="https://college-builder.s3.amazonaws.com/trail-life/system/administracao/assets/images/brand/logo.png"
+            src="https://college-builder.s3.amazonaws.com/trail-life/system/motorista/assets/images/brand/logo.png"
             alt="Trail Life Administração Logo" />
         </div>
         <div>
           <form email-form-container__form class="default-form" method="POST"
-            action="/system/administracao/login/php/login/index.php" redirect="/system/administracao/dashboard/">
+            action="/system/motorista/login/php/login/index.php" redirect="/system/motorista/dashboard/">
             <div>
               <div class="default-form__input-container">
-                <label for="username">Usuário:</label>
+                <label for="rg">RG:</label>
                 <div>
                   <div>
-                    <input placeholder="Usuário" type="text" name="usuario" id="username" />
+                    <input placeholder="RG" type="text" name="rg" id="rg" pseudo-type="rg"/>
                   </div>
                   <span>
                     <i class="bi bi-exclamation-octagon"></i>
@@ -112,10 +112,10 @@ if (isset($token)) {
                 </div>
               </div>
               <div class="default-form__input-container">
-                <label for="senha">Senha:</label>
+                <label for="cpf">CPF:</label>
                 <div>
                   <div>
-                    <input placeholder="Senha" type="password" name="senha" id="senha" />
+                    <input placeholder="CPF" type="password" name="cpf" id="cpf" pseudo-type="cpf" />
                     <button tabindex="-1" type="button">
                       <i class="bi bi-eye"></i>
                     </button>

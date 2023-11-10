@@ -14,24 +14,12 @@
             type="image/x-icon" />
       <!---->
       <!---->
-      <script defer src="/system/administracao/dashboard/scripts/modules.js"></script>
-      <!--
       <script defer src="https://college-builder.s3.amazonaws.com/trail-life/scripts/modules.js"></script>
-      -->
-
-      <script defer src="/system/administracao/dashboard/scripts/auto-apply.js"></script>
-      <!--
       <script defer src="https://college-builder.s3.amazonaws.com/trail-life/scripts/auto-apply.js"></script>
-      -->
       <!---->
       <!---->
       <link rel="stylesheet" href="https://college-builder.s3.amazonaws.com/trail-life/styles/index/index.css" />
-      
-      <link rel="stylesheet" href="/system/administracao/dashboard/styles/styles/styles.css">
-      <!--
       <link rel="stylesheet" href="https://college-builder.s3.amazonaws.com/trail-life/styles/styles/styles.css" />
-      -->
-
       <link rel="stylesheet"
             href="https://college-builder.s3.amazonaws.com/trail-life/styles/controller/controller.css" />
       <!---->

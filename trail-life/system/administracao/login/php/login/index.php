@@ -1,6 +1,4 @@
-<?php
-include("./util.php")
-  ?>
+<?php include("./util.php") ?>
 <?php
 try {
   if (!($_SERVER["REQUEST_METHOD"] == "POST")) {
@@ -36,7 +34,7 @@ try {
   if ($result->num_rows == 0) {
     $status = 400;
     $label = 'usuario';
-    $message = 'Usuário ou senha errada!';
+    $message = 'Não foi possível realizar o login. Por favor, verifique se as credenciais estão corretas.';
 
     $requestHandler::throwReqFormException($status, $label, $message);
   }

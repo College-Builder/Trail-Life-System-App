@@ -52,11 +52,7 @@ while ($row = $result->fetch_assoc()) {
             type="image/x-icon" />
       <!---->
       <!---->
-      <script defer src="/system/administracao/dashboard/scripts/modules.js"></script>
-      <!--
       <script defer src="https://college-builder.s3.amazonaws.com/trail-life/scripts/modules.js"></script>
-      -->
-
       <script defer src="https://college-builder.s3.amazonaws.com/trail-life/scripts/auto-apply.js"></script>
       <!---->
       <!---->
