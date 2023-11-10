@@ -51,11 +51,11 @@ $name = ($row = mysqli_fetch_assoc($result)) ? $row['nome'] : "";
   <title>Dashboard | Administração</title>
   <!---->
   <!---->
-  <link rel="stylesheet" href="./styles/dashboard-panel/dashboard-panel.css">
-  <link rel="stylesheet" href="./styles/dashboard-panel-1/dashboard-panel-1.css">
+  <link rel="stylesheet" href="https://college-builder.s3.amazonaws.com/trail-life/system/administracao/styles/dashboard-panel/dashboard-panel.css">
+  <link rel="stylesheet" href="https://college-builder.s3.amazonaws.com/trail-life/system/administracao/styles/dashboard-panel-1/dashboard-panel-1.css">
   <!---->
   <!---->
-  <script defer src="./scripts/dashboard-panel.js" charset="utf-8"></script>
+  <script defer src="https://college-builder.s3.amazonaws.com/trail-life/system/administracao/scripts/dashboard-panel.js" charset="utf-8"></script>
   <!---->
   <!---->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

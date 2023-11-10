@@ -31,6 +31,16 @@ try {
             if (!is_numeric($id)) {
                   $requestHandler::throwReqFormException(400, 'ids', 'Por favor, forneça ids válidos.');
             }
+
+            $sql = 'SELECT motorista FROM cargas WHERE id = ?;';
+            $params = array($id);
+            $result = $mysql->query($sql, $params);
+
+            $row = mysqli_fetch_assoc($result);
+
+            $sql = 'UPDATE motoristas SET status = ? WHERE id = ?;';
+            $params = array('livre', $row['motorista']);
+            $result = $mysql->query($sql, $params);
       }
 
       foreach ($ids as $id) {

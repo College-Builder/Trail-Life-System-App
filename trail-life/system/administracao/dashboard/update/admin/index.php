@@ -60,10 +60,10 @@ $permissao = $row['permissao'];
       <title>Modificar Admin | Administração</title>
       <!---->
       <!---->
-      <link rel="stylesheet" href="/system/administracao/dashboard/styles/interact-form/interact-form.css">
+      <link rel="stylesheet" href="https://college-builder.s3.amazonaws.com/trail-life/system/administracao/styles/interact-form/interact-form.css">
       <!---->
       <!---->
-      <script defer src="/system/administracao/dashboard/scripts/action-form.js"></script>
+      <script defer src="https://college-builder.s3.amazonaws.com/trail-life/system/administracao/scripts/action-form.js"></script>
 </head>
 
 <body>
