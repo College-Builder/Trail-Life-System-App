@@ -27,7 +27,7 @@ class ValidateApiData extends MySqlConn
             $this->requestHandler = new RequestHandler();
       }
 
-      public function validateUserPermission($sessionTable, $userTable, $token, $requiredPermission)
+      public function validateUserPermission($token, $requiredPermission)
       {
             if (isset($token)) {
                   $id = explode('-', $token)[0];
