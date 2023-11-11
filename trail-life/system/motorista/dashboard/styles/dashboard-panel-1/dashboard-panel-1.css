@@ -1,0 +1,71 @@
+div.dashboard-panel-1-content-container__true-content-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+div.dashboard-panel-1-content-container__true-content-container hr {
+  margin: 60px 0px;
+  width: 100%;
+}
+
+/**/
+/**/
+div.dashboard-panel-1-content-container__true-content-container__content-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 48px !important;
+}
+
+/**/
+/**/
+span.dashboard-panel-1-content-container__true-content-container__content-container__id {
+  padding: 18px 28px;
+  border: 2px solid var(--gray);
+  color: var(--gray);
+  font-size: 18px;
+  border-radius: 8px;
+}
+
+/**/
+/**/
+span.dashboard-panel-1-content-container__true-content-container__content-container__address {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/**/
+/**/
+div.dashboard-panel-1-content-container__true-content-container__content-container__info-container {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+div.dashboard-panel-1-content-container__true-content-container__content-container__info-container.--yellow p i {
+  color: var(--yellow);
+}
+div.dashboard-panel-1-content-container__true-content-container__content-container__info-container.--red p i {
+  color: var(--red);
+}
+div.dashboard-panel-1-content-container__true-content-container__content-container__info-container p {
+  font-size: 18px;
+}
+div.dashboard-panel-1-content-container__true-content-container__content-container__info-container p i {
+  font-style: normal;
+}
+
+/**/
+/**/
+div.dashboard-panel-1-content-container__true-content-container__content-container__link-container.--yellow a {
+  color: var(--yellow);
+}
+div.dashboard-panel-1-content-container__true-content-container__content-container__link-container.--red a {
+  color: var(--red);
+}
+div.dashboard-panel-1-content-container__true-content-container__content-container__link-container a {
+  font-size: 22px;
+}
+
+/*# sourceMappingURL=dashboard-panel-1.css.map */

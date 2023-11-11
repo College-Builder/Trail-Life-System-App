@@ -7,11 +7,14 @@ $result = $mysql->query($sql, $params);
 $row = mysqli_fetch_assoc($result);
 $id = $row['id'];
 
-$sql = 'SELECT nome FROM motoristas WHERE id = ?;';
+$sql = 'SELECT id, nome FROM motoristas WHERE id = ?;';
 $params = array($id);
 $result = $mysql->query($sql, $params);
 
-$name = ($row = mysqli_fetch_assoc($result)) ? $row['nome'] : "";
+$row = mysqli_fetch_assoc($result);
+
+$motorista_id = $row['id'];
+$motorista_nome = $row['nome'];
 ?>
 <!doctype html>
 <html lang="pt-BR">
@@ -49,8 +52,12 @@ $name = ($row = mysqli_fetch_assoc($result)) ? $row['nome'] : "";
       Custom head tags
   -->
   <title>Dashboard |
-    <?php echo $name ?>
+    <?php echo $motorista_nome ?>
   </title>
+  <!---->
+  <!---->
+  <link rel="stylesheet" href="/system/motorista/dashboard/styles/dashboard-panel/dashboard-panel.css" />
+  <link rel="stylesheet" href="/system/motorista/dashboard/styles/dashboard-panel-1/dashboard-panel-1.css" />
 </head>
 
 <body>
@@ -123,7 +130,7 @@ $name = ($row = mysqli_fetch_assoc($result)) ? $row['nome'] : "";
         <div>
           <p><i class="bi bi-person-circle"></i></p>
           <p>
-            <?php echo $name ?>
+            <?php echo $motorista_nome ?>
           </p>
         </div>
         <hr />
@@ -172,6 +179,7 @@ $name = ($row = mysqli_fetch_assoc($result)) ? $row['nome'] : "";
         <!---->
         <!---->
         <div style="background-color: yellow;" dashboard-panel-id="1">
+          <?php include './dashboard-panels/dashboard-panel-1/index.php'; ?>
         </div>
         <!---->
         <!---->
