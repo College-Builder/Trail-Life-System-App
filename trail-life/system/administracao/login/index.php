@@ -65,7 +65,8 @@ if (isset($token)) {
   <link rel="stylesheet" href="https://college-builder.s3.amazonaws.com/trail-life/system/login/styles/main/main.css" />
   <!---->
   <!---->
-  <script defer src="https://college-builder.s3.amazonaws.com/trail-life/system/login/scripts/main.js" charset="utf-8"></script>
+  <script defer src="https://college-builder.s3.amazonaws.com/trail-life/system/login/scripts/main.js"
+    charset="utf-8"></script>
 </head>
 
 <body>
@@ -129,12 +130,12 @@ if (isset($token)) {
 
             </div>
             <div>
-              <div class="default-form__button-container">
+              <div class="default-button-container">
                 <button class="--red-button" type="submit">
                   <span class="default-button__loading">
                     <i class="bi bi-arrow-repeat"></i>
                   </span>
-                  Enviar
+                  Login
                 </button>
               </div>
             </div>

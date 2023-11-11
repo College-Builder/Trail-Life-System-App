@@ -65,7 +65,8 @@ if (isset($token)) {
   <link rel="stylesheet" href="https://college-builder.s3.amazonaws.com/trail-life/system/login/styles/main/main.css" />
   <!---->
   <!---->
-  <script defer src="https://college-builder.s3.amazonaws.com/trail-life/system/login/scripts/main.js" charset="utf-8"></script>
+  <script defer src="https://college-builder.s3.amazonaws.com/trail-life/system/login/scripts/main.js"
+    charset="utf-8"></script>
 </head>
 
 <body>
@@ -91,8 +92,7 @@ if (isset($token)) {
     <div class="default-hrz-padding">
       <div>
         <div>
-          <img
-            src="https://college-builder.s3.amazonaws.com/trail-life/system/motorista/assets/images/brand/logo.png"
+          <img src="https://college-builder.s3.amazonaws.com/trail-life/system/motorista/assets/images/brand/logo.png"
             alt="Trail Life Administração Logo" />
         </div>
         <div>
@@ -103,7 +103,7 @@ if (isset($token)) {
                 <label for="rg">RG:</label>
                 <div>
                   <div>
-                    <input placeholder="RG" type="text" name="rg" id="rg" pseudo-type="rg"/>
+                    <input placeholder="RG" type="text" name="rg" id="rg" pseudo-type="rg" />
                   </div>
                   <span>
                     <i class="bi bi-exclamation-octagon"></i>
@@ -129,12 +129,12 @@ if (isset($token)) {
 
             </div>
             <div>
-              <div class="default-form__button-container">
+              <div class="default-button-container">
                 <button class="--red-button" type="submit">
                   <span class="default-button__loading">
                     <i class="bi bi-arrow-repeat"></i>
                   </span>
-                  Enviar
+                  Login
                 </button>
               </div>
             </div>
