@@ -219,6 +219,16 @@ class ValidateMotoristaData extends ValidateApiData
             if (!preg_match($pattern, $rg)) {
                   $this->requestHandler->throwReqFormException(400, 'rg', 'Por favor, forneça um rg válido.');
             }
+
+            $h_rg = Cypher::encryptStringUsingSHA512($rg);
+
+            $sql = 'SELECT id FROM motoristas WHERE rg = ?;';
+            $params = array($h_rg);
+            $result = $this->mysql->query($sql, $params);
+
+            if ($result->num_rows !== 0) {
+                  $this->requestHandler->throwReqFormException(400, 'rg', 'Por favor, forneça um RG diferente, pois o RG fornecido já está em uso.');
+            }
       }
 
       public function validateCPF($cpf)
@@ -227,24 +237,34 @@ class ValidateMotoristaData extends ValidateApiData
                   $this->requestHandler->throwReqFormException(400, 'cpf', 'Por favor, forneça um cpf válido.');
             }
 
-            $cpf = preg_replace('/[^0-9]/is', '', $cpf);
+            $cpfNumber = preg_replace('/[^0-9]/is', '', $cpf);
 
-            if (strlen($cpf) != 11) {
+            if (strlen($cpfNumber) != 11) {
                   $this->requestHandler->throwReqFormException(400, 'cpf', 'Por favor, forneça um cpf válido.');
             }
 
-            if (preg_match('/(\d)\1{10}/', $cpf)) {
+            if (preg_match('/(\d)\1{10}/', $cpfNumber)) {
                   $this->requestHandler->throwReqFormException(400, 'cpf', 'Por favor, forneça um cpf válido.');
             }
 
             for ($t = 9; $t < 11; $t++) {
                   for ($d = 0, $c = 0; $c < $t; $c++) {
-                        $d += $cpf[$c] * (($t + 1) - $c);
+                        $d += $cpfNumber[$c] * (($t + 1) - $c);
                   }
                   $d = ((10 * $d) % 11) % 10;
-                  if ($cpf[$c] != $d) {
+                  if ($cpfNumber[$c] != $d) {
                         $this->requestHandler->throwReqFormException(400, 'cpf', 'Por favor, forneça um cpf válido.');
                   }
+            }
+
+            $h_cpf = Cypher::encryptStringUsingSHA512($cpf);
+
+            $sql = 'SELECT id FROM motoristas WHERE cpf = ?;';
+            $params = array($h_cpf);
+            $result = $this->mysql->query($sql, $params);
+
+            if ($result->num_rows !== 0) {
+                  $this->requestHandler->throwReqFormException(400, 'cpf', 'Por favor, forneça um CPF diferente, pois o CPF fornecido já está em uso.');
             }
       }
 }

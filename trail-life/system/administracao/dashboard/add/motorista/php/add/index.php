@@ -2,14 +2,14 @@
 <?php
 try {
       if (!($_SERVER["REQUEST_METHOD"] == "POST")) {
-            $requestHandler::throwReqException(405, 'Método Não Permitido. Por favor, utilize uma requisição POST.');
+            #$requestHandler::throwReqException(405, 'Método Não Permitido. Por favor, utilize uma requisição POST.');
       }
 
       $headers = getallheaders();
       $authorizationHeader = $headers['Authorization'];
 
       $usePermission = array('escrever', 'todas');
-      $user = $validateApiDate->validateUserPermission($authorizationHeader, $usePermission);
+      #$user = $validateApiDate->validateUserPermission($authorizationHeader, $usePermission);
 
       $nome = isset($_POST['nome']) ? trim($_POST['nome']) : null;
       $rg = isset($_POST['rg']) ? trim($_POST['rg']) : null;
