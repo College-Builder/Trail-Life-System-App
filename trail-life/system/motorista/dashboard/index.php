@@ -13,8 +13,8 @@ $result = $mysql->query($sql, $params);
 
 $row = mysqli_fetch_assoc($result);
 
-$motorista_id = $row['id'];
-$motorista_nome = $row['nome'];
+$motoristaId = $row['id'];
+$motoristaNome = $row['nome'];
 ?>
 <!doctype html>
 <html lang="pt-BR">
@@ -52,7 +52,7 @@ $motorista_nome = $row['nome'];
       Custom head tags
   -->
   <title>Dashboard |
-    <?php echo $motorista_nome ?>
+    <?php echo $motoristaNome ?>
   </title>
   <!---->
   <!---->
@@ -130,7 +130,7 @@ $motorista_nome = $row['nome'];
         <div>
           <p><i class="bi bi-person-circle"></i></p>
           <p>
-            <?php echo $motorista_nome ?>
+            <?php echo $motoristaNome ?>
           </p>
         </div>
         <hr />

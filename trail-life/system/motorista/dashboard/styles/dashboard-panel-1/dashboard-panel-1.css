@@ -42,6 +42,7 @@ div.dashboard-panel-1-content-container__true-content-container__content-contain
   display: flex;
   flex-direction: column;
   gap: 22px;
+  text-align: center;
 }
 div.dashboard-panel-1-content-container__true-content-container__content-container__info-container.--yellow p i {
   color: var(--yellow);
