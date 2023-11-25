@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 25, 2023 at 01:01 AM
+-- Generation Time: Nov 25, 2023 at 10:08 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -104,15 +104,16 @@ CREATE TABLE `usuarios_adm` (
   `nome` varchar(50) NOT NULL,
   `usuario` char(128) NOT NULL,
   `senha` char(128) NOT NULL,
-  `permissao` enum('ler','escrever','todas') NOT NULL
+  `permissao` enum('ler','escrever','todas') NOT NULL,
+  `fechado` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `usuarios_adm`
 --
 
-INSERT INTO `usuarios_adm` (`id`, `email`, `nome`, `usuario`, `senha`, `permissao`) VALUES
-(47, 'ZDGmGqSr6q0uZCszKdY2UiNKd7AUhd5YFa22RDtIRJbKth/hiJhBhicoqM/IHmvw', 'Gabriel Flores', 'c7ad44cbad762a5da0a452f9e854fdc1e0e7a52a38015f23f3eab1d80b931dd472634dfac71cd34ebc35d16ab7fb8a90c81f975113d6c7538dc69dd8de9077ec', 'c7ad44cbad762a5da0a452f9e854fdc1e0e7a52a38015f23f3eab1d80b931dd472634dfac71cd34ebc35d16ab7fb8a90c81f975113d6c7538dc69dd8de9077ec', 'todas');
+INSERT INTO `usuarios_adm` (`id`, `email`, `nome`, `usuario`, `senha`, `permissao`, `fechado`) VALUES
+(0, 'vMq+eIj0Zukh3wKXjCle6DkbcbgoDrg4XeekQHKIVDc=', 'admin', 'c7ad44cbad762a5da0a452f9e854fdc1e0e7a52a38015f23f3eab1d80b931dd472634dfac71cd34ebc35d16ab7fb8a90c81f975113d6c7538dc69dd8de9077ec', 'c7ad44cbad762a5da0a452f9e854fdc1e0e7a52a38015f23f3eab1d80b931dd472634dfac71cd34ebc35d16ab7fb8a90c81f975113d6c7538dc69dd8de9077ec', 'todas', NULL);
 
 -- --------------------------------------------------------
 

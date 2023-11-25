@@ -38,7 +38,7 @@ try {
             $params = array($id);
             $result = $mysql->query($sql, $params);
 
-            $sql = 'DELETE FROM usuarios_adm WHERE id = ?;';
+            $sql = 'UPDATE usuarios_adm SET fechado = NOW() WHERE id = ?;';
             $params = array($id);
             $result = $mysql->query($sql, $params);
       }

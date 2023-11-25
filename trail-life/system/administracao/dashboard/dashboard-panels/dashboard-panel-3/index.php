@@ -1,3 +1,13 @@
+<?php
+$requestUrl = $_SERVER['REQUEST_URI'];
+
+$blockedSubdirectory = '/system/administracao/dashboard/dashboard-panels';
+
+if (strpos($requestUrl, $blockedSubdirectory) !== false) {
+      http_response_code(404);
+      exit;
+}
+?>
 <div class="default-panel-container">
       <div apply-hrz-padding>
             <h1>Controle de Motoristas</h1>

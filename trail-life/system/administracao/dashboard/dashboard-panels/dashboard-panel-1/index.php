@@ -1,3 +1,13 @@
+<?php
+$requestUrl = $_SERVER['REQUEST_URI'];
+
+$blockedSubdirectory = '/system/administracao/dashboard/dashboard-panels';
+
+if (strpos($requestUrl, $blockedSubdirectory) !== false) {
+      http_response_code(404);
+      exit;
+}
+?>
 <div apply-hrz-padding class="default-panel-container">
       <div>
             <h1>Controle de Estatísticas</h1>

@@ -27,7 +27,7 @@ try {
   $h_usuario = Cypher::encryptStringUsingSHA512($usuario);
   $h_senha = Cypher::encryptStringUsingSHA512($senha);
 
-  $sql = 'SELECT id, usuario FROM usuarios_adm WHERE usuario = ? AND senha = ?;';
+  $sql = 'SELECT id, usuario FROM usuarios_adm WHERE usuario = ? AND senha = ? AND fechado IS NULL;';
   $params = array($h_usuario, $h_senha);
   $result = $mysql->query($sql, $params);
 

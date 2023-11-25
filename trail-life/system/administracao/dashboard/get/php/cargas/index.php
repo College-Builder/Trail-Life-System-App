@@ -21,7 +21,7 @@ try {
             $cliente = mysqli_fetch_assoc($mysql->query('SELECT empresa, cidade FROM clientes WHERE id = ?;', array($row['cliente'])));
             $filial = mysqli_fetch_assoc($mysql->query('SELECT estado, cidade, rua FROM filiais WHERE id = ?;', array($row['filial'])));
             $motorista = mysqli_fetch_assoc($mysql->query('SELECT nome FROM motoristas WHERE id = ?;', array($row['motorista'])));
-            $usuario = mysqli_fetch_assoc($mysql->query('SELECT nome FROM usuarios_adm WHERE id = ?;', array($user)));
+            $usuario = mysqli_fetch_assoc($mysql->query('SELECT nome FROM usuarios_adm WHERE id = ?;', array($row['criador'])));
 
 
             $atualmente = "";
