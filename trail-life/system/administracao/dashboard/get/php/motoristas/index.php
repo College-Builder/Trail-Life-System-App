@@ -11,7 +11,7 @@ try {
       $usePermission = array('ler', 'escrever', 'todas');
       $user = $validateApiDate->validateUserPermission($authorizationHeader, $usePermission);
 
-      $sql = 'SELECT id, nome, celular, status FROM motoristas;';
+      $sql = 'SELECT id, nome, celular, status FROM motoristas WHERE fechado IS NULL;';
       $params = array();
       $result = $mysql->query($sql, $params);
 

@@ -44,7 +44,7 @@ try {
       }
 
       foreach ($ids as $id) {
-            $sql = 'DELETE FROM cargas WHERE id = ?;';
+            $sql = 'UPDATE cargas SET fechado = NOW() WHERE id = ?';
             $params = array($id);
             $result = $mysql->query($sql, $params);
       }

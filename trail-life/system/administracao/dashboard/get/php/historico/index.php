@@ -11,7 +11,7 @@ try {
       $usePermission = array('ler', 'escrever', 'todas');
       $user = $validateApiDate->validateUserPermission($authorizationHeader, $usePermission);
 
-      $sql = 'SELECT id, cliente, filial, rota, tipo_carga, motorista, criador, criado FROM cargas WHERE fechado IS NULL;';
+      $sql = 'SELECT id, cliente, filial, rota, tipo_carga, motorista, criador, criado, fechado FROM cargas;';
       $params = array();
       $result = $mysql->query($sql, $params);
 
@@ -22,7 +22,6 @@ try {
             $filial = mysqli_fetch_assoc($mysql->query('SELECT estado, cidade, rua FROM filiais WHERE id = ?;', array($row['filial'])));
             $motorista = mysqli_fetch_assoc($mysql->query('SELECT nome FROM motoristas WHERE id = ?;', array($row['motorista'])));
             $usuario = mysqli_fetch_assoc($mysql->query('SELECT nome FROM usuarios_adm WHERE id = ?;', array($user)));
-
 
             $atualmente = "";
             $rota = json_decode($row['rota'], true);
@@ -49,8 +48,8 @@ try {
                   'ponto_de_partida' => $filial['cidade'],
                   'filial' => $filial['cidade'] . "/" . $filial['estado'] . " - " . $filial['rua'],
                   'cliente' => $cliente['empresa'],
+                  'fechado' => $row['fechado']
             );
-
       }
 
       $requestHandler::returnJSON($data);

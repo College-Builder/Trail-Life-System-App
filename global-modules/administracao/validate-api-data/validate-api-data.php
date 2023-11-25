@@ -222,7 +222,7 @@ class ValidateMotoristaData extends ValidateApiData
 
             $h_rg = Cypher::encryptStringUsingSHA512($rg);
 
-            $sql = 'SELECT id FROM motoristas WHERE rg = ?;';
+            $sql = 'SELECT id FROM motoristas WHERE rg = ? AND fechado IS NULL;';
             $params = array($h_rg);
             $result = $this->mysql->query($sql, $params);
 
@@ -259,7 +259,7 @@ class ValidateMotoristaData extends ValidateApiData
 
             $h_cpf = Cypher::encryptStringUsingSHA512($cpf);
 
-            $sql = 'SELECT id FROM motoristas WHERE cpf = ?;';
+            $sql = 'SELECT id FROM motoristas WHERE cpf = ? AND fechado IS NULL;';
             $params = array($h_cpf);
             $result = $this->mysql->query($sql, $params);
 

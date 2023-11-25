@@ -1,33 +1,27 @@
 <div apply-hrz-padding class="default-panel-container">
       <div>
-            <h1>Controle Financeiro</h1>
+            <h1>Controle de Estatísticas</h1>
       </div>
       <div>
             <div class="dashboard-panel-1-content-container">
                   <div class="dashboard-panel-1-content-container__values-container">
                         <div>
                               <p>
-                                    Valor Bruto Arrecadado
+                                    Total de Viagens
                               </p>
-                              <p>
-                                    R$3.420.800
-                              </p>
+                              <p total-de-viagens></p>
                         </div>
                         <div>
                               <p>
-                                    Valor do Lucro
+                                    Viagens em Andamento
                               </p>
-                              <p>
-                                    R$3.420.800
-                              </p>
+                              <p viagens-em-andamento></p>
                         </div>
                         <div>
                               <p>
-                                    Valor de Custo
+                                    Viagens Fechadas
                               </p>
-                              <p>
-                                    R$300.123
-                              </p>
+                              <p viagens-fechadas></p>
                         </div>
                   </div>
                   <!---->
@@ -42,7 +36,7 @@
                   <!---->
                   <!---->
                   <div class="download-csv-button-container">
-                        <button class="default-icon-button">
+                        <button download-estatisticas-table-button class="default-icon-button">
                               <i class="bi bi-download"></i>
                               Download .csv
                         </button>
@@ -51,7 +45,62 @@
       </div>
 </div>
 <script>
-      (() => {
+      (async () => {
+            const authToken = document.cookie
+                  .split('; ')
+                  .find((cookie) => cookie.startsWith('a_auth='))
+                  .split('=')[1];
+
+
+            const req = await fetch("get/php/historico", {
+                  method: 'GET',
+                  headers: {
+                        Authorization: `${authToken}`,
+                  },
+            });
+
+            if (req.status === 500) {
+                  spawnAlert(
+                        'warning',
+                        'Oops, algo deu errado. Por favor, tente novamente mais tarde.',
+                  );
+
+                  return;
+            }
+
+            const res = await req.json();
+
+            if (req.status !== 200) {
+                  spawnAlert('warning', req.message);
+
+                  return;
+            }
+
+            //
+            //
+            //
+
+            const totalDeViagensContainer = window.document.querySelector("[total-de-viagens]");
+            totalDeViagensContainer.innerText = res.data.length === 1 ? res.data.length + " Viagem" : res.data.length + " Viagens";
+      
+            let viagensEmAndamento = 0;
+            let viagensFechadas = 0;
+
+
+            res.data.forEach(data => {
+                  data.fechado ? viagensFechadas++ : viagensEmAndamento++;
+            })
+
+            const viagensEmAndamentoContainer = window.document.querySelector("[viagens-em-andamento]");
+            viagensEmAndamentoContainer.innerText = viagensEmAndamento === 1 ? viagensEmAndamento + " Viagem" : viagensEmAndamento + " Viagens";
+
+            const viagensFechadasContainer = window.document.querySelector("[viagens-fechadas]");
+            viagensFechadasContainer.innerText = viagensFechadas === 1 ? viagensFechadas + " Viagem" : viagensFechadas + " Viagens";
+
+            //
+            //
+            //
+
             labels = [
                   'jan',
                   'fev',
@@ -67,36 +116,50 @@
                   'dez',
             ];
 
+            const years = {}
+
+            res.data.forEach(viagem => {
+                  if (!viagem.fechado) {
+                        return;
+                  }
+
+                  const template = viagem.fechado.split("-")
+                  const year = template[0]
+                  const month = template[1]
+
+                  if (!years[year]) {
+                        years[year] = {}
+                  }
+
+                  if (!years[year][month]) {
+                        years[year][month] = 0;
+                  }
+
+                  years[year][month]++;
+            })
+
+            const datasets = []
+
+            const yearsKeys = Object.keys(years)
+
+            yearsKeys.forEach(year => {
+                  const dataset = {
+                        data: [],
+                        label: `Viagens ${year}`
+                  }
+
+                  const monthsKeys = Object.keys(years[year])
+
+                  monthsKeys.forEach(month => {
+                        dataset.data.push(years[year][month])
+                  })
+
+                  datasets.push(dataset)
+            })
+
             const data = {
                   labels,
-                  datasets: [
-                        {
-                              data: [
-                                    1200, 1500, 1800, 2000, 1700, 2100, 1600, 1900, 2200, 2500, 2300,
-                                    2400,
-                              ],
-                              label: 'Lucro 2022',
-                        },
-                        {
-                              data: [
-                                    1450, 1670, 1890, 1210, 1980, 1760, 1340, 1560, 1780, 1900, 1320, 1440
-                              ],
-                              label: 'Valor Bruto 2022',
-                        },
-                        {
-                              data: [
-                                    1800, 2100, 2200, 2500, 2300, 2400, 1900, 2000, 2300, 2600, 2400,
-                                    2600,
-                              ],
-                              label: 'Lucro 2023',
-                        },
-                        {
-                              data: [
-                                    2200, 1950, 1670, 1880, 1750, 2100, 2330, 1920, 2470, 1980, 1810, 2150
-                              ],
-                              label: 'Valor Bruto 2023',
-                        },
-                  ],
+                  datasets
             }
 
             const canvas = window.document
@@ -178,5 +241,34 @@
 
                   return deepCopy(config);
             }
+
+            window.document.querySelector('button[download-estatisticas-table-button]').addEventListener("click", () => {
+                  convertJsonToCsv(res.data, 'estatisticas-table')
+            })
+
+            function convertJsonToCsv(jsonData, fileName) {
+                  const csvData = [];
+
+                  const headers = Object.keys(jsonData[0]);
+                  csvData.push(headers.join(','));
+
+                  jsonData.forEach((item) => {
+                        const values = headers.map((header) => item[header]);
+                        csvData.push(values.join(','));
+                  });
+
+                  const csvString = csvData.join('\n');
+
+                  const blob = new Blob([csvString], { type: 'text/csv' });
+
+                  const link = document.createElement('a');
+                  link.href = window.URL.createObjectURL(blob);
+                  link.download = fileName + '.csv';
+
+                  document.body.appendChild(link);
+                  link.click();
+                  document.body.removeChild(link);
+            }
       })();
 </script>
+>

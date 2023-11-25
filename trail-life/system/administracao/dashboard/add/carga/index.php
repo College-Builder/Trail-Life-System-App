@@ -1,6 +1,6 @@
 <?php include './util.php' ?>
 <?php
-$sql = 'SELECT id, empresa FROM clientes;';
+$sql = 'SELECT id, empresa FROM clientes WHERE fechado IS NULL;';
 $params = array();
 $result = $mysql->query($sql, $params);
 
@@ -58,7 +58,7 @@ $row = $result->fetch_assoc();
 $enum_values = explode("','", substr($row['Type'], 6, -2));
 ?>
 <?php
-$sql = 'SELECT id, nome, status FROM motoristas;';
+$sql = 'SELECT id, nome, status FROM motoristas WHERE fechado IS NULL;';
 $params = array();
 $result = $mysql->query($sql, $params);
 

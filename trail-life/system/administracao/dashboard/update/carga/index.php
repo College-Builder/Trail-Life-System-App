@@ -7,7 +7,7 @@ if (!isset($id) || !is_numeric($id)) {
       exit();
 }
 
-$sql = 'SELECT id, cliente FROM cargas WHERE id = ?;';
+$sql = 'SELECT id, cliente FROM cargas WHERE id = ? AND fechado IS NULL;';
 $params = array($id);
 $result = $mysql->query($sql, $params);
 
@@ -21,7 +21,7 @@ $row = mysqli_fetch_assoc($result);
 $id = $row['id'];
 ?>
 <?php
-$sql = 'SELECT id, empresa FROM clientes;';
+$sql = 'SELECT id, empresa FROM clientes WHERE fechado IS NULL;';
 $params = array();
 $result = $mysql->query($sql, $params);
 

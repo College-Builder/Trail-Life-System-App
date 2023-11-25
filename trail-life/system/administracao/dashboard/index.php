@@ -141,7 +141,7 @@ $name = ($row = mysqli_fetch_assoc($result)) ? $row['nome'] : "";
             <li>
               <button aside-menu-container__option for-dashboard-panel="1" class="default-icon-button">
                 <i class="bi bi-coin"></i>
-                Controle Financeiro
+                Controle de Estatísticas
               </button>
             </li>
             <li>

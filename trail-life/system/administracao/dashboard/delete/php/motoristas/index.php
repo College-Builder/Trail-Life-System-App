@@ -32,7 +32,7 @@ try {
                   $requestHandler::throwReqFormException(400, 'ids', 'Por favor, forneça ids válidos.');
             }
 
-            $sql = 'SELECT id FROM cargas WHERE motorista = ?;';
+            $sql = 'SELECT id FROM cargas WHERE motorista = ? AND fechado IS NULL;';
             $params = array($id);
             $result = $mysql->query($sql, $params);
 
@@ -48,7 +48,7 @@ try {
       }
 
       foreach ($ids as $id) {
-            $sql = 'DELETE FROM motoristas WHERE id = ?;';
+            $sql = 'UPDATE motoristas SET fechado = NOW() WHERE id = ?;';
             $params = array($id);
             $result = $mysql->query($sql, $params);
       }
