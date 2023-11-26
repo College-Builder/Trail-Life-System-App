@@ -3,7 +3,7 @@
 $id = $_GET['id'];
 
 if (!isset($id) || !is_numeric($id)) {
-      header("Location: /system/administracao/dashboard");
+      header("Location: /trail-life/s/system/administracao/dashboard");
       exit();
 }
 
@@ -12,7 +12,7 @@ $params = array($id);
 $result = $mysql->query($sql, $params);
 
 if ($result->num_rows !== 1) {
-      header("Location: /system/administracao/dashboard");
+      header("Location: /trail-life/s/system/administracao/dashboard");
       exit();
 }
 
@@ -103,8 +103,8 @@ $email = Cypher::decryptStringUsingAES256($row['email'], $_ENV["CLIENTES_EMAIL_C
                   </div>
                   <div class="default-hrz-padding interact-form-container__main-container">
                         <form class="default-form" method="POST"
-                              action="/trail-life/s/system/administracao/dashboard/update/cliente/php/update/index.php"
-                              sucess-message="Empresa <?php echo $empresa ?> modificada com successo.">
+                              action="/trail-life/s/system/administracao/dashboard/update/cliente/php/update"
+                              sucess-message="Cliente <?php echo $empresa ?> modificado com successo.">
                               <div>
                                     <div class="default-form__make-row">
                                           <div class="default-form__input-container">

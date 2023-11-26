@@ -358,9 +358,10 @@ class ValidateClienteData extends ValidateApiData
                   $this->requestHandler->throwReqFormException(400, 'cidade', 'Por favor, forneça uma cidade válida.');
             }
 
-            if (!preg_match('/^[a-z.\s]+$/i', $cidade)) {
-                  $this->requestHandler->throwReqFormException(400, 'cidade', 'Por favor, utlize apenas números ou letras.');
+	    if (!preg_match('/^[a-zA-Z\s]+$/', $cidade)) {
+	          $this->requestHandler->throwReqFormException(400, 'cidade', 'Por favor, utilize apenas letras ou espaços.');
             }
+
       }
 
       public function validateRua($rua)

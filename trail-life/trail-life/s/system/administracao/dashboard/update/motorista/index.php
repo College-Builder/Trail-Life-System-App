@@ -3,7 +3,7 @@
 $id = $_GET['id'];
 
 if (!isset($id) || !is_numeric($id)) {
-      header("Location: /system/administracao/dashboard");
+      header("Location: /trail-life/s/system/administracao/dashboard");
       exit();
 }
 
@@ -12,7 +12,7 @@ $params = array($id);
 $result = $mysql->query($sql, $params);
 
 if ($result->num_rows !== 1) {
-      header("Location: /system/administracao/dashboard");
+      header("Location: /s/system/administracao/dashboard");
       exit();
 }
 
@@ -100,7 +100,7 @@ $email_emergencia = Cypher::decryptStringUsingAES256($row['email_emergencia'], $
                   </div>
                   <div class="default-hrz-padding interact-form-container__main-container">
                         <form class="default-form" method="POST"
-                              action="/system/administracao/dashboard/update/motorista/php/update/index.php"
+                              action="/trail-life/s/system/administracao/dashboard/update/motorista/php/update"
                               sucess-message="<?php echo $nome ?> modificado com successo.">
                               <div>
                                     <div class="default-form__make-row">

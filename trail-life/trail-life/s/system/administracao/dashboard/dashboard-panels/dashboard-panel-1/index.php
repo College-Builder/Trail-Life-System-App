@@ -62,7 +62,7 @@ if (strpos($requestUrl, $blockedSubdirectory) !== false) {
                   .split('=')[1];
 
 
-            const req = await fetch("get/php/historico", {
+            const req = await fetch("/trail-life/s/system/administracao/dashboard/get/php/historico", {
                   method: 'GET',
                   headers: {
                         Authorization: `${authToken}`,

@@ -72,7 +72,7 @@
                   </div>
                   <div class="default-hrz-padding interact-form-container__main-container">
                         <form class="default-form" method="POST"
-                              action="/trail-life/s/system/administracao/dashboard/add/cliente/php/add/index.php"
+                              action="/trail-life/s/system/administracao/dashboard/add/cliente/php/add"
                               sucess-message="Novo Cliente criado com successo.">
                               <div>
                                     <div class="default-form__make-row">

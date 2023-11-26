@@ -3,7 +3,7 @@
 $id = $_GET['id'];
 
 if (!isset($id) || !is_numeric($id)) {
-      header("Location: /system/administracao/dashboard");
+      header("Location: /trail-life/s/system/administracao/dashboard");
       exit();
 }
 
@@ -12,7 +12,7 @@ $params = array($id);
 $result = $mysql->query($sql, $params);
 
 if ($result->num_rows !== 1) {
-      header("Location: /system/administracao/dashboard");
+      header("Location: /trail-life/s/system/administracao/dashboard");
       exit();
 }
 
@@ -106,15 +106,12 @@ while ($row = $result->fetch_assoc()) {
                         <h1>
                               <i class="bi bi-box-seam"></i>
                               Modificar Carga
-                              <?php
-                              echo '#' . $id;
-                              ?>
                         </h1>
                   </div>
                   <div class="default-hrz-padding interact-form-container__main-container">
                         <form class="default-form" method="POST"
-                              action="/system/administracao/dashboard/update/carga/php/update/index.php"
-                              sucess-message="carga <?php echo "#" . $id ?> modificada com successo.">
+                              action="/trail-life/s/system/administracao/dashboard/update/carga/php/update"
+                              sucess-message="Carga modificada com successo.">
                               <div>
                                     <div class="default-form__input-container">
                                           <label for="cliente">Cliente:</label>

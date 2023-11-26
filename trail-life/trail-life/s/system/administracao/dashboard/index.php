@@ -171,7 +171,7 @@ $name = ($row = mysqli_fetch_assoc($result)) ? $row['nome'] : "";
           </ul>
         </div>
         <div>
-          <button logout-button class="default-icon-button">
+          <button logout-button class="default-icon-button" logout="https://collegebuilder.easyvirtual.net/trail-life/s/system/administracao/dashboard/actions/php/logout/">
             <i class="bi bi-arrow-bar-left"></i>
             Sair
           </button>
