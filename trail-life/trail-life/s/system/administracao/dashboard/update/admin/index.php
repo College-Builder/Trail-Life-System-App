@@ -98,7 +98,7 @@ $permissao = $row['permissao'];
                   </div>
                   <div class="default-hrz-padding interact-form-container__main-container">
                         <form class="default-form" method="POST"
-                              action="/system/administracao/dashboard/update/admin/php/update/index.php" sucess-message="<?php echo $nome ?> modificado com successo.">
+                              action="/trail-life/s/system/administracao/dashboard/update/admin/php/update/index.php" sucess-message="<?php echo $nome ?> modificado com successo.">
                               <div>
                                     <div class="default-form__make-row">
                                           <div class="default-form__input-container">

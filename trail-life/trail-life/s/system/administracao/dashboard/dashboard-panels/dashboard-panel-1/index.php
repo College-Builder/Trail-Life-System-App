@@ -1,7 +1,7 @@
 <?php
 $requestUrl = $_SERVER['REQUEST_URI'];
 
-$blockedSubdirectory = '/system/administracao/dashboard/dashboard-panels';
+$blockedSubdirectory = '/trail-life/s/system/administracao/dashboard/dashboard-panels';
 
 if (strpos($requestUrl, $blockedSubdirectory) !== false) {
       http_response_code(404);

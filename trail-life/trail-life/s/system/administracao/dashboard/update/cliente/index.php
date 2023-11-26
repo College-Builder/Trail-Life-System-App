@@ -103,7 +103,7 @@ $email = Cypher::decryptStringUsingAES256($row['email'], $_ENV["CLIENTES_EMAIL_C
                   </div>
                   <div class="default-hrz-padding interact-form-container__main-container">
                         <form class="default-form" method="POST"
-                              action="/system/administracao/dashboard/update/cliente/php/update/index.php"
+                              action="/trail-life/s/system/administracao/dashboard/update/cliente/php/update/index.php"
                               sucess-message="Empresa <?php echo $empresa ?> modificada com successo.">
                               <div>
                                     <div class="default-form__make-row">
