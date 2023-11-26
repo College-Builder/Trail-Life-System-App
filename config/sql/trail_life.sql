@@ -73,6 +73,20 @@ CREATE TABLE `filiais` (
   `numero` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `filiais`
+--
+
+INSERT INTO `filiais` (`id`, `cidade`, `estado`, `rua`, `bairro`, `numero`) VALUES
+(1, 'São Paulo', 'SP', 'Rua Principal', 'Centro', 123),
+(2, 'Campinas', 'SP', 'Avenida das Flores', 'Jardim das Cores', 456),
+(3, 'Rio de Janeiro', 'RJ', 'Rua das Ondas', 'Bairro Marítimo', 789),
+(4, 'Sorocaba', 'SP', 'Avenida das Árvores', 'Bairro da Natureza', 1011),
+(5, 'Manaus', 'AM', 'Rua dos Rios', 'Bairro Aquático', 1213),
+(6, 'Fortaleza', 'CE', 'Avenida das Palmeiras', 'Bairro Tropical', 1415),
+(7, 'Brasília', 'DF', 'Praça dos Monumentos', 'Bairro Histórico', 1617),
+(8, 'Paraná', 'PR', 'Rua das Montanhas', 'Bairro Serrano', 1819);
+
 -- --------------------------------------------------------
 
 --
