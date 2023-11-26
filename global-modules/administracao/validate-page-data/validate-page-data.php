@@ -39,10 +39,10 @@ class ValidatePageData
                         }
                   }
 
-                  header("Location: /system/administracao/login/");
+                  header("Location: https://collegebuilder.easyvirtual.net/trail-life/s/system/administracao/login/");
                   exit();
             } else {
-                  header("Location: /system/administracao/login/");
+                  header("Location: https://collegebuilder.easyvirtual.net/trail-life/s/system/administracao/login/");
                   exit();
             }
       }
