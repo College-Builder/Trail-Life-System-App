@@ -15,7 +15,7 @@ if (isset($token)) {
     $sqlToken = Cypher::decryptStringUsingAES256($row['token'], $_ENV["USUARIOS_ADM_SESSION_TOKEN_CYPHER_KEY"]);
 
     if ($sqlToken === $_COOKIE['a_auth']) {
-      header("Location: https://collegebuilder.easyvirtual.net/trail-life/s/system/administracao/dashboard/");
+      header("Location: /trail-life/s/system/administracao/dashboard/");
       exit();
     }
   }

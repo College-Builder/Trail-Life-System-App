@@ -9,7 +9,7 @@ if ($result->num_rows === 0) {
       $message = "Por favor adicione pelo menos um cliente antes de adicionar uma carga.";
       $type = "warning";
 
-      $url = "https://collegebuilder.easyvirtual.net/trail-life/s/system/administracao/dashboard/?" .
+      $url = "/trail-life/s/system/administracao/dashboard/?" .
             "alert=" . urlencode($message) .
             "&timestamp=" . urlencode($timestamp) .
             "&type=" . urlencode($type);
@@ -66,7 +66,7 @@ if ($result->num_rows === 0) {
       $message = "Por favor adicione pelo menos um motorista antes de adicionar uma carga.";
       $type = "warning";
 
-      $url = "https://collegebuilder.easyvirtual.net/trail-life/s/system/administracao/dashboard/?" .
+      $url = "/trail-life/s/system/administracao/dashboard/?" .
             "alert=" . urlencode($message) .
             "&timestamp=" . urlencode($timestamp) .
             "&type=" . urlencode($type);
