@@ -359,7 +359,7 @@ class ValidateClienteData extends ValidateApiData
             }
 
 	    if (!preg_match('/^[a-zA-Z\s]+$/', $cidade)) {
-	          $this->requestHandler->throwReqFormException(400, 'cidade', 'Por favor, utilize apenas letras ou espaços.');
+	          $this->requestHandler->throwReqFormException(400, 'cidade', 'Por favor, utilize apenas letras.');
             }
 
       }
