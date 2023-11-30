@@ -18,7 +18,7 @@ A empresa de transporte fictícia "Trail Life" foi desenvolvida como parte do pr
 
 ## Projeto 
 
-<a href="https://collegebuilder.easyvirtual.net/trail-life/home-page">
+<a href="https://collegebuilder.easyvirtual.net/trail-life/s/system/administracao/login/">
   <img src="https://github.com/College-Builder/College-Builder/blob/main/global-assets/Trail-Life-System-App/screenshot.1.png"/>
 </a>
 
