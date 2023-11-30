@@ -1,6 +1,6 @@
 <div align="center">
   <a href="https://collegebuilder.easyvirtual.net/trail-life/home-page">
-    <img src='https://github.com/College-Builder/College-Builder/blob/main/global-assets/Trail-Life-System-App/logo.png' height='140'>
+    <img src='https://github.com/College-Builder/College-Builder/blob/main/global-assets/Trail-Life-System-App/logo.png' height='100'>
   </a>
 </div>
 
