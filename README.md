@@ -5,7 +5,7 @@
 </div>
 
 <h1 align="center">
-  Trail Life Landing Page App
+  Trail Life System App
 </h1>
 
 <p align="center">
@@ -19,7 +19,7 @@ A empresa de transporte fictícia "Trail Life" foi desenvolvida como parte do pr
 ## Projeto 
 
 <a href="https://collegebuilder.easyvirtual.net/trail-life/home-page">
-  <img src="https://github.com/College-Builder/College-Builder/blob/main/global-assets/Trail-Life-Landing-Page-App/screenshot.png"/>
+  <img src="https://github.com/College-Builder/College-Builder/blob/main/global-assets/Trail-Life-System-App/screenshot.1.png"/>
 </a>
 
 O projeto Trail Life Transportadora foi desenvolvido com fins acadêmicos, com o objetivo de aplicar os conhecimentos adquiridos em HTML, CSS, JavaScript, AWS e API Gateway. O projeto consiste em uma landing page para uma transportadora fictícia, chamada Trail Life.
@@ -40,18 +40,20 @@ O projeto foi desenvolvido usando as seguintes ferramentas e tecnologias:
 - HTML (Hypertext Markup Language): Continua sendo a linguagem de marcação fundamental para estruturar o conteúdo da página web.
 - CSS (Cascading Style Sheets): Mantém seu papel essencial na definição da aparência e estilo da página web.
 - JavaScript: Ainda é utilizado para adicionar interatividade e funcionalidades dinâmicas à página web.
-- TypeScript: Foi integrado ao projeto para trazer tipagem estática ao JavaScript, o que proporciona um código mais robusto e com menos erros potenciais durante o desenvolvimento.
-- Node.js: Agora faz parte da arquitetura, permitindo a execução de código JavaScript no lado do servidor, proporcionando escalabilidade e eficiência no processamento de requisições.
+- Bootstrap: Foi integrado ao projeto para proporcionar uma abordagem ágil e responsiva no desenvolvimento do layout.
+- Saas: Contribuiu para uma gestão mais eficiente e modular do código CSS. 
 
 ## Arquitetura Cloud
 
-O diagrama da arquitetura do servidor cloud foi aprimorado para oferecer uma landing pag completa, aproveitando os seguintes serviços da AWS:
+O diagrama da arquitetura do servidor cloud foi aprimorado para oferecer uma estrutura completa, aproveitando os seguintes serviços da AWS:
 
 - AWS (Amazon Web Services): Continua sendo a plataforma de computação em nuvem principal, fornecendo escalabilidade e confiabilidade.
+- VPC: Permite criar uma rede privada isolada, garantindo a segurança e o controle da comunicação.
 - Route 53: Permanece encarregado do gerenciamento de domínios e DNS, garantindo uma navegação eficiente e segura.
 - API Gateway: Através deste serviço, são criadas e gerenciadas as interfaces de programação de aplicativos, permitindo uma comunicação eficaz entre diferentes componentes da arquitetura.
 - Lambda Function: Continua a ser utilizado para executar funções na nuvem de forma eficiente e escalável.
 - SES (Simple Email Service): Permanece como a solução para o envio de e-mails, garantindo a confiabilidade na comunicação com os usuários.
+- RDS My SQL: Oferece uma base de dados gerenciada, escalável e altamente disponível.
 
 <img src="https://github.com/College-Builder/College-Builder/blob/main/global-assets/Trail-Life-Landing-Page-App/diagram.png"/>
 
