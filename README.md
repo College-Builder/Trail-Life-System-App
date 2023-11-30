@@ -58,10 +58,8 @@ O diagrama da arquitetura do servidor cloud foi aprimorado para oferecer uma est
 
 1. Faça um clone do repositório usando o comando `git clone`.
 2. Configure o arquivo `.env` com as variáveis de ambiente necessárias.
-3. Execute o comando `npm install` para instalar as dependências.
-4. Inicie o projeto com o comando `npm start`.
-
-Lembrando que o projeto utiliza TypeScript e Node.js, portanto, é essencial ter essas linguagens instaladas em seu ambiente de desenvolvimento. Dessa forma, você estará pronto para começar a trabalhar no projeto de forma eficiente e segura.
+3. Instalar o APACHE no seu dispositivo.
+4. Instalar o MySQL no seu dispositivo.
 
 ### Arquivo .env
 
