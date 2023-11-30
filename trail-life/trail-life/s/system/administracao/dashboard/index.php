@@ -159,13 +159,13 @@ $name = ($row = mysqli_fetch_assoc($result)) ? $row['nome'] : "";
             <li>
               <button aside-menu-container__option for-dashboard-panel="4" class="default-icon-button">
                 <i class="bi bi-person"></i>
-                Controles de Clientes
+                Controle de Clientes
               </button>
             </li>
             <li>
               <button aside-menu-container__option for-dashboard-panel="5" class="default-icon-button">
                 <i class="bi bi-file-lock2"></i>
-                Controles de Admins
+                Controle de Admins
               </button>
             </li>
           </ul>
