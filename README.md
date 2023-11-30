@@ -9,7 +9,7 @@
 </h1>
 
 <p align="center">
-A empresa de transporte fictícia "Trail Life" foi desenvolvida como parte do projeto integrador do terceiro semestre na Universidade de Sorocaba pelo grupo de alunos que estão aqui neste repositório. Este repositório abriga o código da aplicação backend, que inclui o site da Trail Life e uma API para envio de emails aos clientes.
+A empresa de transporte fictícia "Trail Life" foi desenvolvida como parte do projeto integrador do terceiro semestre na Universidade de Sorocaba pelo grupo de alunos que estão aqui neste repositório. Este repositório abriga o código da aplicação backend, que inclui o site da Trail Life Aministração e APIs para conexão com o banco de dados.
 </p>
 
 <p align="center">
@@ -22,7 +22,7 @@ A empresa de transporte fictícia "Trail Life" foi desenvolvida como parte do pr
   <img src="https://github.com/College-Builder/College-Builder/blob/main/global-assets/Trail-Life-System-App/screenshot.1.png"/>
 </a>
 
-O projeto Trail Life Transportadora foi desenvolvido com fins acadêmicos, com o objetivo de aplicar os conhecimentos adquiridos em HTML, CSS, JavaScript, Bootstrap, AWS e API Gateway. O projeto consiste em uma landing page para uma transportadora fictícia, chamada Trail Life.
+O projeto Trail Life Administração foi desenvolvido com fins acadêmicos, com o objetivo de aplicar os conhecimentos adquiridos em HTML, CSS, JavaScript, Bootstrap, AWS e API Gateway. O projeto consiste em uma landing page para uma transportadora fictícia, chamada Trail Life.
 
 O sistema administrador de transportadora "Trail Life" é uma solução tecnológica abrangente desenvolvida para otimizar e aprimorar a gestão operacional de empresas de transporte e logística. Projetado com uma abordagem centrada na eficiência, o Trail Life oferece uma variedade de recursos e funcionalidades para simplificar e aperfeiçoar os processos administrativos e operacionai.
 
