@@ -34,7 +34,9 @@ O projeto foi desenvolvido usando as seguintes ferramentas e tecnologias:
 - CSS (Cascading Style Sheets): Mantém seu papel essencial na definição da aparência e estilo da página web.
 - JavaScript: Ainda é utilizado para adicionar interatividade e funcionalidades dinâmicas à página web.
 - Bootstrap: Foi integrado ao projeto para proporcionar uma abordagem ágil e responsiva no desenvolvimento do layout.
-- Saas: Contribuiu para uma gestão mais eficiente e modular do código CSS. 
+- Saas: Contribuiu para uma gestão mais eficiente e modular do código CSS.
+- PHP: A utilização do PHP permitiu a implementação de lógicas complexas e manipulação de dados, contribuindo para a construção de um sistema coeso e funcional.
+- MySQL: O MySQL foi estruturado de maneira a oferecer uma base sólida e confiável para a persistência de informações, assegurando a criptografia gerada pela aplicação, permitindo consultas eficientes e contribuindo para a integridade e segurança dos dados.
 
 ## Arquitetura Cloud
 
