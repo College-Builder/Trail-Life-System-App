@@ -48,7 +48,7 @@ O diagrama da arquitetura do servidor cloud foi aprimorado para oferecer uma est
 - SES (Simple Email Service): Permanece como a solução para o envio de e-mails, garantindo a confiabilidade na comunicação com os usuários.
 - RDS My SQL: Oferece uma base de dados gerenciada, escalável e altamente disponível.
 
-<img src=""/>
+<img src="https://github.com/College-Builder/College-Builder/blob/main/global-assets/Trail-Life-System-App/diagram.jpg"/>
 
 ## Setup
 
