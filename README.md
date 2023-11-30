@@ -22,16 +22,9 @@ A empresa de transporte fictícia "Trail Life" foi desenvolvida como parte do pr
   <img src="https://github.com/College-Builder/College-Builder/blob/main/global-assets/Trail-Life-System-App/screenshot.1.png"/>
 </a>
 
-O projeto Trail Life Transportadora foi desenvolvido com fins acadêmicos, com o objetivo de aplicar os conhecimentos adquiridos em HTML, CSS, JavaScript, AWS e API Gateway. O projeto consiste em uma landing page para uma transportadora fictícia, chamada Trail Life.
+O projeto Trail Life Transportadora foi desenvolvido com fins acadêmicos, com o objetivo de aplicar os conhecimentos adquiridos em HTML, CSS, JavaScript, Bootstrap, AWS e API Gateway. O projeto consiste em uma landing page para uma transportadora fictícia, chamada Trail Life.
 
-Esta landing page oferece uma funcionalidade que permite aos visitantes enviar e-mails para entrar em contato com a empresa, proporcionando uma forma eficaz de comunicação com a Trail Life Transportadora.
-
-A landing page é composta por quatro seções principais:
-
-- Demanda: Esta seção apresenta a empresa Trail Life e suas qualidades de transporte de cargas.
-- Serviços: Esta seção fornece mais informações sobre os serviços oferecidos pela Trail Life.
-- Funcionalidades: Esta seção destaca as funcionalidades que a empresa oferece para motoristas e clientes.
-- Contato: Esta seção fornece feature de contato com a Trail Life por email.
+O sistema administrador de transportadora "Trail Life" é uma solução tecnológica abrangente desenvolvida para otimizar e aprimorar a gestão operacional de empresas de transporte e logística. Projetado com uma abordagem centrada na eficiência, o Trail Life oferece uma variedade de recursos e funcionalidades para simplificar e aperfeiçoar os processos administrativos e operacionai.
 
 ## Ferramentas 
 
@@ -55,7 +48,7 @@ O diagrama da arquitetura do servidor cloud foi aprimorado para oferecer uma est
 - SES (Simple Email Service): Permanece como a solução para o envio de e-mails, garantindo a confiabilidade na comunicação com os usuários.
 - RDS My SQL: Oferece uma base de dados gerenciada, escalável e altamente disponível.
 
-<img src="https://github.com/College-Builder/College-Builder/blob/main/global-assets/Trail-Life-Landing-Page-App/diagram.png"/>
+<img src=""/>
 
 ## Setup
 
