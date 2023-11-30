@@ -46,7 +46,7 @@ O diagrama da arquitetura do servidor cloud foi aprimorado para oferecer uma est
 - VPC: Permite criar uma rede privada isolada, garantindo a segurança e o controle da comunicação.
 - Route 53: Permanece encarregado do gerenciamento de domínios e DNS, garantindo uma navegação eficiente e segura.
 - API Gateway: Através deste serviço, são criadas e gerenciadas as interfaces de programação de aplicativos, permitindo uma comunicação eficaz entre diferentes componentes da arquitetura.
-- Lambda Function: Continua a ser utilizado para executar funções na nuvem de forma eficiente e escalável.
+- AWS EC2: Oferece capacidade computacional sob demanda, permitindo aos usuários criar e executar instâncias virtuais de servidores de acordo com suas necessidades específicas. 
 - SES (Simple Email Service): Permanece como a solução para o envio de e-mails, garantindo a confiabilidade na comunicação com os usuários.
 - RDS My SQL: Oferece uma base de dados gerenciada, escalável e altamente disponível.
 
