@@ -281,4 +281,3 @@ if (strpos($requestUrl, $blockedSubdirectory) !== false) {
             }
       })();
 </script>
->
