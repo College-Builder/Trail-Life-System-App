@@ -4,10 +4,6 @@
   </a>
 </div>
 
-<h1 align="center">
-  Trail Life System App
-</h1>
-
 <p align="center">
 A empresa de transporte fictícia "Trail Life" foi desenvolvida como parte do projeto integrador do terceiro semestre na Universidade de Sorocaba pelo grupo de alunos que estão aqui neste repositório. Este repositório abriga o código da aplicação backend, que inclui o site da Trail Life Aministração e APIs para conexão com o banco de dados.
 </p>
